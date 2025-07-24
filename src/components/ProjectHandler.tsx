@@ -3,13 +3,6 @@ import ProjectItem from "./ProjectItem";
 import type { CollectionEntry } from "astro:content";
 import { motion } from "motion/react";
 
-const getProjectFromId = (
-  projects: CollectionEntry<"projects">[],
-  id: string,
-) => {
-  return projects.find((o) => o.id === id);
-};
-
 function useSelectedProject(
   projects: CollectionEntry<"projects">[],
   selectedProjectId: string | null,
@@ -35,31 +28,31 @@ export default ({ projects }: { projects: CollectionEntry<"projects">[] }) => {
     <>
       {selectedProject && (
         <motion.div
+          key={selectedProject}
           ref={projectPreviewRef}
-          layout
           layoutId={selectedProject}
-          className=" z-10 w-full h-full flex justify-center items-center"
+          className="w-full h-full flex justify-center items-center bg-red-300"
           onClick={() => {
-            projectPreviewRef.current?.scrollIntoView();
+            // projectPreviewRef.current?.scrollIntoView();
             setSelectedProject(null);
           }}
         >
           <div className="h-full w-full bg-white border-b border-slate-300">
             <motion.img
-              className="w-full h-auto"
+              className="w-full h-auto object-cover aspect-[1.414/1] border-b border-stone-300"
               src={actualSelectedProject?.data.coverImg.src}
               alt={actualSelectedProject?.data.coverImg.alt}
             />
             <div className="p-4">
-              <p className="w-full text-xs flex justify-between font-departure-mono text-slate-500">
+              <motion.p className="w-full flex justify-between font-departure-mono text-slate-500">
                 <span className="lowercase">
                   [{actualSelectedProject?.data.type}]
                 </span>{" "}
                 <span className="uppercase">
                   {actualSelectedProject?.data.date}
                 </span>
-              </p>
-              <h3 className="text-2xl mt-2">
+              </motion.p>
+              <h3 className="text-4xl mt-2">
                 {actualSelectedProject?.data.name}
               </h3>
               <div
@@ -72,17 +65,19 @@ export default ({ projects }: { projects: CollectionEntry<"projects">[] }) => {
           </div>
         </motion.div>
       )}
-      <div className="w-full grid grid-cols-2">
+      <motion.div layout className="w-full grid grid-cols-1 md:grid-cols-2">
         {projects.map((project) => {
+          if (selectedProject == project.id) return;
           return (
             <ProjectItem
               project={project}
               selectedProject={selectedProject}
               setSelectedProject={setSelectedProject}
+              modalRef={projectPreviewRef}
             />
           );
         })}
-      </div>
+      </motion.div>
     </>
   );
 };
