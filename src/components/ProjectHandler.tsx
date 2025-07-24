@@ -44,7 +44,7 @@ export default ({ projects }: { projects: CollectionEntry<"projects">[] }) => {
               alt={actualSelectedProject?.data.coverImg.alt}
             />
             <div className="p-4">
-              <motion.p className="w-full flex justify-between font-departure-mono text-slate-500">
+              <motion.p className="w-full flex justify-between font-departure-mono text-slate-500 text-sm">
                 <span className="lowercase">
                   [{actualSelectedProject?.data.type}]
                 </span>{" "}
