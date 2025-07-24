@@ -118,9 +118,9 @@ const MousePointer = ({ ...props }) => {
           value: [width, height],
         };
 
-        matRef.current.uniforms.u_opacity.value = 0.65
-        
-        matRef.current.transparent = true
+        matRef.current.uniforms.u_opacity.value = 0.65;
+
+        matRef.current.transparent = true;
       }
     }
   }, [matRef]);
@@ -149,7 +149,7 @@ const MousePointer = ({ ...props }) => {
   }, [viewport]);
 
   return (
-    <group ref={ref}>
+    <group position={[100, 100, 0]} ref={ref}>
       <mesh position={[0, 0, 5]} ref={animatedRef}>
         <sphereGeometry args={[1.5, 16, 8]} />
         <mouseShader ref={matRef} />
@@ -197,7 +197,6 @@ export default function HeroElement({}) {
         <AsciiRenderer
           bgColor="transparent"
           fgColor="#78716c"
-          // color
           resolution={0.12}
           characters=" .:-=+*#%@"
           invert={false}
