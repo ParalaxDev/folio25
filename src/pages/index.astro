@@ -1,16 +1,86 @@
 ---
+import MainLayout from "../layouts/MainLayout.astro";
+import HeroElement from "../components/HeroElement";
+import VerticalDivider from "../components/VerticalDivider.astro";
+import ProjectHandler from "../components/ProjectHandler";
+import { getCollection } from "astro:content";
 
+const projects = await getCollection("projects");
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout>
+    <nav
+        class="w-full h-12 px-8 border-b border-stone-300 sticky top-0 bg-white z-20"
+    >
+        <div
+            class="z-10 size-2 rotate-45 border-1 bg-white border-stone-300 absolute bottom-0 left-8 -translate-x-1/2 translate-y-1/2"
+        >
+        </div>
+        <div
+            class="w-auto h-full border-x border-stone-300 flex justify-between px-4 text-sm items-center font-departure-mono text-stone-500"
+        >
+            <p><a href="#">WB</a></p>
+            <ul class="*:inline *:pl-4">
+                <li><a href="#projects">projects</a></li>
+                <li><a href="#writing">writing</a></li>
+            </ul>
+        </div>
+        <div
+            class="z-10 size-2 rotate-45 border-1 bg-white border-stone-300 absolute bottom-0 right-8 translate-y-1/2 translate-x-1/2"
+        >
+        </div>
+        <div
+            class="absolute top-12 left-0 right-0 h-[50px] pointer-events-none blur-gradient-top"
+        >
+        </div>
+    </nav>
+    <main class="w-auto mx-8 border-x border-stone-300">
+        <section
+            class="w-auto h-[calc(75vh-6rem)] flex flex-col justify-start items-center"
+        >
+            <div class="w-full flex-auto relative">
+                <h1
+                    class="absolute top-1/2 left-1/2 -translate-1/2 text-3xl text-stone-800 p-8 bg-white z-10 border border-stone-300 font-departure-mono"
+                >
+                    <span class="text-stone-400">{">"}</span> 2025 portfolio
+                </h1>
+                <HeroElement />
+                <svg
+                    aria-hidden="true"
+                    class="pointer-events-none absolute inset-0 [z-index:-1] size-full stroke-stone-200 fill-stone-200"
+                    style="visibility: visible;"
+                    ><defs
+                        ><pattern
+                            id=":R1oafknq6ja:"
+                            width="40"
+                            height="40"
+                            patternUnits="userSpaceOnUse"
+                            x="-1"
+                            y="-1"
+                            ><path
+                                d="M.5 40V.5H40"
+                                fill="none"
+                                stroke-dasharray="0"></path></pattern
+                        ></defs
+                    ><rect
+                        width="100%"
+                        height="100%"
+                        stroke-width="0"
+                        fill="url(#:R1oafknq6ja:)"></rect></svg
+                >
+            </div>
+        </section>
+        <VerticalDivider />
+        <section id="projects" class="min-h-screen">
+            <div class="w-full px-4 py-8">
+                <h2 class="text-3xl">Featured Projects</h2>
+            </div>
+            <VerticalDivider />
+            <ProjectHandler projects={projects} client:load />
+        </section>
+    </main>
+</MainLayout>
+<div
+    class="fixed bottom-0 left-0 right-0 h-[50px] z-50 pointer-events-none blur-gradient-bottom"
+>
+</div>

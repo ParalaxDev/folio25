@@ -1,0 +1,467 @@
+[
+  {
+    "slug": "the-fountain",
+    "title": "The Fountain",
+    "type": "Visual Identity",
+    "outline": "This project reimagines Leicester’s Town Hall Fountain as a calm, welcoming space in the middle of the city. I visited the site to take photos, sketch, and talk to people about how they use the area. I also researched its history and looked at how other cities approach place branding.\nUsing that insight, I developed two visual identity concepts. One focused on the unique gargoyle shapes around the fountain. The other used a custom monogram and local imagery. I created animations, signs, merchandise, and social media content to bring the brand to life and connect with both locals and visitors.",
+    "year": 2025,
+    "slideshows": [
+      {
+        "title": "Concept 1",
+        "ratio": "94/70",
+        "images": [
+          {
+            "src": "/assets/the-fountain/pitch document_05.webp",
+            "alt": "Final Concept 1 Logo"
+          },
+          {
+            "src": "/assets/the-fountain/Final_4.mp4",
+            "type": "vid",
+            "alt": "Concept 1 Logo Animation"
+          },
+          {
+            "src": "/assets/the-fountain/Three_Banner_Flags_Mockup.webp",
+            "alt": "In Situ Flag Touchpoint"
+          },
+          {
+            "src": "/assets/the-fountain/Free_Sign_Mockup_1.webp",
+            "alt": "Point of Interest Sign Mockup"
+          },
+          {
+            "src": "/assets/the-fountain/final-other-encoded.mp4",
+            "type": "vid",
+            "alt": "Animated TikTok Ad Mockup"
+          }
+        ]
+      },
+      {
+        "title": "Concept 2",
+        "images": [
+          {
+            "src": "/assets/the-fountain/pitch document_10.webp",
+            "alt": "Final Concept 2 Logo"
+          },
+          {
+            "src": "/assets/the-fountain/Final_5.mp4",
+            "type": "vid",
+            "alt": "Concept 2 Logo Animation"
+          },
+          {
+            "src": "/assets/the-fountain/A-Stand_Mockup_1.webp",
+            "alt": "Cafe Sign Touchpoint"
+          },
+          {
+            "src": "/assets/the-fountain/Metal_Mug_Mockup_3.webp",
+            "alt": "Mug Touchpoint"
+          },
+          {
+            "src": "/assets/the-fountain/final.mp4",
+            "type": "vid",
+            "alt": "Instagram Story Mockup"
+          }
+        ]
+      }
+    ],
+    "table": [
+      { "key": "Client", "value": "Mock Brief" },
+      {
+        "key": "Pitch Document",
+        "value": "https://willb.cc/f/25ACA145_Pitch_Document.pdf",
+        "isLink": true
+      },
+      {
+        "key": "Visual Evidence",
+        "value": "https://willb.cc/f/25ACA145_Visual_Evidence.pdf",
+        "isLink": true
+      },
+      {
+        "key": "touchpoints",
+        "value": "Logos / Posters / Animations / Signage / Brand Guidelines",
+        "isList": true
+      },
+      {
+        "key": "disciplines",
+        "value": "Visual Identity / Branding / Strategy / Motion Graphics",
+        "isList": true
+      }
+    ]
+  },
+  {
+    "slug": "ampliear",
+    "title": "Ampliear",
+    "type": "Marketing",
+    "outline": "This project was about reimagining how hearing aids are advertised, with a focus on older users. I started by researching the market and exploring emotional themes like loneliness and connection. From there, I developed the concept of sound transforming from unclear to clear, using the Ampliear device as the turning point.\nI created a retro-inspired visual style with duotone effects and stylised 3D renders to evoke nostalgia. The final design became a mini campaign, with warped text or sound waves becoming sharp and clear as they pass through the device. It’s simple, bold, and directly connects with the audience’s needs.",
+    "year": 2025,
+    "slideshows": [
+      {
+        "title": "Outcomes",
+        "ratio": "4/3",
+        "images": [
+          {
+            "src": "/assets/ampliear/Final.webp",
+            "fit": true,
+            "alt": "Poster 1"
+          },
+          {
+            "src": "/assets/ampliear/Final Billboard.webp",
+            "alt": "Poster 1 Mockup"
+          },
+          {
+            "src": "/assets/ampliear/Final Alternative.webp",
+            "fit": true,
+            "alt": "Poster 2"
+          },
+          {
+            "src": "/assets/ampliear/Final Alternative Billboard.webp",
+            "alt": "Poster 1 Mockup"
+          }
+        ]
+      }
+    ],
+    "table": [
+      { "key": "Client", "value": "Mock Brief" },
+      {
+        "key": "Visual Evidence",
+        "value": "https://willb.cc/f/25ACA143_Visual_Evidence_Sell.pdf",
+        "isLink": true
+      },
+      {
+        "key": "touchpoints",
+        "value": "Posters / Copywrite",
+        "isList": true
+      },
+      {
+        "key": "disciplines",
+        "value": "Marketing / Copywriting / Visual Identity",
+        "isList": true
+      }
+    ]
+  },
+  {
+    "slug": "ardua",
+    "title": "Ardua",
+    "type": "Typeface",
+    "outline": "For this brief, I created a custom modular typeface called Ardua for the Birmingham Design Festival. I drew inspiration from the festival’s theme of “Play” and its ambition to be both bold and international. I explored modular design, bitmap styles, and minimalist influences like Braun and Helvetica to build a tall, geometric font with a unique twist — a variable crossbar that adds flexibility and visual interest.\nI developed the typeface in Glyphs, built an animated showcase using Cavalry, and applied it in posters, mockups, and motion graphics tailored for the festival. The final font is striking, adaptable, and designed to stand out in display settings while nodding to both industrial heritage and playful experimentation.",
+    "year": 2024,
+    "slideshows": [
+      {
+        "title": "Final Font",
+        "ratio": "94/53",
+        "images": [
+          {
+            "src": "/assets/ardua/spec_01_r.webp",
+            "alt": "Showcase of Font"
+          },
+          {
+            "src": "/assets/ardua/spec_02-03.webp",
+            "fit": true,
+            "alt": "Part of my Font Specimen"
+          },
+          {
+            "src": "/assets/ardua/Simple Animation.mp4",
+            "type": "vid",
+            "alt": "Animation showcasing the Animated Aspects"
+          },
+          {
+            "src": "/assets/ardua/Billboard_in_the_Trees_Mockup_1.webp",
+            "alt": "Mockup Advertising BDF"
+          },
+          {
+            "src": "/assets/ardua/Composition 2.mp4",
+            "type": "vid",
+            "alt": "Animated Slide for Presentations"
+          }
+        ]
+      }
+    ],
+    "table": [
+      { "key": "Client", "value": "Birmingham Design Festival" },
+      {
+        "key": "Type Specimen",
+        "value": "https://willb.cc/f/24ACA141_Type_Specimen.pdf",
+        "isLink": true
+      },
+      {
+        "key": "Visual Evidence",
+        "value": "https://willb.cc/f/25ACA141_Visual_Evidence_Sell.pdf",
+        "isLink": true
+      },
+      {
+        "key": "touchpoints",
+        "value": "Typeface / Type Specimen / Poster",
+        "isList": true
+      },
+      {
+        "key": "disciplines",
+        "value": "Typography / Print Design / Editorial Design",
+        "isList": true
+      }
+    ]
+  },
+  {
+    "slug": "accessibility-in-design",
+    "title": "Inclusive Design",
+    "type": "Research",
+    "outline": "Over a year and a half, I looked at how design can be more inclusive for people with visual impairments. Based on my own experiences with colour blindness and poor depth perception, I wanted to explore how everyday visuals like signs and artwork affect those with sight loss.\nI began by focusing on visual impairments, especially color blindness, and how many people don’t even realise they have it. I explored how these conditions are diagnosed and how we can raise awareness to encourage regular eye tests through the creation of posters in a variety of different styles to target specific demographics.\nThe second part looks at real world examples of design, analysing what makes them effective/their short comings. I looked at road signs, creating a short pamphlet breaking down its successes, as well as the London Underground and its issues with accessibility.\nThe final outcomes include posters, infographics, and merchandise graphics that raise awareness and promote accessibility.\nA link to my final website where I conduct research in the form of surveys and fully breakdown design choices can be found at the bottom.",
+    "year": 2023,
+    "slideshows": [
+      {
+        "title": "Part 1: Awareness",
+        "ratio": "94/70",
+        "images": [
+          {
+            "src": "/assets/inclusive-design/8.webp",
+            "fit": true,
+            "alt": "Poster promoting Double Vision Awareness"
+          },
+          {
+            "src": "/assets/inclusive-design/9.webp",
+            "fit": true,
+            "alt": "Poster promoting Vision Awareness"
+          },
+          {
+            "src": "/assets/inclusive-design/10.webp",
+            "fit": true,
+            "alt": "Poster promoting Vision Awareness Month"
+          },
+          {
+            "src": "/assets/inclusive-design/colour-red.webp",
+            "fit": true,
+            "alt": "Poster promoting Visual Awareness for Kids"
+          },
+          {
+            "src": "/assets/inclusive-design/IMG_1001.webp",
+            "fit": true,
+            "alt": "Poster promoting Vision Awareness"
+          }
+        ]
+      },
+      {
+        "title": "Part 2: Road Signs",
+        "ratio": "94/66",
+        "images": [
+          {
+            "src": "/assets/inclusive-design/book/page1.webp",
+            "alt": "Page 1 of my book",
+            "fit": true
+          },
+          {
+            "src": "/assets/inclusive-design/book/spread1.webp",
+            "alt": "Spread 1 of my book"
+          },
+          {
+            "src": "/assets/inclusive-design/book/spread2.webp",
+            "alt": "Spread 2 of my book"
+          },
+          {
+            "src": "/assets/inclusive-design/book/spread3.webp",
+            "alt": "Spread 3 of my book"
+          },
+          {
+            "src": "/assets/inclusive-design/book/spread4.webp",
+            "alt": "Spread 4 of my book"
+          }
+        ]
+      },
+      {
+        "title": "Part 2: Tube Map",
+        "ratio": "22/14",
+        "images": [
+          {
+            "src": "/assets/inclusive-design/5.webp",
+            "alt": "Accessibility Awareness Poster",
+            "fit": true
+          },
+          {
+            "src": "/assets/inclusive-design/7-1.webp",
+            "alt": "Zone 1 Poster",
+            "fit": true
+          },
+          {
+            "src": "/assets/inclusive-design/2.webp",
+            "alt": "Accessibility Awareness Merchandise",
+            "fit": true
+          },
+          {
+            "src": "/assets/inclusive-design/3.webp",
+            "alt": "Zone 1 Merchandise"
+          }
+        ]
+      }
+    ],
+    "table": [
+      { "key": "Client", "value": "A Level Extended Research" },
+      {
+        "key": "Visual Evidence",
+        "value": "https://alevel.willb.cc/projects/personal-investigation",
+        "isLink": true
+      },
+      {
+        "key": "touchpoints",
+        "value": "Research / Posters / 3D Renders",
+        "isList": true
+      },
+      {
+        "key": "disciplines",
+        "value": "Surveys / Editorial Design / 3D Design",
+        "isList": true
+      }
+    ]
+  },
+  {
+    "slug": "fruitful",
+    "title": "Fruitful",
+    "type": "Visual Identity",
+    "outline": "This project explores the concept of flavourings through the creation of a fictional fruit tea brand, Fruitful Tea Co. The brand was designed to feel both playful and professional, with a focus on bold, eye-catching visuals and a modern identity.\nThe project includes packaging design, promotional materials, and a website for the subscription-based delivery service. Branding was kept consistent through the development of clear guidelines, applied across posters, web design, and product mockups. The aim was to create a recognisable and engaging presence that could stand out in a crowded market.",
+    "year": 2024,
+    "slideshows": [
+      {
+        "title": "Brand Guidelines",
+        "images": [
+          {
+            "src": "/assets/fruitful/bg/0.webp",
+            "alt": "Brand Guidelines [cover]"
+          },
+          {
+            "src": "/assets/fruitful/bg/1.webp",
+            "alt": "Brand Guidelines [pg 1]"
+          },
+          {
+            "src": "/assets/fruitful/bg/2.webp",
+            "alt": "Brand Guidelines [pg 2]"
+          },
+          {
+            "src": "/assets/fruitful/bg/3.webp",
+            "alt": "Brand Guidelines [pg 3]"
+          },
+          {
+            "src": "/assets/fruitful/bg/4.webp",
+            "alt": "Brand Guidelines [pg 4]"
+          },
+          {
+            "src": "/assets/fruitful/bg/5.webp",
+            "alt": "Brand Guidelines [pg 5]"
+          },
+          {
+            "src": "/assets/fruitful/bg/6.webp",
+            "alt": "Brand Guidelines [pg 6]"
+          },
+          {
+            "src": "/assets/fruitful/bg/7.webp",
+            "alt": "Brand Guidelines [pg 7]"
+          }
+        ]
+      },
+      {
+        "title": "Outcomes",
+        "ratio": "16/9",
+        "images": [
+          {
+            "src": "/assets/fruitful/final-1.webp",
+            "alt": "Brand Guidelines [cover]"
+          },
+          {
+            "src": "/assets/fruitful/3.webp",
+            "fit": true,
+            "alt": "Brand Guidelines [pg 1]"
+          },
+          {
+            "src": "/assets/fruitful/5.webp",
+            "fit": true,
+            "alt": "Brand Guidelines [pg 2]"
+          },
+          {
+            "src": "/assets/fruitful/render.webp",
+            "fit": true,
+            "alt": "Brand Guidelines [pg 3]"
+          },
+          {
+            "src": "/assets/fruitful/mixed-berries.webp",
+            "alt": "Brand Guidelines [pg 4]"
+          },
+          {
+            "src": "/assets/fruitful/watermelon-mint.webp",
+            "alt": "Brand Guidelines [pg 4]"
+          },
+          {
+            "src": "/assets/fruitful/test.webp",
+            "alt": "Brand Guidelines [pg 5]"
+          },
+          {
+            "src": "/assets/fruitful/final.webp",
+            "alt": "Brand Guidelines [pg 6]"
+          }
+        ]
+      }
+    ],
+    "table": [
+      { "key": "Client", "value": "A Level Exam Brief" },
+      {
+        "key": "Visual Evidence",
+        "value": "https://alevel.willb.cc/projects/exam",
+        "isLink": true
+      },
+      {
+        "key": "touchpoints",
+        "value": "Branding / Packaging / Website / Merch",
+        "isList": true
+      },
+      {
+        "key": "disciplines",
+        "value": "Visual Identity / UI/UX / Print Design",
+        "isList": true
+      }
+    ]
+  },
+  {
+    "slug": "greenleaf-tutoring",
+    "title": "Greenleaf Tutoring",
+    "type": "Website",
+    "outline": "Greenleaf Tutoring was a Young Enterprise company created by one of my friends and their goal was to create an online video learning system similar to other platforms such as Skillshare. I was brought on to design, develop and maintain their video infrastructure, website and branding.\nAs well as the design work below, I also developed databases, critical infrastructure and login APIs for the entire website.",
+    "year": 2022,
+    "slideshows": [
+      {
+        "title": "Design Breakdown",
+        "images": [
+          {
+            "src": "/assets/greenleaf-tutoring/page1.webp",
+            "alt": "The Brief"
+          },
+          {
+            "src": "/assets/greenleaf-tutoring/page2.webp",
+            "alt": "Webpage Designs"
+          },
+          {
+            "src": "/assets/greenleaf-tutoring/page3.webp",
+            "alt": "Creating Components"
+          },
+          {
+            "src": "/assets/greenleaf-tutoring/page4.webp",
+            "alt": "Making the pages"
+          },
+          {
+            "src": "/assets/greenleaf-tutoring/page5.webp",
+            "alt": "Mockups"
+          },
+          {
+            "src": "/assets/greenleaf-tutoring/page6.webp",
+            "alt": "Mockups"
+          }
+        ]
+      }
+    ],
+    "table": [
+      { "key": "Client", "value": "Greenleaf Tutoring" },
+      {
+        "key": "touchpoints",
+        "value": "Website / Logo / Ads",
+        "isList": true
+      },
+      {
+        "key": "disciplines",
+        "value": "UI/UX / Web Development / Visual Identity",
+        "isList": true
+      }
+    ]
+  }
+]
