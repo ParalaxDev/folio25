@@ -9,6 +9,23 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.12.1"
+    "@astrojs/react": "^4.3.0",
+    "@react-three/drei": "^10.5.2",
+    "@react-three/fiber": "^9.2.0",
+    "@tailwindcss/vite": "^4.1.11",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@types/three": "^0.178.1",
+    "astro": "^5.12.1",
+    "lygia": "^1.3.3",
+    "motion": "^12.23.7",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tailwindcss": "^4.1.11",
+    "three": "^0.178.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.16",
+    "vite-plugin-glsl": "^1.5.1"
   }
 }
