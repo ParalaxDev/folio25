@@ -2,21 +2,7 @@ import { useState, useMemo, useRef } from "react";
 import ProjectItem from "./ProjectItem";
 import type { CollectionEntry } from "astro:content";
 import { motion } from "motion/react";
-
-function useSelectedProject(
-  projects: CollectionEntry<"projects">[],
-  selectedProjectId: string | null,
-) {
-  const selectedProject = useMemo(() => {
-    if (!selectedProjectId || !projects || !Array.isArray(projects)) {
-      return null;
-    }
-
-    return projects.find((project) => project.id === selectedProjectId) || null;
-  }, [projects, selectedProjectId]);
-
-  return selectedProject;
-}
+import { useSelectedProject } from "../hooks/useSelectedProject";
 
 export default ({ projects }: { projects: CollectionEntry<"projects">[] }) => {
   const [selectedProject, setSelectedProject] = useState<string | null>(null);
@@ -31,20 +17,20 @@ export default ({ projects }: { projects: CollectionEntry<"projects">[] }) => {
           key={selectedProject}
           ref={projectPreviewRef}
           layoutId={selectedProject}
-          className="w-full h-full flex justify-center items-center bg-red-300"
+          className="w-full h-full flex justify-center items-center"
           onClick={() => {
             // projectPreviewRef.current?.scrollIntoView();
             setSelectedProject(null);
           }}
         >
-          <div className="h-full w-full bg-white border-b border-slate-300">
+          <div className="h-full w-full bg-background border-b border-border">
             <motion.img
-              className="w-full h-auto object-cover aspect-[1.414/1] border-b border-stone-300"
+              className="w-full h-auto object-cover aspect-[1.414/1] border-b border-border"
               src={actualSelectedProject?.data.coverImg.src}
               alt={actualSelectedProject?.data.coverImg.alt}
             />
             <div className="p-4">
-              <motion.p className="w-full flex justify-between font-departure-mono text-slate-500 text-sm">
+              <motion.p className="w-full flex justify-between font-departure-mono text-text-secondary text-sm">
                 <span className="lowercase">
                   [{actualSelectedProject?.data.type}]
                 </span>{" "}
@@ -52,11 +38,11 @@ export default ({ projects }: { projects: CollectionEntry<"projects">[] }) => {
                   {actualSelectedProject?.data.date}
                 </span>
               </motion.p>
-              <h3 className="text-4xl mt-2">
+              <h3 className="text-4xl mt-2 text-text-primary">
                 {actualSelectedProject?.data.name}
               </h3>
               <div
-                className="prose prose-stone"
+                className="prose prose-stone dark:prose-invert"
                 dangerouslySetInnerHTML={{
                   __html: actualSelectedProject?.rendered?.html ?? "error",
                 }}

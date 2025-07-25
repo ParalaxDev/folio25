@@ -1,6 +1,29 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@theme {
+    --color-background: oklch(97% 0.001 106.424);
+    --color-border: oklch(86.9% 0.005 56.366);
+    --color-text-primary: oklch(26.8% 0.007 34.298);
+    --color-text-secondary: oklch(55.3% 0.013 58.071);
+}
+
+@media (prefers-color-scheme: dark) {
+    --color-background: oklch(21.6% 0.006 56.043);
+    --color-border: oklch(37.4% 0.01 67.558);
+    --color-text-primary: oklch(92.3% 0.003 48.717);
+    --color-text-secondary: oklch(70.9% 0.01 56.259);
+}
+
+[data-theme="dark"] {
+    --color-background: oklch(21.6% 0.006 56.043);
+    --color-border: oklch(37.4% 0.01 67.558);
+    --color-text-primary: oklch(92.3% 0.003 48.717);
+    --color-text-secondary: oklch(70.9% 0.01 56.259);
+}
+
 hr {
     height: 0;
     color: inherit;
@@ -35,7 +58,7 @@ body {
     }
 }
 
-.blur-gradient-bottom {
+/* .blur-gradient-bottom {
     -webkit-backdrop-filter: blur(4px);
     background: linear-gradient(
         #fff0 0%,
@@ -89,4 +112,4 @@ body {
         #0006 80%,
         #0000 100%
     );
-}
+} */
