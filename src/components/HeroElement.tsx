@@ -15,8 +15,9 @@ import {
   OrthographicCamera,
 } from "@react-three/drei";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AsciiEffect } from "three/examples/jsm/Addons.js";
+import { useTheme } from "../hooks/useTheme";
 
 import fragmentShader from "../shaders/noise/fragment.glsl";
 import vertextShader from "../shaders/noise/vertex.glsl";
@@ -191,12 +192,23 @@ export function FadeOverlay() {
 }
 
 export default function HeroElement({}) {
+  const theme = useTheme();
+  const [fgColor, setFgColor] = useState("#78716c"); // fallback
+
+  useEffect(() => {
+    // Get the CSS variable value for --color-text-primary
+    const color = getComputedStyle(document.documentElement)
+      .getPropertyValue("--color-text-primary")
+      .trim();
+    if (color) setFgColor(color);
+  }, [theme]);
+
   return (
     <div className="w-full h-full hover:cursor-none">
       <Canvas>
         <AsciiRenderer
           bgColor="transparent"
-          fgColor="#78716c"
+          fgColor={fgColor}
           resolution={0.12}
           characters=" .:-=+*#%@"
           invert={false}
