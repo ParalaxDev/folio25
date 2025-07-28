@@ -23,7 +23,7 @@ const test = defineCollection({
   schema: z.object({
     title: z.string(),
     outline: z.string(),
-    year: z.number(),
+    year: z.coerce.date(),
     type: z.string(),
     slideshows: z
       .object({
