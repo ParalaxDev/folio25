@@ -1,0 +1,65 @@
+---
+import Gallery from "./Gallery.astro";
+import GridMobile from "./GridMobile.astro";
+
+interface Props {
+    project: any; // Using any for now as we're working with the test collection
+    slug: string;
+}
+
+const { project, slug } = Astro.props;
+---
+
+<div class="w-full pb-16 mb-16 lg:mb-24 group" id={slug}>
+    <div class="w-full px-4 py-8">
+        <h2
+            class="text-3xl md:text-4xl text-text-primary flex justify-between w-full border-b border-border pb-2 mb-8"
+        >
+            <span
+                class="hover:text-text-secondary transition-colors duration-300"
+                >{project.title}</span
+            >
+            <span class="hidden md:inline text-text-secondary font-mono"
+                >'{project.year.toString().slice(2)}</span
+            >
+        </h2>
+    </div>
+
+    <div class="w-full px-4 mb-8">
+        <h3 class="text-sm text-text-secondary uppercase mb-2 font-mono">
+            [project outline]
+        </h3>
+        <div>
+            {
+                project.outline
+                    .split("\n")
+                    .map((para) => (
+                        <p class="text-text-primary mb-4 leading-relaxed">
+                            {para}
+                        </p>
+                    ))
+            }
+        </div>
+    </div>
+
+    {
+        project.slideshows.map((slideshow) => (
+            <div class="w-full px-4 mt-8">
+                <h3 class="text-sm text-text-secondary uppercase mb-2 font-mono">
+                    [{slideshow.title}]
+                </h3>
+                <div>
+                    <Gallery
+                        id={`${slug}-${slideshow.title.split(" ").join("-").toLowerCase().replace(":", "")}`}
+                        images={slideshow.images}
+                        ratio={slideshow.ratio ?? null}
+                    />
+                </div>
+            </div>
+        ))
+    }
+
+    <div class="w-full px-4 mt-8">
+        <GridMobile project={project} />
+    </div>
+</div>

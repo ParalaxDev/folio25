@@ -1,14 +1,35 @@
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import ProjectItem from "./ProjectItem";
 import type { CollectionEntry } from "astro:content";
 import { motion } from "motion/react";
 import { useSelectedProject } from "../hooks/useSelectedProject";
 
+const formatDate = (date: Date) => {
+  if (!date || isNaN(date.getTime())) {
+    return "";
+  }
+  return date.toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+};
+
 export default ({ projects }: { projects: CollectionEntry<"projects">[] }) => {
   const [selectedProject, setSelectedProject] = useState<string | null>(null);
   const projectPreviewRef = useRef<HTMLDivElement | null>(null);
 
-  const actualSelectedProject = useSelectedProject(projects, selectedProject);
+  // Sort projects by date (newest first)
+  const sortedProjects = useMemo(() => {
+    return [...projects].sort(
+      (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+    );
+  }, [projects]);
+
+  const actualSelectedProject = useSelectedProject(
+    sortedProjects,
+    selectedProject,
+  );
 
   return (
     <>
@@ -35,7 +56,8 @@ export default ({ projects }: { projects: CollectionEntry<"projects">[] }) => {
                   [{actualSelectedProject?.data.type}]
                 </span>{" "}
                 <span className="uppercase">
-                  {actualSelectedProject?.data.date}
+                  {actualSelectedProject?.data.date &&
+                    formatDate(actualSelectedProject.data.date)}
                 </span>
               </motion.p>
               <h3 className="text-4xl mt-2 text-text-primary">
@@ -52,7 +74,7 @@ export default ({ projects }: { projects: CollectionEntry<"projects">[] }) => {
         </motion.div>
       )}
       <motion.div layout className="w-full grid grid-cols-1 md:grid-cols-2">
-        {projects.map((project) => {
+        {sortedProjects.map((project) => {
           if (selectedProject == project.id) return;
           return (
             <ProjectItem
