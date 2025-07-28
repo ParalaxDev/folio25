@@ -1,6 +1,7 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import HeroElement from "../components/HeroElement";
+import WritingHandler from "../components/WritingHandler.astro";
 import VerticalDivider from "../components/VerticalDivider.astro";
 import ProjectHandler from "../components/ProjectHandler";
 import ThemeSwitcher from "../components/ThemeSwitcher.astro";
@@ -23,9 +24,9 @@ const projects = await getCollection("projects");
                 class="w-auto h-full border-x border-border flex justify-between px-4 text-sm items-center font-departure-mono text-text-secondary"
             >
                 <p><a href="#">WB</a></p>
-                <ul class="*:inline *:pl-4">
-                    <li><a href="#projects">projects</a></li>
-                    <li><a href="#writing">writing</a></li>
+                <ul class="*:inline *:pl-4 *:hover:opacity-75 *:transition-all">
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#writing">Writing</a></li>
                     <li><ThemeSwitcher /></li>
                 </ul>
             </div>
@@ -33,10 +34,9 @@ const projects = await getCollection("projects");
                 class="z-10 size-2 rotate-45 border-1 bg-background border-border absolute bottom-0 right-0 translate-y-1/2 translate-x-1/2"
             >
             </div>
-            <div
-                class="absolute top-12 left-0 right-0 h-[50px] pointer-events-none blur-gradient-top"
-            >
-            </div>
+        </div><div
+            class="absolute top-12 left-0 right-0 h-[40px] pointer-events-none blur-gradient-top"
+        >
         </div>
     </nav>
     <main class="w-5/6 md:w-3/4 lg:w-1/2 border-x border-border">
@@ -51,7 +51,7 @@ const projects = await getCollection("projects");
                 </div>
             </div>
             <div
-                class="flex-col justify-around text-sm text-text-secondary hidden md:flex"
+                class="flex-col justify-around text-sm text-text-secondary hidden md:flex *:hover:opacity-75 *:transition-opacity"
             >
                 <a
                     class="w-full flex items-center"
@@ -84,7 +84,7 @@ const projects = await getCollection("projects");
         </div>
         <VerticalDivider />
         <section
-            class="w-auto h-[calc(75vh)] flex flex-col justify-start items-center"
+            class="w-auto h-[calc(60vh)] flex flex-col justify-start items-center"
         >
             <div class="w-full flex-auto relative">
                 <!-- <h1
@@ -119,15 +119,24 @@ const projects = await getCollection("projects");
             </div>
         </section>
         <VerticalDivider />
-        <section id="projects" class="min-h-screen">
+        <section id="projects">
             <div class="w-full px-4 py-8">
                 <h2 class="text-3xl text-text-primary">Featured Projects</h2>
             </div>
             <VerticalDivider />
             <ProjectHandler projects={projects} client:load />
+            <VerticalDivider />
         </section>
-        <VerticalDivider />
+        <section id="writing">
+            <div class="w-full px-4 py-8">
+                <h2 class="text-3xl text-text-primary">Writing</h2>
+            </div>
+            <VerticalDivider />
+            <WritingHandler />
+            <VerticalDivider />
+        </section>
         <div class="h-screen"></div>
+        <VerticalDivider />
     </main>
 </MainLayout>
 <div

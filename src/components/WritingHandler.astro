@@ -1,0 +1,41 @@
+---
+import { getCollection } from "astro:content";
+
+const writings = await getCollection("writings");
+writings.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const formatDate = (date: Date) => {
+    if (!date || isNaN(date.getTime())) {
+        return "";
+    }
+    return date.toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+    });
+};
+---
+
+<div>
+    {
+        writings.map((writing) => {
+            return (
+                <div class="p-4 group hover:cursor-pointer not-last:border-b not-last:border-border">
+                    <p class="w-full text-xs flex justify-between font-departure-mono text-text-secondary">
+                        <span class="lowercase">[{writing.data.type}]</span>{" "}
+                        <span class="uppercase">
+                            {formatDate(writing.data.date)}
+                        </span>
+                    </p>
+                    <h3 class="text-2xl w-fit mt-2 relative text-text-primary">
+                        {writing.data.title}
+                        <span class="absolute left-0 mt-1 bottom-0 w-0 h-[2px] bg-text-primary text-text-primary transition-all duration-300 group-hover:w-full" />
+                    </h3>
+                    <p class="text-text-secondary text-sm mt-2">
+                        {writing.data.description}
+                    </p>
+                </div>
+            );
+        })
+    }
+</div>

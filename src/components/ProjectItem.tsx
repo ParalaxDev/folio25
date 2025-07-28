@@ -29,11 +29,13 @@ export default ({
         modalRef.current?.scrollIntoView();
       }}
     >
-      <motion.img
-        className="bg-border w-full aspect-[1.414/1] border-b border-border object-cover"
-        src={project.data.coverImg.src}
-        alt={project.data.coverImg.alt}
-      />
+      <div className="bg-border w-full aspect-[1.414/1] border-b border-border overflow-hidden">
+        <img
+          className="bg-border w-full aspect-[1.414/1] object-cover group-hover:scale-105 transition-all"
+          src={project.data.coverImg.src}
+          alt={project.data.coverImg.alt}
+        />
+      </div>
       <div className="p-4">
         <p className="w-full text-xs flex justify-between font-departure-mono text-text-secondary">
           <span className="lowercase">[{project.data.type}]</span>{" "}
