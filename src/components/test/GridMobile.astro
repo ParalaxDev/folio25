@@ -25,19 +25,19 @@ const { project } = Astro.props;
                 value: project.year.toString(),
                 isLink: false,
                 isList: false,
-                className: "text-xl",
+                className: "",
             },
             ...project.table,
         ].map((kv) => {
             return (
-                <div class="flex flex-col md:flex-row md:items-baseline">
-                    <p class="text-text-secondary text-xs md:text-sm uppercase font-mono md:w-1/4 md:pr-4">
+                <div class="flex flex-col">
+                    <p class="text-text-secondary text-xs uppercase font-mono">
                         {kv.key}
                     </p>
-                    <div class="md:w-3/4">
+                    <div>
                         {kv.isLink ? (
                             <a
-                                class="hover:text-text-secondary transition-colors duration-300"
+                                class="hover:text-text-secondary text-text-primary uppercase transition-colors duration-300"
                                 href={kv.value}
                                 target="_blank"
                                 rel="noopener noreferrer"
