@@ -2,6 +2,17 @@ import { useRef, useState, type RefObject } from "react";
 import type { CollectionEntry } from "astro:content";
 import { motion } from "motion/react";
 
+const formatDate = (date: Date) => {
+  if (!date || isNaN(date.getTime())) {
+    return "";
+  }
+  return date.toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+};
+
 export default ({
   project,
   setSelectedProject,
@@ -39,7 +50,7 @@ export default ({
       <div className="p-4">
         <p className="w-full text-xs flex justify-between font-departure-mono text-text-secondary">
           <span className="lowercase">[{project.data.type}]</span>{" "}
-          <span className="uppercase">{project.data.date}</span>
+          <span className="uppercase">{formatDate(project.data.date)}</span>
         </p>
         <h3 className="text-2xl w-fit mt-2 relative text-text-primary">
           {project.data.name}

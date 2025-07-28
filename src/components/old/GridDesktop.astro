@@ -1,0 +1,66 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  project: CollectionEntry<"project">["data"];
+}
+
+const { project } = Astro.props;
+---
+
+<div
+  class="text-secondary col-start-1 col-end-4 hidden pr-2 *:mb-2 *:border-b *:text-xl *:uppercase md:block"
+>
+  <p>Year</p>
+  {project.table.map((kv) => <p>{kv.key}</p>)}
+</div>
+<div
+  class="*:border-secondary text-primary col-start-4 col-end-12 hidden pl-2 *:mb-2 *:border-b *:text-xl *:uppercase md:block"
+>
+  <p>{project.year}</p>
+  {
+    project.table.map((kv) => {
+      if (kv.isLink) {
+        return (
+          <a
+            class="hover:text-industrial-orange block transition-all"
+            href={kv.value}
+          >
+            {new URL(kv.value).pathname.split("/").pop()}{" "}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              class="absolute inline size-7"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M5.22 14.78a.75.75 0 0 0 1.06 0l7.22-7.22v5.69a.75.75 0 0 0 1.5 0v-7.5a.75.75 0 0 0-.75-.75h-7.5a.75.75 0 0 0 0 1.5h5.69l-7.22 7.22a.75.75 0 0 0 0 1.06Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </a>
+        );
+      }
+
+      if (kv.isList) {
+        return (
+          <p>
+            {kv.value.split("/").map((v: string, i) => {
+              return (
+                <>
+                  <span class="uppercase">{v}</span>
+                  {i < kv.value.split("/").length - 1 ? (
+                    <span class="text-secondary">/</span>
+                  ) : null}
+                </>
+              );
+            })}
+          </p>
+        );
+      }
+
+      return <p>{kv.value}</p>;
+    })
+  }
+</div>
