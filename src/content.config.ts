@@ -10,6 +10,11 @@ const projects = defineCollection({
     outline: z.string(),
     year: z.coerce.date(),
     type: z.string(),
+    thumbnail: z
+      .object({
+        src: z.string(),
+      })
+      .optional(),
     slideshows: z
       .object({
         title: z.string(),

@@ -4,7 +4,10 @@
     "title": "The Fountain",
     "type": "Visual Identity",
     "outline": "This project reimagines Leicester’s Town Hall Fountain as a calm, welcoming space in the middle of the city. I visited the site to take photos, sketch, and talk to people about how they use the area. I also researched its history and looked at how other cities approach place branding.\nUsing that insight, I developed two visual identity concepts. One focused on the unique gargoyle shapes around the fountain. The other used a custom monogram and local imagery. I created animations, signs, merchandise, and social media content to bring the brand to life and connect with both locals and visitors.",
-    "year": 2025,
+    "year": "2025-06-21",
+    "thumbnail": {
+      "src": "/assets/the-fountain/pitch document_05.webp"
+    },
     "slideshows": [
       {
         "title": "Concept 1",
@@ -94,7 +97,10 @@
     "title": "Ampliear",
     "type": "Marketing",
     "outline": "This project was about reimagining how hearing aids are advertised, with a focus on older users. I started by researching the market and exploring emotional themes like loneliness and connection. From there, I developed the concept of sound transforming from unclear to clear, using the Ampliear device as the turning point.\nI created a retro-inspired visual style with duotone effects and stylised 3D renders to evoke nostalgia. The final design became a mini campaign, with warped text or sound waves becoming sharp and clear as they pass through the device. It’s simple, bold, and directly connects with the audience’s needs.",
-    "year": 2025,
+    "year": "2025-04-12",
+    "thumbnail": {
+      "src": "/assets/ampliear/Final.webp"
+    },
     "slideshows": [
       {
         "title": "Outcomes",
@@ -148,7 +154,10 @@
     "title": "Ardua",
     "type": "Typeface",
     "outline": "For this brief, I created a custom modular typeface called Ardua for the Birmingham Design Festival. I drew inspiration from the festival’s theme of “Play” and its ambition to be both bold and international. I explored modular design, bitmap styles, and minimalist influences like Braun and Helvetica to build a tall, geometric font with a unique twist — a variable crossbar that adds flexibility and visual interest.\nI developed the typeface in Glyphs, built an animated showcase using Cavalry, and applied it in posters, mockups, and motion graphics tailored for the festival. The final font is striking, adaptable, and designed to stand out in display settings while nodding to both industrial heritage and playful experimentation.",
-    "year": 2024,
+    "year": "2025-02-03",
+    "thumbnail": {
+      "src": "/assets/ardua/Billboard_in_the_Trees_Mockup_1.webp"
+    },
     "slideshows": [
       {
         "title": "Final Font",
@@ -212,7 +221,10 @@
     "title": "Inclusive Design",
     "type": "Research",
     "outline": "Over a year and a half, I looked at how design can be more inclusive for people with visual impairments. Based on my own experiences with colour blindness and poor depth perception, I wanted to explore how everyday visuals like signs and artwork affect those with sight loss.\nI began by focusing on visual impairments, especially color blindness, and how many people don’t even realise they have it. I explored how these conditions are diagnosed and how we can raise awareness to encourage regular eye tests through the creation of posters in a variety of different styles to target specific demographics.\nThe second part looks at real world examples of design, analysing what makes them effective/their short comings. I looked at road signs, creating a short pamphlet breaking down its successes, as well as the London Underground and its issues with accessibility.\nThe final outcomes include posters, infographics, and merchandise graphics that raise awareness and promote accessibility.\nA link to my final website where I conduct research in the form of surveys and fully breakdown design choices can be found at the bottom.",
-    "year": 2023,
+    "year": "2023-05-19",
+    "thumbnail": {
+      "src": "/assets/inclusive-design/10.webp"
+    },
     "slideshows": [
       {
         "title": "Part 1: Awareness",
@@ -326,6 +338,9 @@
     "type": "Visual Identity",
     "outline": "This project explores the concept of flavourings through the creation of a fictional fruit tea brand, Fruitful Tea Co. The brand was designed to feel both playful and professional, with a focus on bold, eye-catching visuals and a modern identity.\nThe project includes packaging design, promotional materials, and a website for the subscription-based delivery service. Branding was kept consistent through the development of clear guidelines, applied across posters, web design, and product mockups. The aim was to create a recognisable and engaging presence that could stand out in a crowded market.",
     "year": "2024-05-31",
+    "thumbnail": {
+      "src": "/assets/fruitful/final-1.webp"
+    },
     "slideshows": [
       {
         "title": "Brand Guidelines",
@@ -424,60 +439,6 @@
       {
         "key": "disciplines",
         "value": "Visual Identity / UI/UX / Print Design",
-        "isList": true
-      }
-    ]
-  },
-  {
-    "slug": "greenleaf-tutoring",
-    "title": "Greenleaf Tutoring",
-    "type": "Website",
-    "outline": "Greenleaf Tutoring was a Young Enterprise company created by one of my friends and their goal was to create an online video learning system similar to other platforms such as Skillshare. I was brought on to design, develop and maintain their video infrastructure, website and branding.\nAs well as the design work below, I also developed databases, critical infrastructure and login APIs for the entire website.",
-    "year": "2022-04-07",
-    "slideshows": [
-      {
-        "title": "Design Breakdown",
-        "images": [
-          {
-            "src": "/assets/greenleaf-tutoring/page1.webp",
-            "alt": "The Brief"
-          },
-          {
-            "src": "/assets/greenleaf-tutoring/page2.webp",
-            "alt": "Webpage Designs"
-          },
-          {
-            "src": "/assets/greenleaf-tutoring/page3.webp",
-            "alt": "Creating Components"
-          },
-          {
-            "src": "/assets/greenleaf-tutoring/page4.webp",
-            "alt": "Making the pages"
-          },
-          {
-            "src": "/assets/greenleaf-tutoring/page5.webp",
-            "alt": "Mockups"
-          },
-          {
-            "src": "/assets/greenleaf-tutoring/page6.webp",
-            "alt": "Mockups"
-          }
-        ]
-      }
-    ],
-    "table": [
-      {
-        "key": "Client",
-        "value": "Greenleaf Tutoring"
-      },
-      {
-        "key": "touchpoints",
-        "value": "Website / Logo / Ads",
-        "isList": true
-      },
-      {
-        "key": "disciplines",
-        "value": "UI/UX / Web Development / Visual Identity",
         "isList": true
       }
     ]
