@@ -97,8 +97,11 @@ const projects = await getCollection("projects");
                 <h2
                     class="text-3xl text-text-primary flex items-center gap-0.5"
                 >
-                    <AnimatedDot client:load animateLayout={true} />Featured
-                    Projects
+                    <AnimatedDot
+                        client:load
+                        animateLayout={true}
+                        activationPercentage={0.5}
+                    />Featured Projects
                 </h2>
             </div>
             <VerticalDivider />
@@ -110,7 +113,11 @@ const projects = await getCollection("projects");
                 <h2
                     class="text-3xl text-text-primary flex items-center gap-0.5"
                 >
-                    <AnimatedDot client:load animateLayout={true} />Writing
+                    <AnimatedDot
+                        client:load
+                        animateLayout={true}
+                        activationPercentage={0.5}
+                    />Writing
                 </h2>
             </div>
             <VerticalDivider />

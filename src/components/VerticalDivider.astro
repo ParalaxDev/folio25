@@ -1,3 +1,11 @@
+---
+interface Props {
+    sticky?: boolean;
+}
+
+const { sticky } = Astro.props;
+---
+
 <div class="w-full relative">
     <div
         class="z-10 size-2 rotate-45 border-1 bg-background border-border absolute top-1/2 left-0 -translate-1/2"
@@ -8,4 +16,7 @@
     >
     </div>
 </div>
-<hr class="w-screen absolute left-0 border-t border-border" />
+<hr
+    class={`w-screen absolute border-t border-border ${sticky ? "" : "left-0"}`}
+    style={sticky ? "left: 50%; margin-left: -50vw;" : ""}
+/>

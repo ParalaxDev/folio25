@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 
 interface UseViewportVisibilityOptions {
-  /** The percentage of the viewport height that defines the "middle zone" (default: 0.5 for 50%) */
-  middleZonePercentage?: number;
+  /** The percentage (0-1) of viewport position at which to activate. 1 = top of viewport, 0 = bottom of viewport */
+  activationPercentage?: number;
   /** Threshold for intersection observer (default: 0) */
   threshold?: number;
 }
@@ -10,9 +10,9 @@ interface UseViewportVisibilityOptions {
 export function useViewportVisibility(
   options: UseViewportVisibilityOptions = {},
 ) {
-  const { middleZonePercentage = 0.5, threshold = 0 } = options;
+  const { activationPercentage = 0.5, threshold = 0 } = options;
 
-  const [isInMiddleZone, setIsInMiddleZone] = useState(false);
+  const [isActive, setIsActive] = useState(false);
   const elementRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -23,21 +23,27 @@ export function useViewportVisibility(
       (entries) => {
         const entry = entries[0];
         if (!entry.isIntersecting) {
-          setIsInMiddleZone(false);
+          setIsActive(false);
           return;
         }
 
-        const viewportHeight = window.innerHeight;
-        const middleZoneStart =
-          viewportHeight * ((1 - middleZonePercentage) / 2);
-        const middleZoneEnd = viewportHeight;
+        // Check if element has reached the activation point
+        const checkActivation = () => {
+          const rect = element.getBoundingClientRect();
+          const viewportHeight = window.innerHeight;
 
-        const rect = entry.boundingClientRect;
-        const elementCenter = rect.top + rect.height / 2;
+          // Calculate the activation point in the viewport
+          // activationPercentage of 1 = top of viewport (0px from top)
+          // activationPercentage of 0 = bottom of viewport (viewportHeight from top)
+          const activationPoint = viewportHeight * (1 - activationPercentage);
 
-        const inMiddleZone =
-          elementCenter >= middleZoneStart && elementCenter <= middleZoneEnd;
-        setIsInMiddleZone(inMiddleZone);
+          // Element is active when its top edge reaches the activation point
+          const isElementActive = rect.top <= activationPoint;
+
+          setIsActive(isElementActive);
+        };
+
+        checkActivation();
       },
       {
         threshold,
@@ -54,32 +60,31 @@ export function useViewportVisibility(
 
       const rect = element.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
-      const middleZoneStart = viewportHeight * ((1 - middleZonePercentage) / 2);
-      const middleZoneEnd =
-        viewportHeight * (1 - (1 - middleZonePercentage) / 2);
 
-      const elementCenter = rect.top + rect.height / 2;
-      const inMiddleZone = elementCenter <= middleZoneEnd;
-      // elementCenter >= middleZoneStart &&
+      // Calculate the activation point in the viewport
+      const activationPoint = viewportHeight * (1 - activationPercentage);
 
-      setIsInMiddleZone(inMiddleZone);
+      // Element is active when its top edge reaches the activation point
+      const isElementActive = rect.top <= activationPoint;
+
+      setIsActive(isElementActive);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleScroll, { passive: true });
 
     // Initial check
-    handleScroll();
+    setTimeout(() => handleScroll(), 20);
 
     return () => {
       observer.disconnect();
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
     };
-  }, [middleZonePercentage, threshold]);
+  }, [activationPercentage, threshold]);
 
   return {
-    isInMiddleZone,
+    isActive,
     elementRef,
   };
 }

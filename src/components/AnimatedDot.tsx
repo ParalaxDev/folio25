@@ -11,8 +11,8 @@ interface AnimatedDotProps {
   className?: string;
   /** Custom inline styles */
   style?: React.CSSProperties;
-  /** The percentage of the viewport height that defines the "middle zone" (default: 0.5 for 50%) */
-  middleZonePercentage?: number;
+  /** The percentage (0-1) of viewport position at which to activate. 1 = top of viewport, 0 = bottom of viewport (default: 0.5) */
+  activationPercentage?: number;
   /** Animation duration in milliseconds (default: 300) */
   animationDuration?: number;
   /** Custom animation easing (default: "ease-in-out") */
@@ -42,18 +42,18 @@ export default function AnimatedDot({
   color = "bg-tertiary",
   className = "",
   style = {},
-  middleZonePercentage = 0.1,
+  activationPercentage = 0.8,
   animationDuration = 300,
   animationEasing = "ease-in-out",
   animationType = "fade-scale",
   animationDelay = 0,
-  pulse = true,
+  pulse = false,
   pulseSpeed = 2,
   animateLayout = true,
   reservedSpace = 0,
 }: AnimatedDotProps) {
-  const { isInMiddleZone, elementRef } = useViewportVisibility({
-    middleZonePercentage,
+  const { isActive, elementRef } = useViewportVisibility({
+    activationPercentage,
   });
 
   const getContainerStyles = () => {
@@ -84,17 +84,13 @@ export default function AnimatedDot({
     };
 
     const dotSize = sizeMap[size] || "12px";
-    const targetWidth = isInMiddleZone ? dotSize : `${reservedSpace}px`;
+    const targetWidth = isActive ? dotSize : `${reservedSpace}px`;
 
     return {
       ...baseTransition,
       transitionProperty: "width, margin-right, opacity, transform",
       width: targetWidth,
-      marginRight: isInMiddleZone
-        ? "0.75rem"
-        : reservedSpace > 0
-          ? "0.75rem"
-          : "0px",
+      marginRight: isActive ? "0.75rem" : reservedSpace > 0 ? "0.75rem" : "0px",
       overflow: "hidden",
       flexShrink: 0,
     };
@@ -112,38 +108,38 @@ export default function AnimatedDot({
       case "fade":
         return {
           ...baseStyles,
-          opacity: isInMiddleZone ? 1 : 0,
+          opacity: isActive ? 1 : 0,
         };
       case "scale":
         return {
           ...baseStyles,
-          transform: isInMiddleZone ? "scale(1)" : "scale(0)",
+          transform: isActive ? "scale(1)" : "scale(0)",
         };
       case "slide-up":
         return {
           ...baseStyles,
-          opacity: isInMiddleZone ? 1 : 0,
-          transform: isInMiddleZone ? "translateY(0)" : "translateY(8px)",
+          opacity: isActive ? 1 : 0,
+          transform: isActive ? "translateY(0)" : "translateY(8px)",
         };
       case "slide-down":
         return {
           ...baseStyles,
-          opacity: isInMiddleZone ? 1 : 0,
-          transform: isInMiddleZone ? "translateY(0)" : "translateY(-8px)",
+          opacity: isActive ? 1 : 0,
+          transform: isActive ? "translateY(0)" : "translateY(-8px)",
         };
       case "fade-scale":
       default:
         return {
           ...baseStyles,
-          opacity: isInMiddleZone ? 1 : 0,
-          transform: isInMiddleZone ? "scale(1)" : "scale(0.8)",
+          opacity: isActive ? 1 : 0,
+          transform: isActive ? "scale(1)" : "scale(0.8)",
         };
     }
   };
 
-  const pulseClassName = pulse && isInMiddleZone ? "animate-pulse" : "";
+  const pulseClassName = pulse && isActive ? "animate-pulse" : "";
   const pulseStyle =
-    pulse && isInMiddleZone
+    pulse && isActive
       ? {
           animationDuration: `${pulseSpeed}s`,
         }
