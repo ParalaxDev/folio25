@@ -4,6 +4,7 @@ import HeroElement from "../components/HeroElement";
 import WritingHandler from "../components/WritingHandler.astro";
 import VerticalDivider from "../components/VerticalDivider.astro";
 import ProjectHandler from "../components/ProjectHandler.astro";
+import AnimatedDot from "../components/AnimatedDot";
 
 import { getCollection } from "astro:content";
 
@@ -93,7 +94,12 @@ const projects = await getCollection("projects");
         <VerticalDivider />
         <section id="projects">
             <div class="w-full px-4 py-8">
-                <h2 class="text-3xl text-text-primary">Featured Projects</h2>
+                <h2
+                    class="text-3xl text-text-primary flex items-center gap-0.5"
+                >
+                    <AnimatedDot client:load animateLayout={true} />Featured
+                    Projects
+                </h2>
             </div>
             <VerticalDivider />
             <ProjectHandler projects={projects} />
@@ -101,7 +107,11 @@ const projects = await getCollection("projects");
         </section>
         <section id="writing">
             <div class="w-full px-4 py-8">
-                <h2 class="text-3xl text-text-primary">Writing</h2>
+                <h2
+                    class="text-3xl text-text-primary flex items-center gap-0.5"
+                >
+                    <AnimatedDot client:load animateLayout={true} />Writing
+                </h2>
             </div>
             <VerticalDivider />
             <WritingHandler />
