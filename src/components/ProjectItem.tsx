@@ -1,17 +1,7 @@
 import { useRef, useState, type RefObject } from "react";
 import type { CollectionEntry } from "astro:content";
 import { motion } from "motion/react";
-
-const formatDate = (date: Date) => {
-  if (!date || isNaN(date.getTime())) {
-    return "";
-  }
-  return date.toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  });
-};
+import { formatDate } from "../utils/date";
 
 export default ({
   project,

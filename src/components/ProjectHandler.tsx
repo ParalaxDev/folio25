@@ -3,17 +3,7 @@ import ProjectItem from "./ProjectItem";
 import type { CollectionEntry } from "astro:content";
 import { motion } from "motion/react";
 import { useSelectedProject } from "../hooks/useSelectedProject";
-
-const formatDate = (date: Date) => {
-  if (!date || isNaN(date.getTime())) {
-    return "";
-  }
-  return date.toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  });
-};
+import { formatDate } from "../utils/date";
 
 export default ({ projects }: { projects: CollectionEntry<"projects">[] }) => {
   const [selectedProject, setSelectedProject] = useState<string | null>(null);

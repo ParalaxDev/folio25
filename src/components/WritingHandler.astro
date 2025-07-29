@@ -1,19 +1,10 @@
 ---
 import { getCollection } from "astro:content";
 
+import { formatDate } from "../utils/date";
+
 const writings = await getCollection("writings");
 writings.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
-
-const formatDate = (date: Date) => {
-    if (!date || isNaN(date.getTime())) {
-        return "";
-    }
-    return date.toLocaleDateString("en-GB", {
-        day: "numeric",
-        month: "short",
-        year: "numeric",
-    });
-};
 ---
 
 <div>
