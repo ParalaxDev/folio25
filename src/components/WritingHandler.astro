@@ -1,26 +1,20 @@
 ---
 import { getCollection } from "astro:content";
 
+import { formatDate } from "../utils/date";
+
 const writings = await getCollection("writings");
 writings.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
-
-const formatDate = (date: Date) => {
-    if (!date || isNaN(date.getTime())) {
-        return "";
-    }
-    return date.toLocaleDateString("en-GB", {
-        day: "numeric",
-        month: "short",
-        year: "numeric",
-    });
-};
 ---
 
 <div>
     {
         writings.map((writing) => {
             return (
-                <div class="p-4 group hover:cursor-pointer not-last:border-b not-last:border-border">
+                <a
+                    href={`/writing/${writing.id.replace(/\.md$/, "")}`}
+                    class="p-4 group hover:cursor-pointer not-last:border-b not-last:border-border block"
+                >
                     <p class="w-full text-xs flex justify-between font-departure-mono text-text-secondary">
                         <span class="lowercase">[{writing.data.type}]</span>{" "}
                         <span class="uppercase">
@@ -34,7 +28,7 @@ const formatDate = (date: Date) => {
                     <p class="text-text-secondary text-sm mt-2">
                         {writing.data.description}
                     </p>
-                </div>
+                </a>
             );
         })
     }

@@ -7,9 +7,11 @@ import tailwindcss from "@tailwindcss/vite";
 
 import glsl from "vite-plugin-glsl";
 
+import mdx from "@astrojs/mdx";
+
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react()],
+  integrations: [react(), mdx()],
 
   vite: {
     plugins: [tailwindcss(), glsl()],
