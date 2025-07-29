@@ -18,9 +18,9 @@ projects.sort((a, b) => b.data.year.getTime() - a.data.year.getTime());
                 <a href={`/project/${project.id}`}>
                     <div class="bg-border w-full aspect-[1.414/1] border-b border-border overflow-hidden">
                         <img
-                            class="bg-border w-full aspect-[1.414/1] object-cover transition-all grayscale-50 group-hover:grayscale-0 animate-all"
+                            class="bg-border w-full aspect-[1.414/1] object-cover transition-all grayscale-50 group-hover:grayscale-0 duration-500"
                             src={`${project.data.thumbnail?.src ?? null}`}
-                            alt={project.data.thumbnail?.alt ?? null}
+                            alt={`Preview of my project ${project.data.title}`}
                         />
                     </div>
                     <div class="p-4">
