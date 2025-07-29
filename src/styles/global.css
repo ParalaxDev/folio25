@@ -3,6 +3,10 @@
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
+@view-transition {
+    navigation: auto;
+}
+
 @theme {
     --color-background: oklch(97% 0.001 106.424);
     --color-border: oklch(86.9% 0.005 56.366);

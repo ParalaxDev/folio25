@@ -1,0 +1,42 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { formatDate } from "../utils/date";
+
+interface Props {
+    projects: CollectionEntry<"projects">[];
+}
+
+const { projects } = Astro.props;
+
+projects.sort((a, b) => b.data.year.getTime() - a.data.year.getTime());
+---
+
+<div class="w-full grid grid-cols-1 md:grid-cols-2">
+    {
+        projects.map((project) => (
+            <div class="hover:cursor-pointer group border-b border-border md:odd:border-r">
+                <a href={`/project/${project.id}`}>
+                    <div class="bg-border w-full aspect-[1.414/1] border-b border-border overflow-hidden">
+                        <img
+                            class="bg-border w-full aspect-[1.414/1] object-cover transition-all grayscale-50 group-hover:grayscale-0 animate-all"
+                            src={`${project.data.thumbnail?.src ?? null}`}
+                            alt={project.data.thumbnail?.alt ?? null}
+                        />
+                    </div>
+                    <div class="p-4">
+                        <p class="w-full text-xs flex justify-between font-departure-mono text-text-secondary">
+                            <span class="lowercase">[{project.data.type}]</span>{" "}
+                            <span class="uppercase">
+                                {formatDate(project.data.year)}
+                            </span>
+                        </p>
+                        <h3 class="text-2xl w-fit mt-2 relative text-text-primary">
+                            {project.data.title}
+                            <span class="absolute left-0 mt-1 bottom-0 w-0 h-[2px] bg-text-primary text-text-primary transition-all duration-300 group-hover:w-full" />
+                        </h3>
+                    </div>
+                </a>
+            </div>
+        ))
+    }
+</div>
