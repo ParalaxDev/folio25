@@ -1,7 +1,7 @@
 ---
 interface Props {
     project: {
-        year: number;
+        year: Date;
         table: Array<{
             key: string;
             value: string;
@@ -13,16 +13,25 @@ interface Props {
 }
 
 const { project } = Astro.props;
+
+const formatDate = (date: Date) => {
+    if (!date || isNaN(date.getTime())) {
+        return "";
+    }
+    return date.toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+    });
+};
 ---
 
-<div
-    class="col-span-12 col-start-1 block pr-2 *:mb-4 *:border-b *:border-border"
->
+<div class="col-span-12 col-start-1 block pr-2 *:not-last:mb-4">
     {
         [
             {
-                key: "Year",
-                value: project.year.toString(),
+                key: "Date",
+                value: formatDate(project.year),
                 isLink: false,
                 isList: false,
                 className: "",
@@ -37,7 +46,7 @@ const { project } = Astro.props;
                     <div>
                         {kv.isLink ? (
                             <a
-                                class="hover:text-text-secondary text-text-primary uppercase transition-colors duration-300"
+                                class="hover:text-text-secondary text-text-primary transition-colors duration-300"
                                 href={kv.value}
                                 target="_blank"
                                 rel="noopener noreferrer"
@@ -48,7 +57,7 @@ const { project } = Astro.props;
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 20 20"
                                     fill="currentColor"
-                                    class="inline-block size-4 align-text-bottom ml-1"
+                                    class="inline absolute size-6 ml-1 align-text-bottom mt-0.5"
                                 >
                                     <path
                                         fill-rule="evenodd"
@@ -62,7 +71,7 @@ const { project } = Astro.props;
                                 {kv.value.split("/").map((v: string, i) => {
                                     return (
                                         <>
-                                            <span class="uppercase">{v}</span>
+                                            <span class="capitalize">{v}</span>
                                             {i <
                                             kv.value.split("/").length - 1 ? (
                                                 <span class="text-text-secondary mx-1">
