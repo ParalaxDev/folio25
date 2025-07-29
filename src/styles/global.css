@@ -30,6 +30,11 @@
     --color-text-secondary: oklch(70.9% 0.01 56.259);
 }
 
+::selection {
+    color: var(--color-background);
+    background: var(--color-tertiary);
+}
+
 hr {
     height: 0;
     color: inherit;
