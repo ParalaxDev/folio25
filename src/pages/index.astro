@@ -3,9 +3,7 @@ import MainLayout from "../layouts/MainLayout.astro";
 import HeroElement from "../components/HeroElement";
 import WritingHandler from "../components/WritingHandler.astro";
 import VerticalDivider from "../components/VerticalDivider.astro";
-import ProjectHandler from "../components/ProjectHandler";
-import Header from "../components/layout/Header.astro";
-import Footer from "../components/layout/Footer.astro";
+import ProjectHandler from "../components/ProjectHandler.astro";
 
 import { getCollection } from "astro:content";
 
@@ -98,7 +96,7 @@ const projects = await getCollection("projects");
                 <h2 class="text-3xl text-text-primary">Featured Projects</h2>
             </div>
             <VerticalDivider />
-            <!-- <ProjectHandler projects={projects} client:load /> -->
+            <ProjectHandler projects={projects} />
             <VerticalDivider />
         </section>
         <section id="writing">
