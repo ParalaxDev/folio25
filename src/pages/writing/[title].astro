@@ -32,8 +32,6 @@ const formatDate = (date: Date) => {
 ---
 
 <MainLayout>
-    <Header />
-
     <main class="w-5/6 md:w-3/4 lg:w-1/2 border-x border-border">
         <div class="px-4 py-8">
             <a
@@ -70,9 +68,7 @@ const formatDate = (date: Date) => {
             </h1>
             <Fragment set:html={content} />
         </article>
-
         <VerticalDivider />
-        <Footer />
     </main>
 </MainLayout>
 

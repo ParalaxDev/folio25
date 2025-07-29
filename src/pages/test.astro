@@ -3,12 +3,11 @@ import MainLayout from "../layouts/MainLayout.astro";
 import VerticalDivider from "../components/VerticalDivider.astro";
 import Header from "../components/layout/Header.astro";
 import Footer from "../components/layout/Footer.astro";
-import TestProject from "../components/test/TestProject.astro";
-import ThemeSwitcher from "../components/ThemeSwitcher.astro";
+import TestProject from "../components/TestProject.astro";
 
 import { getCollection } from "astro:content";
 
-const testProject = await getCollection("test");
+const testProject = await getCollection("projects");
 ---
 
 <MainLayout>
@@ -36,8 +35,6 @@ const testProject = await getCollection("test");
         <section id="test-project">
             {
                 testProject.map((project, i) => {
-                    if (i != 0) return null;
-
                     return (
                         <TestProject project={project.data} slug={project.id} />
                     );
