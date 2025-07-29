@@ -27,7 +27,6 @@ import { formatDate } from "../../utils/date";
             <a
                 href="/"
                 class="text-sm text-text-secondary hover:opacity-75 transition-all font-departure-mono flex items-center gap-1"
-
             >
                 <svg
                     fill="none"
@@ -43,79 +42,87 @@ import { formatDate } from "../../utils/date";
             </a>
         </div>
         <VerticalDivider />
-        <article
-        class="w-full"
-        >
-                <VerticalDivider />
-                <div class="w-full px-4 py-8">
-                    <p
-                        class="w-full text-xs flex justify-between font-departure-mono text-text-secondary mb-4"
-                    >
-                        <span class="lowercase">[{project.data.type}]</span>{" "}
-                        <span class="uppercase">
-                            {formatDate(project.data.year)}
-                        </span>
-                    </p>
-                    <h2
-                        class="text-4xl text-text-primary flex justify-between w-full"
-                    >
-                        {project.data.title}
-                    </h2>
-                </div>
-
-                <VerticalDivider />
+        <article class="w-full">
+            <VerticalDivider />
+            <div class="w-full px-4 py-8">
+                <p
+                    class="w-full text-xs flex justify-between font-departure-mono text-text-secondary mb-4"
+                >
+                    <span class="lowercase">[{project.data.type}]</span>{" "}
+                    <span class="uppercase">
+                        {formatDate(project.data.year)}
+                    </span>
+                </p>
+                <h2
+                    class="text-4xl text-text-primary flex justify-between w-full"
+                >
+                    {project.data.title}
+                </h2>
+            </div>
+            <div class="sticky top-12 w-full bg-background z-10">
+                <VerticalDivider sticky />
                 <div class="w-full p-4">
                     <h3
                         class="text-xl text-text-primary capitalize flex items-center gap-0.5"
                     >
-                        <AnimatedDot client:load
-                        animateLayout={true}
-                        />
+                        <AnimatedDot client:load animateLayout={true} />
                         project outline
                     </h3>
                 </div>
-                    <VerticalDivider />
-                    <div class="p-4">
-                        {
-                            project.data.outline
-                                .split("\n")
-                                .map((para) => (
-                                    <p class="text-text-primary not-last:mb-4 leading-relaxed">
-                                        {para}
-                                    </p>
-                                ))
-                        }
-                    </div>
-                </div>
-
+                <VerticalDivider sticky />
+            </div>
+            <div class="p-4">
                 {
-                    project.data.slideshows.map((slideshow) => (
-                    <VerticalDivider />
+                    project.data.outline
+                        .split("\n")
+                        .map((para) => (
+                            <p class="text-text-primary not-last:mb-4 leading-relaxed">
+                                {para}
+                            </p>
+                        ))
+                }
+            </div>
+        </article>
+
+        {
+            project.data.slideshows.map((slideshow) => (
+                <>
+                    <div class="sticky top-12 w-full z-10 bg-background">
+                        <VerticalDivider sticky />
                         <div class="w-full p-4">
                             <h3 class="text-xl text-text-primary capitalize flex items-center gap-0.5">
-                                <AnimatedDot client:load
-                                animateLayout={true}
-                                />
+                                <AnimatedDot client:load animateLayout={true} />
                                 {slideshow.title}
                             </h3>
                         </div>
-                        <VerticalDivider />
-                            <div>
-                                <ProjectGallery
-                                    id={`${project.id}-${slideshow.title.split(" ").join("-").toLowerCase().replace(":", "")}`}
-                                    images={slideshow.images}
-                                    ratio={slideshow.ratio ?? null}
-                                />
-                            </div>
-                    ))
-                }
+                        <VerticalDivider sticky />
+                    </div>
+                    <div>
+                        <ProjectGallery
+                            id={`${project.id}-${slideshow.title.split(" ").join("-").toLowerCase().replace(":", "")}`}
+                            images={slideshow.images}
+                            ratio={slideshow.ratio ?? null}
+                        />
+                    </div>
+                </>
+            ))
+        }
 
-                <VerticalDivider />
-                <div class="w-full px-4 py-8">
-                    <ProjectInfo project={project.data} />
-                </div>
-                <VerticalDivider />
-        </article>
+        <div class="sticky top-12 w-full bg-background z-10">
+            <VerticalDivider sticky />
+            <div class="w-full p-4">
+                <h2 class="text-xl text-text-primary flex items-center gap-0.5">
+                    <AnimatedDot client:load animateLayout={true} />More Info
+                </h2>
+            </div>
+            <VerticalDivider sticky />
+        </div>
+        <div class="w-full px-4 py-8">
+            <ProjectInfo project={project.data} />
+        </div>
+        <VerticalDivider />
+        <div class="h-[60vh]"></div>
         <VerticalDivider />
     </main>
+    <!-- <VerticalDivider /> -->
 </MainLayout>
