@@ -1,0 +1,125 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import VerticalDivider from "../../components/VerticalDivider.astro";
+import Header from "../../components/layout/Header.astro";
+import Footer from "../../components/layout/Footer.astro";
+import ProjectGallery from "../../components/ProjectGallery.astro";
+import ProjectInfo from "../../components/ProjectInfo.astro";
+
+import { getCollection } from "astro:content";
+
+// Get the slug from the URL params
+export async function getStaticPaths() {
+    const projects = await getCollection("projects");
+    return projects.map((project) => ({
+        params: { proj: project.id.replace(/\.json$/, "") },
+        props: { project },
+    }));
+}
+
+const { project } = Astro.props;
+
+// Format the date
+const formatDate = (date: Date) => {
+    if (!date || isNaN(date.getTime())) {
+        return "";
+    }
+    return date.toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+    });
+};
+---
+
+<MainLayout>
+    <main class="w-5/6 md:w-3/4 lg:w-1/2 border-x border-border">
+        <div class="px-4 py-8">
+            <a
+                href="/#projects"
+                class="text-sm text-text-secondary hover:opacity-75 transition-all font-departure-mono flex items-center gap-1"
+            >
+                <svg
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    class="size-4 inline mr-1"
+                >
+                    <path
+                        d="M20 11v2H8v2H6v-2H4v-2h2V9h2v2h12zM10 7H8v2h2V7zm0 0h2V5h-2v2zm0 10H8v-2h2v2zm0 0h2v2h-2v-2z"
+                        fill="currentColor"></path>
+                </svg>
+                Back to all projects
+            </a>
+        </div>
+        <VerticalDivider />
+        <article
+        class="w-full"
+        >
+                <VerticalDivider />
+                <div class="w-full px-4 py-8">
+                    <p
+                        class="w-full text-xs flex justify-between font-departure-mono text-text-secondary mb-4"
+                    >
+                        <span class="lowercase">[{project.data.type}]</span>{" "}
+                        <span class="uppercase">
+                            {formatDate(project.data.year)}
+                        </span>
+                    </p>
+                    <h2
+                        class="text-4xl text-text-primary flex justify-between w-full"
+                    >
+                        {project.data.title}
+                    </h2>
+                </div>
+
+                <VerticalDivider />
+                <div class="w-full p-4">
+                    <h3
+                        class="text-xl text-text-primary capitalize"
+                    >
+                        project outline
+                    </h3>
+                </div>
+                    <VerticalDivider />
+                    <div class="p-4">
+                        {
+                            project.data.outline
+                                .split("\n")
+                                .map((para) => (
+                                    <p class="text-text-primary not-last:mb-4 leading-relaxed">
+                                        {para}
+                                    </p>
+                                ))
+                        }
+                    </div>
+                </div>
+
+                {
+                    project.data.slideshows.map((slideshow) => (
+                    <VerticalDivider />
+                        <div class="w-full p-4">
+                            <h3 class="text-xl text-text-primary capitalize">
+                                {slideshow.title}
+                            </h3>
+                        </div>
+                        <VerticalDivider />
+                            <div>
+                                <ProjectGallery
+                                    id={`${project.id}-${slideshow.title.split(" ").join("-").toLowerCase().replace(":", "")}`}
+                                    images={slideshow.images}
+                                    ratio={slideshow.ratio ?? null}
+                                />
+                            </div>
+                    ))
+                }
+
+                <VerticalDivider />
+                <div class="w-full px-4 py-8">
+                    <ProjectInfo project={project.data} />
+                </div>
+                <VerticalDivider />
+        </article>
+        <VerticalDivider />
+    </main>
+</MainLayout>

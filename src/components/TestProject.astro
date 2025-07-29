@@ -1,0 +1,25 @@
+---
+import ProjectGallery from "./ProjectGallery.astro";
+import ProjectInfo from "./ProjectInfo.astro";
+import VerticalDivider from "./VerticalDivider.astro";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+    project: CollectionEntry<"projects">["data"];
+    // Using any for now as we're working with the test collection
+    slug: string;
+}
+
+const formatDate = (date: Date) => {
+    if (!date || isNaN(date.getTime())) {
+        return "";
+    }
+    return date.toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+    });
+};
+
+const { project, slug } = Astro.props;
+---
