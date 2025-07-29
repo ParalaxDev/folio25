@@ -1,0 +1,55 @@
+---
+interface Props {
+    id: string;
+    ratio: string | null;
+    images: Array<{
+        type: "img" | "vid";
+        fit?: boolean;
+        src: string;
+        alt: string;
+    }>;
+}
+
+const { id, ratio, images } = Astro.props;
+---
+
+<div
+    style={ratio ? `aspect-ratio: ${ratio}` : null}
+    id={id}
+    class="w-full relative border-t border-border"
+>
+    <div
+        id={`${id}-carousel`}
+        style={ratio ? `aspect-ratio: ${ratio}` : null}
+        class="w-full carousel flex relative overflow-hidden"
+    >
+        {
+            images.map((img) => {
+                return (
+                    <div class="carousel-item relative space-mono-regular flex items-center justify-center bg-background snap-center">
+                        {img.type === "img" ? (
+                            <img
+                                class={`${img.fit ? "object-contain h-full" : "object-cover w-full h-full"}`}
+                                src={img.src}
+                                alt={img.alt}
+                            />
+                        ) : (
+                            <video
+                                class="h-full object-cover"
+                                autoplay
+                                loop
+                                muted
+                                playsinline
+                            >
+                                <source src={img.src} type="video/mp4" />
+                            </video>
+                        )}
+                        <p class="absolute bottom-0 right-0 bg-background text-xs text-text-secondary px-4 py-2 border border-border border-t border-l">
+                            {img.alt}
+                        </p>
+                    </div>
+                );
+            })
+        }
+    </div>
+</div>
