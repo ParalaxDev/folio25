@@ -31,10 +31,7 @@
         localStorage.setItem("theme", dark ? "dark" : "light");
     };
 
-    let theme =
-        localStorage.getItem("theme") === "dark" ||
-        (!localStorage.getItem("theme") &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches);
+    let theme = localStorage.getItem("theme") === "dark";
 
     setTheme(theme);
 
