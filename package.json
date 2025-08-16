@@ -3,8 +3,8 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
+    "dev": "node src/scripts/generate-files.js && astro dev",
+    "build": "node src/scripts/generate-files.js && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -18,6 +18,8 @@
     "@types/react-dom": "^19.1.6",
     "@types/three": "^0.178.1",
     "astro": "^5.12.1",
+    "blurhash-base64": "^0.0.3",
+    "glob": "^11.0.3",
     "lygia": "^1.3.3",
     "motion": "^12.23.7",
     "react": "^19.1.0",

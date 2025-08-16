@@ -13,6 +13,7 @@ const projects = defineCollection({
     thumbnail: z
       .object({
         src: z.string(),
+        blur: z.string().optional(),
       })
       .optional(),
     slideshows: z

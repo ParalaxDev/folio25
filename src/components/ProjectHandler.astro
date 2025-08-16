@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { formatDate } from "../utils/date";
+import { blurhashToBase64 } from "blurhash-base64"; // Import blurhashToBase64
 
 interface Props {
     projects: CollectionEntry<"projects">[];
@@ -11,15 +12,53 @@ const { projects } = Astro.props;
 projects.sort((a, b) => b.data.year.getTime() - a.data.year.getTime());
 ---
 
+<script is:inline>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Find all images that have the 'data-high-res-src' attribute
+        document
+            .querySelectorAll("img[data-high-res-src]")
+            .forEach((imgElement) => {
+                const highResSrc = imgElement.dataset.highResSrc;
+
+                if (highResSrc) {
+                    const highResImage = new Image();
+                    highResImage.src = highResSrc;
+
+                    highResImage.onload = () => {
+                        imgElement.src = highResSrc;
+                        imgElement.style.filter = "none";
+                        // Optionally remove the data attribute if you want to prevent
+                        // the script from processing it again (though not strictly necessary)
+                        delete imgElement.dataset.highResSrc;
+                    };
+
+                    highResImage.onerror = () => {
+                        console.error(
+                            "Failed to load high-resolution image:",
+                            highResSrc,
+                        );
+                        imgElement.style.filter = "none";
+                    };
+                }
+            });
+    });
+</script>
+
 <div class="w-full grid grid-cols-1 md:grid-cols-2">
     {
         projects.map((project) => (
             <div class="hover:cursor-pointer group border-b border-border md:odd:border-r">
                 <a href={`/project/${project.id}`}>
-                    <div class="bg-border w-full aspect-[1.414/1] border-b border-border overflow-hidden">
+                    <div class="bg-border w-full aspect-[1.414/1] border-b border-border overflow-hidden transition-all grayscale-75 group-hover:grayscale-0 duration-500">
                         <img
-                            class="bg-border w-full aspect-[1.414/1] object-cover transition-all grayscale-75 group-hover:grayscale-0 duration-500"
-                            src={`${project.data.thumbnail?.src ?? null}`}
+                            class="bg-border w-full aspect-[1.414/1] object-cover "
+                            src={blurhashToBase64(
+                                project.data.thumbnail.blur ?? "",
+                            )}
+                            data-high-res-src={
+                                project.data.thumbnail?.src ?? null
+                            }
+                            style="filter: blur(20px); transition: filter 0.5s ease-out;"
                             alt={`Preview of my project ${project.data.title}`}
                         />
                     </div>
