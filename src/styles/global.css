@@ -49,7 +49,7 @@ body {
 
 @font-face {
     font-family: "Departure Mono"; /*a name to be used later*/
-    src: url("/DepartureMono-Regular.otf"); /*URL to font*/
+    src: url("/DepartureMono-Regular.otf");
 }
 
 .font-departure-mono {

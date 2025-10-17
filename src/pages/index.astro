@@ -99,11 +99,11 @@ const img = {
                 >
             </div>
         </section>
-        <VerticalDivider />
         <section id="projects">
-            <div class="w-full px-4 py-8">
+            <VerticalDivider />
+            <div class="w-full sticky top-12 bg-background z-10">
                 <h2
-                    class="text-3xl text-text-primary flex items-center gap-0.5"
+                    class="p-4 text-3xl text-text-primary flex items-center gap-0.5"
                 >
                     <AnimatedDot
                         client:load
@@ -111,15 +111,15 @@ const img = {
                         activationPercentage={0.5}
                     />Featured Projects
                 </h2>
+                <VerticalDivider sticky />
             </div>
-            <VerticalDivider />
             <ProjectHandler projects={projects} />
-            <VerticalDivider />
         </section>
         <section id="writing">
-            <div class="w-full px-4 py-8">
+            <VerticalDivider />
+            <div class="w-full sticky top-12 bg-background z-10">
                 <h2
-                    class="text-3xl text-text-primary flex items-center gap-0.5"
+                    class="p-4 text-3xl text-text-primary flex items-center gap-0.5"
                 >
                     <AnimatedDot
                         client:load
@@ -127,8 +127,8 @@ const img = {
                         activationPercentage={0.5}
                     />Writing
                 </h2>
+                <VerticalDivider sticky />
             </div>
-            <VerticalDivider />
             <WritingHandler />
             <VerticalDivider />
         </section>
