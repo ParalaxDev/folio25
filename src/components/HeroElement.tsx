@@ -1,6 +1,11 @@
 "use client";
 
-import { AsciiRenderer } from "@react-three/drei";
+import {
+  AsciiRenderer,
+  MarchingCubes,
+  MarchingPlane,
+  MarchingCube,
+} from "@react-three/drei";
 import {
   extend,
   Canvas,
@@ -15,7 +20,7 @@ import {
   OrthographicCamera,
 } from "@react-three/drei";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, Suspense, useMemo } from "react";
 import { AsciiEffect } from "three/examples/jsm/Addons.js";
 import { useTheme } from "../hooks/useTheme";
 
@@ -103,66 +108,201 @@ function degInRad(deg: number): number {
   return (deg * Math.PI) / 180;
 }
 
-const MousePointer = ({ ...props }) => {
-  const ref = useRef<THREE.Mesh>(null!);
-  const animatedRef = useRef<THREE.Mesh>(null!);
-  const matRef = useRef<THREE.ShaderMaterial>(null!);
+interface FloatingBall {
+  id: number;
+  position: [number, number, number];
+  velocity: [number, number, number];
+  strength: number;
+  phase: number;
+  speed: number;
+}
 
-  const { size, viewport } = useThree();
+const FloatingBalls = ({
+  count = 8,
+  fgColor,
+}: {
+  count?: number;
+  fgColor: string;
+}) => {
+  const initialBalls = useMemo<FloatingBall[]>(() => {
+    return Array.from({ length: count }, (_, i) => ({
+      id: i,
+      position: [
+        (Math.random() - 0.5) * 1.6,
+        (Math.random() - 0.5) * 1.6,
+        (Math.random() - 0.5) * 1.6,
+      ],
+      velocity: [
+        (Math.random() - 0.5) * 0.01,
+        (Math.random() - 0.5) * 0.1,
+        (Math.random() - 0.5) * 0.01,
+      ],
+      strength: 0.15 + Math.random() * 0.5, // Random strength between 0.15 and 0.45
+      phase: Math.random() * Math.PI * 2, // Random phase for oscillation
+      speed: 0.1 + Math.random() * 0.5, // Random speed multiplier
+    }));
+  }, [count]);
 
-  useEffect(() => {
-    if (matRef.current) {
-      const canvas = document.querySelector("canvas");
-      if (canvas) {
-        const { width, height } = canvas;
-        matRef.current.uniforms.u_resolution = {
-          value: [width, height],
-        };
-
-        matRef.current.uniforms.u_opacity.value = 0.65;
-
-        matRef.current.transparent = true;
-      }
-    }
-  }, [matRef]);
+  const [balls, setBalls] = useState<FloatingBall[]>(initialBalls);
 
   useFrame(({ clock }) => {
     const time = clock.getElapsedTime();
-    const scale = 1 + 0.3 * Math.sin(time * 2); // adjust speed and range
-    animatedRef.current.scale.set(scale, scale, scale);
+
+    setBalls((currentBalls) =>
+      currentBalls.map((ball) => {
+        const newBall = { ...ball };
+
+        // Smooth floating motion with sine waves
+        const floatX = Math.sin(time * ball.speed + ball.phase) * 0.3;
+        const floatY = Math.cos(time * ball.speed * 0.7 + ball.phase) * 0.3;
+        const floatZ = Math.sin(time * ball.speed + ball.phase) * 0.3;
+
+        // Update position with base position + floating motion + gradual drift
+        let newX =
+          initialBalls[ball.id].position[0] + floatX + ball.velocity[0] * time;
+        let newY =
+          initialBalls[ball.id].position[1] + floatY + ball.velocity[1] * time;
+        let newZ =
+          initialBalls[ball.id].position[2] + floatZ + ball.velocity[2] * time;
+
+        // Boundary collision detection and velocity reversal
+        const bounds = 0.8; // Slightly smaller than the actual bounds to prevent clipping
+
+        // X-axis collision
+        // if (newX > bounds || newX < -bounds) {
+        //   newBall.velocity = [
+        //     -ball.velocity[0],
+        //     ball.velocity[1],
+        //     ball.velocity[2],
+        //   ];
+        //   newX = Math.max(-bounds, Math.min(bounds, newX));
+        // }
+
+        // Y-axis collision
+        // if (newY > bounds || newY < -bounds) {
+        //   newBall.velocity = [
+        //     ball.velocity[0],
+        //     -ball.velocity[1],
+        //     ball.velocity[2],
+        //   ];
+        //   newY = Math.max(-bounds, Math.min(bounds, newY));
+        // }
+
+        // Z-axis collision
+        // if (newZ > bounds || newZ < -bounds) {
+        //   newBall.velocity = [
+        //     ball.velocity[0],
+        //     ball.velocity[1],
+        //     -ball.velocity[2],
+        //   ];
+        //   newZ = Math.max(-bounds, Math.min(bounds, newZ));
+        // }
+
+        // newBall.position = [newX, newY, newZ];
+        newBall.position = [ball.position[0], newY, ball.position[2]];
+
+        return newBall;
+      }),
+    );
   });
 
+  return (
+    <>
+      {balls.map((ball) => (
+        <MarchingCube
+          key={ball.id}
+          strength={ball.strength}
+          subtract={6}
+          color={new THREE.Color(fgColor)}
+          position={ball.position}
+        />
+      ))}
+    </>
+  );
+};
+
+const RevolvingCamera = () => {
+  const { camera, gl } = useThree();
+  const radius = 80; // Distance from center
+  const speed = 0.1; // Revolution speed (radians per second)
+
+  const isDragging = useRef(false);
+  const previousMousePosition = useRef({ x: 0, y: 0 });
+  const currentAngle = useRef(0); // Current camera angle
+  const timeOffset = useRef(0); // Offset to make auto rotation continue smoothly
+
   useEffect(() => {
-    const handleMouseMove = (event) => {
-      const canvas = document.querySelector("canvas");
-      if (canvas && ref.current) {
-        const rect = canvas.getBoundingClientRect();
-        const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-        const y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
-        const worldX = (x * viewport.width) / 2;
-        const worldY = (y * viewport.height) / 2;
-        ref.current.position.set(worldX, worldY, 2);
+    const handleMouseDown = (event: MouseEvent) => {
+      isDragging.current = true;
+      previousMousePosition.current = { x: event.clientX, y: event.clientY };
+      gl.domElement.style.cursor = "grabbing";
+    };
+
+    const handleMouseMove = (event: MouseEvent) => {
+      if (!isDragging.current) return;
+
+      const deltaX = event.clientX - previousMousePosition.current.x;
+      const sensitivity = 0.01; // Adjust drag sensitivity
+
+      currentAngle.current += deltaX * sensitivity;
+      previousMousePosition.current = { x: event.clientX, y: event.clientY };
+    };
+
+    const handleMouseUp = () => {
+      if (isDragging.current) {
+        isDragging.current = false;
+        gl.domElement.style.cursor = "grab";
+        // Calculate time offset so auto rotation continues from current position
+        const currentTime = performance.now() / 1000; // Convert to seconds
+        timeOffset.current = currentAngle.current - currentTime * speed;
       }
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [viewport]);
+    const canvas = gl.domElement;
+    canvas.style.cursor = "grab";
 
-  return (
-    <group position={[100, 100, 0]} ref={ref}>
-      <mesh position={[0, 0, 5]} ref={animatedRef}>
-        <sphereGeometry args={[1.5, 16, 8]} />
-        <mouseShader ref={matRef} />
-      </mesh>
-    </group>
-  );
+    canvas.addEventListener("mousedown", handleMouseDown);
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseup", handleMouseUp);
+
+    return () => {
+      canvas.removeEventListener("mousedown", handleMouseDown);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, [gl]);
+
+  useFrame(({ clock }) => {
+    if (isDragging.current) {
+      // Use user-controlled angle while dragging
+      // currentAngle.current is already updated in handleMouseMove
+    } else {
+      // Continue auto rotation using time offset for smooth transition
+      const time = clock.getElapsedTime();
+      currentAngle.current = time * speed + timeOffset.current;
+    }
+
+    const angle = currentAngle.current;
+
+    // Calculate position on a circle around the scene
+    const x = Math.cos(angle) * radius;
+    const z = Math.sin(angle) * radius;
+
+    // Keep camera at same height (y = 0 for horizon level)
+    camera.position.set(x, 0, z + 30); // Adding 10 to z to maintain original distance
+
+    // Always look at the center of the scene
+    camera.lookAt(0, 0, 0);
+  });
+
+  return null;
 };
 
 export function FadeOverlay() {
   const materialRef = useRef<THREE.ShaderMaterial>(WhiteFadeMaterial);
   const elapsed = useRef(0);
-  const duration = 3; // fade duration in seconds
+  const duration = 5; // fade duration in seconds
+  const delay = 1.25;
 
   function cubicEaseOut(t: number) {
     return 1 - Math.pow(1 - t, 3);
@@ -176,6 +316,7 @@ export function FadeOverlay() {
 
   useFrame((state, delta) => {
     if (materialRef.current && materialRef.current.opacity > 0) {
+      if (state.clock.getElapsedTime() < delay) return;
       elapsed.current += delta;
       let progress = Math.min(elapsed.current / duration, 1);
       // Apply cubic ease-out (invert so opacity goes from 1 to 0)
@@ -204,28 +345,46 @@ export default function HeroElement({}) {
   }, [theme]);
 
   return (
-    <div className="w-full h-full hover:cursor-none">
-      <Canvas>
+    <div className="w-full h-full">
+      <Canvas style={{ zIndex: 1 }}>
         <AsciiRenderer
           bgColor="transparent"
           fgColor={fgColor}
-          resolution={0.12}
-          characters=" .:-=+*#%@"
+          resolution={0.2}
+          characters=" .:-=+*%@#"
+          // characters="#@%*+=-:. "
           invert={false}
         />
-        <MousePointer />
-        {/* <OrbitControls /> */}
-
         <OrthographicCamera
           makeDefault
-          zoom={45}
-          near={1}
+          zoom={400}
+          near={0.01}
           far={2000}
-          position={[0, 0, 200]}
+          position={[0, 0, 40]}
         />
-        <NoisePlane position={[0, 0, 0]} u_offset={0} />
-        <NoisePlane position={[0, 5, 1]} u_offset={1} />
-        <NoisePlane position={[0, 10, 2]} u_offset={2} />
+        <RevolvingCamera />
+        {/*<OrbitControls />*/}
+        <directionalLight position={[10, 10, 5]} intensity={1.7} />
+        <directionalLight position={[-10, 10, -5]} intensity={1.7} />
+        <Suspense fallback={null}>
+          <MarchingCubes
+            resolution={48}
+            maxPolyCount={20000}
+            enableUvs={false}
+            enableColors={false}
+          >
+            <meshPhongMaterial
+              color={new THREE.Color("#fff")}
+              wireframe={false}
+              transparent={false}
+            />
+            <FloatingBalls count={30} fgColor={"#fff"} />
+            <MarchingPlane planeType="y" strength={0.3} subtract={8} />
+          </MarchingCubes>
+        </Suspense>
+        {/*<NoisePlane position={[0, 0, -10]} u_offset={0} />*/}
+        {/*<NoisePlane position={[0, 5, 1]} u_offset={1} />
+        <NoisePlane position={[0, 10, 2]} u_offset={2} />*/}
         <FadeOverlay />
       </Canvas>
     </div>
