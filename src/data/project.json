@@ -1,5 +1,89 @@
 [
   {
+    "slug": "resonance",
+    "title": "Resonance",
+    "type": "UI/UX & Product Design",
+    "outline": "This project explores how design can make biodiversity loss feel more immediate and personal. It centres on a meditation-style app that uses woodland sounds and local species information to encourage mindfulness and reflection. By slowing down and noticing nature, users are introduced to biodiversity data in a way that feels calm and accessible. The app also connects people to volunteering opportunities, turning awareness into action and helping them see how their wellbeing links to the health of the environment.",
+    "year": "2025-11-21",
+    "thumbnail": {
+      "src": "/assets/resonance/thumb.webp",
+      "blur": "W64zB7az4Woe%xazV]j[azaytPj[4Wj[??WCICkBx@ayfQkBMfaf"
+    },
+    "slideshows": [
+      {
+        "title": "Mockups and Screenshots",
+        "ratio": "16/9",
+        "images": [
+          {
+            "src": "/assets/resonance/preview.mp4",
+            "type": "vid",
+            "alt": "A walk-through of my app"
+          },
+          {
+            "src": "/assets/resonance/mockup1.webp",
+            "alt": "A mockup of the community page"
+          },
+          {
+            "src": "/assets/resonance/mockup2.webp",
+            "alt": "A mockup of the meditation page"
+          },
+          {
+            "src": "/assets/resonance/thumb.webp",
+            "alt": "A mockup of the home screen"
+          }
+        ]
+      },
+      {
+        "title": "Project Rationale",
+        "ratio": "94/70",
+        "images": [
+          {
+            "src": "/assets/resonance/25ACB140_Project Design_Page_1.webp",
+            "alt": "Slide 1"
+          },
+          {
+            "src": "/assets/resonance/25ACB140_Project Design_Page_2.webp",
+            "alt": "Slide 2"
+          },
+          {
+            "src": "/assets/resonance/25ACB140_Project Design_Page_3.webp",
+            "alt": "Slide 3"
+          },
+          {
+            "src": "/assets/resonance/25ACB140_Project Design_Page_4.webp",
+            "alt": "Slide 4"
+          }
+        ]
+      }
+    ],
+    "table": [
+      {
+        "key": "Client",
+        "value": "Woodland Trust"
+      },
+      {
+        "key": "Project Rationale",
+        "value": "https://willb.cc/f/25ACB140_Project_Design.pdf",
+        "isLink": true
+      },
+      {
+        "key": "Visual Evidence",
+        "value": "https://willb.cc/f/25ACB140_Visual_Evidence.pdf",
+        "isLink": true
+      },
+      {
+        "key": "touchpoints",
+        "value": "App / Mockups / Animations",
+        "isList": true
+      },
+      {
+        "key": "disciplines",
+        "value": "Visual Identity / UI / UX / Research / Product Design",
+        "isList": true
+      }
+    ]
+  },
+  {
     "slug": "the-fountain",
     "title": "The Fountain",
     "type": "Visual Identity",
