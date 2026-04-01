@@ -178,6 +178,154 @@
     ]
   },
   {
+    "slug": "8-hours",
+    "title": "8 Hours",
+    "type": "Experience",
+    "outline": "8 Hours is a fictional sleep wellness brand I created as the foundation for an immersive university experience tackling the UK's sleep deprivation crisis. With over 75% of adults getting less than the recommended 8 hours, the project targets the 18–24 demographic.\n\nThe experience takes place in a large sports hall during Freshers Week, where students lie on a soft mattress floor and watch an introductory animation on a ceiling-mounted LED screen. They then take a group quiz via a companion app, answering questions that range from playful to serious about their sleeping habits. At the end, they're matched to one of four personalised herbal patch variants, Power Down, Lucid Voyage, Arctic Chill, or Solar Sync.\n\nThe project spans a full brand identity, product packaging, a Figma-designed quiz app, a social media campaign using TikTok POV-style ads, and a 3D-rendered user journey map built in Blender. The visual language uses grainy gradients, bold typography, and a purple and blue palette to evoke the transition from overstimulation into calm.",
+    "year": "2026-04-13",
+    "thumbnail": {
+      "src": "/assets/visualisation/thumb.webp",
+      "blur": "WLM}5.}lE%15}Y=aNN0,EkShWU-AD$OAoHR*s9nji{$+nijEn$R*"
+    },
+    "slideshows": [
+      {
+        "title": "Outcomes",
+        "ratio": "4/3",
+        "images": [
+          {
+            "src": "/assets/ampliear/Final.webp",
+            "fit": true,
+            "alt": "Poster 1"
+          },
+          {
+            "src": "/assets/ampliear/Final Billboard.webp",
+            "alt": "Poster 1 Mockup"
+          },
+          {
+            "src": "/assets/ampliear/Final Alternative.webp",
+            "fit": true,
+            "alt": "Poster 2"
+          },
+          {
+            "src": "/assets/ampliear/Final Alternative Billboard.webp",
+            "alt": "Poster 1 Mockup"
+          }
+        ]
+      }
+    ],
+    "table": [
+      {
+        "key": "Client",
+        "value": "Mock Brief"
+      },
+      {
+        "key": "Pitch Document",
+        "value": "https://willb.cc/f/26ACB144_Design_Showcase.pdf",
+        "isLink": true
+      },
+      {
+        "key": "Visual Evidence",
+        "value": "https://willb.cc/f/26ACB144_Visual_Evidence.pdf",
+        "isLink": true
+      },
+      {
+        "key": "touchpoints",
+        "value": "Immersive Experience / Product Packaging / App Design / Social Media Campaign / Motion Graphics",
+        "isList": true
+      },
+      {
+        "key": "disciplines",
+        "value": "Experience Design / Brand Identity / Packaging / UX & App Design / 3D Visualisation / Motion Design",
+        "isList": true
+      },
+      {
+        "key": "Tools",
+        "value": "Blender / After Effects / Figma / Illustrator / Photoshop",
+        "isList": true
+      }
+    ]
+  },
+  {
+    "slug": "visualisation",
+    "title": "Data Visualisation",
+    "type": "Motion Design",
+    "outline": "This project explores personal music listening behaviour through the lens of skipped songs, using my own Apple Music data from 2025. I wrote a custom program to analyse over 34,000 listening events, extracting statistics on when, why, and how I skip tracks.\n\nThe final animation is structured across three scenes: a year-long heatmap of daily skips annotated with personal events, a timeline visualising how far through each track I listened before skipping and why, and a closing section of curated statistics and standout songs. The visual style is deliberately minimalist, drawing on Edward Tufte's data-ink principles and the clarity of the NYC subway map, using circular dot grids, a restrained green palette, and AT Name Sans to keep the data front and centre.",
+    "year": "2026-02-13",
+    "thumbnail": {
+      "src": "/assets/visualisation/thumb.webp",
+      "blur": "WLM}5.}lE%15}Y=aNN0,EkShWU-AD$OAoHR*s9nji{$+nijEn$R*"
+    },
+    "slideshows": [
+      {
+        "title": "My Data Visualisation",
+        "ratio": "16/9",
+        "images": [
+          {
+            "src": "/assets/visualisation/final.mp4",
+            "type": "vid",
+            "alt": "My Final Data Visualisation"
+          }
+        ]
+      },
+      {
+        "title": "Stills",
+        "ratio": "16/9",
+        "images": [
+          {
+            "src": "/assets/visualisation/frame1.webp",
+            "type": "img",
+            "alt": "My Final Data Visualisation"
+          },
+          {
+            "src": "/assets/visualisation/frame2.webp",
+            "type": "img",
+            "alt": "My Final Data Visualisation"
+          },
+          {
+            "src": "/assets/visualisation/frame3.webp",
+            "type": "img",
+            "alt": "My Final Data Visualisation"
+          },
+          {
+            "src": "/assets/visualisation/frame4.webp",
+            "type": "img",
+            "alt": "My Final Data Visualisation"
+          }
+        ]
+      }
+    ],
+    "table": [
+      {
+        "key": "Client",
+        "value": "Mock Brief"
+      },
+      {
+        "key": "Dataset",
+        "value": "34,899 Apple Music events"
+      },
+      {
+        "key": "Visual Evidence",
+        "value": "https://willb.cc/f/25ACB141_Visual_Evidence.pdf",
+        "isLink": true
+      },
+      {
+        "key": "Tools",
+        "value": "After Effects / Python / Excel",
+        "isList": true
+      },
+      {
+        "key": "touchpoints",
+        "value": "Motion Graphic / Data Animation",
+        "isList": true
+      },
+      {
+        "key": "disciplines",
+        "value": "Data Visualisation / Motion Design / Information Design",
+        "isList": true
+      }
+    ]
+  },
+  {
     "slug": "ampliear",
     "title": "Ampliear",
     "type": "Marketing",

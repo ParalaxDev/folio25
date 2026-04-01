@@ -78,25 +78,27 @@ const { id, ratio, images } = Astro.props;
         {
             images.map((img) => {
                 return (
-                    <div class="carousel-item relative space-mono-regular flex items-center justify-center bg-background snap-center">
-                        {img.type === "img" ? (
-                            <img
-                                class={`${img.fit ? "object-contain h-full" : "object-cover w-full h-full"}`}
-                                src={img.src}
-                                alt={img.alt}
-                            />
-                        ) : (
-                            <video
-                                class="h-full object-cover"
-                                autoplay
-                                loop
-                                muted
-                                playsinline
-                            >
-                                <source src={img.src} type="video/mp4" />
-                            </video>
-                        )}
-                        <div class="absolute h-8 bottom-0 left-0 right-0 bg-background text-xs text-text-secondary border-border border-t text-center w-full">
+                    <div class="carousel-item space-mono-regular flex flex-col bg-background snap-center overflow-hidden">
+                        <div class="flex-1 flex items-center justify-center overflow-hidden w-full">
+                            {img.type === "img" ? (
+                                <img
+                                    class={`${img.fit ? "object-contain" : "object-cover h-full"}`}
+                                    src={img.src}
+                                    alt={img.alt}
+                                />
+                            ) : (
+                                <video
+                                    class="h-full object-cover"
+                                    autoplay
+                                    loop
+                                    muted
+                                    playsinline
+                                >
+                                    <source src={img.src} type="video/mp4" />
+                                </video>
+                            )}
+                        </div>
+                        <div class="h-8 bg-background text-xs text-text-secondary border-border border-t text-center">
                             <p class="py-2 font-departure-mono">{img.alt}</p>
                         </div>
                     </div>

@@ -1,0 +1,25 @@
+---
+import ImageTest from "../components/ImageTest";
+import "../styles/global.css";
+
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+
+const projects = await getCollection("projects");
+---
+
+<div class="w-full min-h-screen bg-[#D7D8D6] p-16">
+    <div class="grid grid-cols-2">
+        {
+            projects.map((project) => (
+                    <h1>{project.data.title}</h1>
+                    <img
+                        src={project.data.thumbnail.src}
+                        class="aspect-4/3 object-cover w-full"
+                        alt={project.data.title}
+                    />
+            ))
+        }
+    </div>
+    <!-- <ImageTest client:load client:only /> -->
+</div>
