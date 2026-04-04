@@ -1,6 +1,8 @@
-import { useFrame, useThree } from '@react-three/fiber';
-import { useScrollVelocity } from '../../hooks/useScrollVelocity';
-import { WarpPlane } from './WarpPlane';
+import { useFrame, useThree } from "@react-three/fiber";
+import { useScrollVelocity } from "../../hooks/useScrollVelocity";
+import { WarpPlane } from "./WarpPlane";
+import { useEffect } from "react";
+import * as THREE from "three";
 
 interface ImageSceneProps {
   images: React.MutableRefObject<Map<string, any>>;
@@ -16,7 +18,7 @@ export function ImageScene({ images }: ImageSceneProps) {
   useFrame(() => {
     images.current.forEach(({ domRef, mesh }) => {
       if (!domRef.current || !mesh) return;
-      
+
       const rect = domRef.current.getBoundingClientRect();
 
       // Ortho camera: map DOM pixel coords to world space
@@ -26,10 +28,7 @@ export function ImageScene({ images }: ImageSceneProps) {
       mesh.scale.x = rect.width;
       mesh.scale.y = rect.height;
 
-      // Feed scroll velocity to warp shader
-      if (mesh.material && 'uniforms' in mesh.material) {
-        mesh.material.uniforms.uScrollVel.value = scrollVel.current;
-      }
+      // No uniforms to update - fold effect calculates screen position in shader
     });
   });
 
