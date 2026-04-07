@@ -1,6 +1,5 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
-import VerticalDivider from "../../components/VerticalDivider.astro";
 
 import { getCollection } from "astro:content";
 
@@ -47,7 +46,6 @@ const img = {
                 Back to all writings
             </a>
         </div>
-        <VerticalDivider />
         <article
             class="p-4 px-4 prose prose-sm md:prose-base prose-stone dark:prose-invert max-w-none prose-p:text-text-primary prose-h2:mb-2 prose-h2:font-normal prose-a:text-tertiary prose-a:hover:opacity-50 prose-a:transition-opacity prose-a:duration-300"
         >
@@ -64,7 +62,6 @@ const img = {
             </h1>
             <Fragment set:html={content} />
         </article>
-        <VerticalDivider />
     </main>
 </MainLayout>
 
