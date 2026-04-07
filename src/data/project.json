@@ -96,7 +96,7 @@
     "slideshows": [
       {
         "title": "Concept 1",
-        "ratio": "94/70",
+        "ratio": "16/9",
         "images": [
           {
             "src": "/assets/the-fountain/pitch document_05.webp",
@@ -124,6 +124,7 @@
       },
       {
         "title": "Concept 2",
+        "ratio": "16/9",
         "images": [
           {
             "src": "/assets/the-fountain/pitch document_10.webp",
@@ -338,7 +339,7 @@
     "slideshows": [
       {
         "title": "Outcomes",
-        "ratio": "4/3",
+        "ratio": "16/9",
         "images": [
           {
             "src": "/assets/ampliear/Final.webp",

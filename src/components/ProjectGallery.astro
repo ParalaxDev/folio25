@@ -1,4 +1,7 @@
 ---
+import WebGLImage from "./WebGLImage/WebGLImage.astro";
+import WebGLVideo from "./WebGLImage/WebGLVideo.astro";
+
 interface Props {
     id: string;
     ratio: string | null;
@@ -68,7 +71,7 @@ const { id, ratio, images } = Astro.props;
 <div
     style={ratio ? `aspect-ratio: ${ratio}` : null}
     id={id}
-    class="w-full relative border-t border-border"
+    class="w-full relative"
 >
     <div
         id={`${id}-carousel`}
@@ -78,35 +81,28 @@ const { id, ratio, images } = Astro.props;
         {
             images.map((img) => {
                 return (
-                    <div class="carousel-item space-mono-regular flex flex-col bg-background snap-center overflow-hidden">
-                        <div class="flex-1 flex items-center justify-center overflow-hidden w-full">
-                            {img.type === "img" ? (
-                                <img
-                                    class={`${img.fit ? "object-contain" : "object-cover h-full"}`}
-                                    src={img.src}
-                                    alt={img.alt}
-                                />
-                            ) : (
-                                <video
-                                    class="h-full object-cover"
-                                    autoplay
-                                    loop
-                                    muted
-                                    playsinline
-                                >
-                                    <source src={img.src} type="video/mp4" />
-                                </video>
-                            )}
-                        </div>
-                        <div class="h-8 bg-background text-xs text-text-secondary border-border border-t text-center">
-                            <p class="py-2 font-departure-mono">{img.alt}</p>
-                        </div>
+                    <div class="carousel-item relative space-mono-regular flex items-center justify-center bg-background snap-center">
+                        {img.type === "img" ? (
+                            <WebGLImage
+                                class={`${img.fit ? "object-contain h-full" : "object-cover w-full h-full"}`}
+                                src={img.src}
+                                alt={img.alt}
+                            />
+                        ) : (
+                            <WebGLVideo
+                                class={`${img.fit ? "object-contain h-full" : "object-cover w-full h-full"}`}
+                                src={img.src}
+                            />
+                        )}
+                        <!-- <div class="absolute h-8 bottom-0 left-0 right-0 bg-background text-xs text-secondary text-center w-full">
+                            <p class="py-2 font-mono ">{img.alt}</p>
+                        </div> -->
                     </div>
                 );
             })
         }
     </div>
-    <div
+    <!-- <div
         class="text-text-secondary w-full flex justify-between absolute bottom-0"
     >
         <button
@@ -143,5 +139,5 @@ const { id, ratio, images } = Astro.props;
                     fill="currentColor"></path>{" "}
             </svg>
         </button>
-    </div>
+    </div> -->
 </div>

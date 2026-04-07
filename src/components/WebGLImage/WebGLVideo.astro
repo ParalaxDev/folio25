@@ -1,0 +1,23 @@
+---
+interface Props extends astroHTML.JSX.VideoHTMLAttributes {
+    src: string;
+    class?: string;
+    style?: string;
+}
+
+const { src, class: className, style, ...props } = Astro.props;
+---
+
+<video
+    data-webgl-video
+    src={src}
+    class={"lg:opacity-0 opacity-100 " + (className || "")}
+    style={style}
+    autoplay
+    loop
+    muted
+    playsinline
+    {...props}
+>
+    <source src={src} type="video/mp4" />
+</video>

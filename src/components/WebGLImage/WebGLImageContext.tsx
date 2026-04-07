@@ -7,60 +7,27 @@ import {
   useId,
   type ReactNode,
   useState,
+  type RefObject,
 } from "react";
 import { Canvas } from "@react-three/fiber";
 import * as THREE from "three";
 import { ImageScene } from "./ImageScene";
-import { EffectComposer } from "@react-three/postprocessing";
-import { PerspectiveFoldEffect } from "../PerspectiveFoldEffect";
-import { OrbitControls } from "@react-three/drei";
+import { useWindowSize } from "../../hooks/useWindowSize";
 
 interface ImageData {
-  domRef: React.RefObject<HTMLImageElement>;
+  domRef: React.RefObject<HTMLImageElement | HTMLVideoElement>;
   texture: THREE.Texture;
   mesh?: THREE.Mesh;
+  type: 'image' | 'video';
 }
 
 interface WebGLImageContextValue {
-  images: React.MutableRefObject<Map<string, ImageData>>;
+  images: RefObject<Map<string, ImageData>>;
   register: (
     id: string,
-    domRef: React.RefObject<HTMLImageElement>,
+    domRef: RefObject<HTMLImageElement>,
     src: string,
   ) => () => void;
-}
-
-interface FoldConfig {
-  enabled: boolean;
-  strength: number;
-  edgeThreshold: number;
-  foldAngle: number;
-  depth: number;
-}
-
-const FOLD_CONFIG: FoldConfig = {
-  enabled: true,
-  strength: 0.05,
-  edgeThreshold: 0.85,
-  foldAngle: 0,
-  depth: -0.02,
-};
-
-function Effects() {
-  return (
-    <EffectComposer>
-      <primitive
-        object={
-          new PerspectiveFoldEffect({
-            strength: FOLD_CONFIG.strength,
-            edgeThreshold: FOLD_CONFIG.edgeThreshold,
-            foldAngle: FOLD_CONFIG.foldAngle,
-            depth: FOLD_CONFIG.depth,
-          })
-        }
-      />
-    </EffectComposer>
-  );
 }
 
 const WebGLImageContext = createContext<WebGLImageContextValue | null>(null);
@@ -69,32 +36,33 @@ interface WebGLImageProviderProps {
   children: ReactNode;
 }
 
-/**
- * Provider that manages the fixed WebGL canvas and all registered images
- */
 export function WebGLImageProvider({ children }: WebGLImageProviderProps) {
   const images = useRef(new Map<string, ImageData>());
   const [, forceUpdate] = useState({});
+  const { width } = useWindowSize();
 
   const register = useCallback(
-    (id: string, domRef: React.RefObject<HTMLImageElement>, src: string) => {
-      const texture = new THREE.TextureLoader().load(src);
-      images.current.set(id, { domRef, texture });
-      forceUpdate({}); // Trigger re-render for ImageScene
+    (id: string, domRef: React.RefObject<HTMLImageElement | HTMLVideoElement>, src: string) => {
+      const isVideo = domRef.current instanceof HTMLVideoElement;
+      const texture = isVideo 
+        ? new THREE.VideoTexture(domRef.current as HTMLVideoElement)
+        : new THREE.TextureLoader().load(src);
+      
+      images.current.set(id, { domRef, texture, type: isVideo ? 'video' : 'image' });
+      forceUpdate({});
 
-      // Return cleanup function
       return () => {
         images.current.delete(id);
         texture.dispose();
-        forceUpdate({}); // Trigger re-render on cleanup
+        forceUpdate({});
       };
     },
     [],
   );
 
-  // Scan for data-webgl-image attributes on mount and watch for changes
   useEffect(() => {
-    const scanImages = () => {
+    const scanMedia = () => {
+      // Scan images
       const webglImages = document.querySelectorAll<HTMLImageElement>(
         "img[data-webgl-image]",
       );
@@ -103,50 +71,68 @@ export function WebGLImageProvider({ children }: WebGLImageProviderProps) {
         const src = img.src || img.getAttribute("src");
         if (!src) return;
 
-        // Generate a unique ID based on the element
-        const id = `data-attr-${img.dataset.webglId || Math.random().toString(36).slice(2)}`;
+        const id = `data-attr-img-${img.dataset.webglId || Math.random().toString(36).slice(2)}`;
 
-        // Store the ID on the element for future reference
         if (!img.dataset.webglId) {
-          img.dataset.webglId = id.replace("data-attr-", "");
+          img.dataset.webglId = id.replace("data-attr-img-", "");
         }
 
-        // Check if already registered
         if (images.current.has(id)) return;
 
-        // Create a ref object from the DOM element
         const domRef = { current: img };
         const texture = new THREE.TextureLoader().load(src);
-        images.current.set(id, { domRef, texture });
+        images.current.set(id, { domRef, texture, type: 'image' });
+      });
+
+      // Scan videos
+      const webglVideos = document.querySelectorAll<HTMLVideoElement>(
+        "video[data-webgl-video]",
+      );
+
+      webglVideos.forEach((video) => {
+        const src = video.src || video.getAttribute("src");
+        if (!src) return;
+
+        const id = `data-attr-video-${video.dataset.webglId || Math.random().toString(36).slice(2)}`;
+
+        if (!video.dataset.webglId) {
+          video.dataset.webglId = id.replace("data-attr-video-", "");
+        }
+
+        if (images.current.has(id)) return;
+
+        const domRef = { current: video };
+        const texture = new THREE.VideoTexture(video);
+        texture.minFilter = THREE.LinearFilter;
+        texture.magFilter = THREE.LinearFilter;
+        texture.format = THREE.RGBAFormat;
+        images.current.set(id, { domRef, texture, type: 'video' });
       });
 
       forceUpdate({});
     };
 
-    // Initial scan
-    scanImages();
+    scanMedia();
 
     console.log(
-      "Initial WebGL images registered:",
+      "Initial WebGL media registered:",
       Array.from(images.current.keys()),
     );
 
-    // Watch for new images added to the DOM
     const observer = new MutationObserver(() => {
-      scanImages();
+      scanMedia();
     });
 
     observer.observe(document.body, {
       childList: true,
       subtree: true,
       attributes: true,
-      attributeFilter: ["data-webgl-image", "src"],
+      attributeFilter: ["data-webgl-image", "data-webgl-video", "src"],
     });
 
     return () => {
       observer.disconnect();
 
-      // Clean up data-attribute registered images
       images.current.forEach((data, id) => {
         if (id.startsWith("data-attr-")) {
           data.texture.dispose();
@@ -157,35 +143,28 @@ export function WebGLImageProvider({ children }: WebGLImageProviderProps) {
   }, []);
 
   return (
-    <WebGLImageContext.Provider value={{ images, register }}>
-      {/* Fixed WebGL canvas behind everything */}
-      <Canvas
-        style={{
-          position: "fixed",
-          inset: 0,
-          // pointerEvents: "none",
-          zIndex: 2,
-        }}
-        camera={{ zoom: 1, position: [0, 0, 10], near: 0.1, far: 200 }}
-        orthographic
-        dpr={[1, 2]}
-      >
-        <ImageScene images={images} />
-        {/* Effects disabled - using per-mesh shaders instead of post-processing */}
-        {/* <Effects /> */}
-        {/*<OrbitControls />*/}
-      </Canvas>
+    <>
+      <WebGLImageContext.Provider value={{ images, register }}>
+        <Canvas
+          style={{
+            position: "fixed",
+            inset: 0,
+            pointerEvents: "none",
+            zIndex: 2,
+          }}
+          camera={{ zoom: 1, position: [0, 0, 10], near: 0.1, far: 200 }}
+          orthographic
+          dpr={[1, 2]}
+        >
+          {width > 768 ? <ImageScene images={images} /> : null}
+        </Canvas>
 
-      {/* Normal DOM content in front */}
-      <div style={{ position: "relative", zIndex: 1 }}>{children}</div>
-    </WebGLImageContext.Provider>
+        <div style={{ position: "relative", zIndex: 1 }}>{children}</div>
+      </WebGLImageContext.Provider>
+    </>
   );
 }
 
-/**
- * Hook to register a DOM image with the WebGL system
- * Returns a ref to attach to a hidden <img> element
- */
 export function useWebGLImage(src: string) {
   const ref = useRef<HTMLImageElement>(null);
   const id = useId();

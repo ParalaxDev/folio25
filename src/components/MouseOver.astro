@@ -1,0 +1,59 @@
+<script>
+    const hoverEl = document.getElementsByClassName(
+        "hover-cursor",
+    )[0] as HTMLDivElement;
+
+    let currentX = 0;
+    let currentY = 0;
+    let targetX = 0;
+    let targetY = 0;
+    const lerpFactor = 0.1;
+
+    document.addEventListener("mousemove", (e) => {
+        targetX = e.clientX;
+        targetY = e.clientY;
+    });
+
+    function updateCursorPosition() {
+        currentX += (targetX - currentX) * lerpFactor;
+        currentY += (targetY - currentY) * lerpFactor;
+
+        hoverEl.style.transform = `translate(calc(${currentX}px - 50%), calc(${currentY}px - 75%))`;
+        requestAnimationFrame(updateCursorPosition);
+    }
+
+    updateCursorPosition();
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const els = document.querySelectorAll(`[data-project] .read-more`);
+
+        console.log(els);
+
+        const hoverEl = document.getElementsByClassName(
+            "hover-cursor",
+        )[0] as HTMLDivElement;
+
+        els.forEach((el) => {
+            el.addEventListener("mouseenter", () => {
+                hoverEl.style.opacity = "100";
+                document.body.style.cursor = "pointer";
+            });
+
+            el.addEventListener("mouseleave", () => {
+                hoverEl.style.opacity = "0";
+                document.body.style.cursor = "default";
+            });
+        });
+    });
+</script>
+
+<div
+    class={`transition-opacity duration-500 fixed bg-background/75 pointer-events-none hover-cursor rounded-full backdrop-blur-xs border-border/50 border px-4 py-2 z-10`}
+    style="opacity: 0;"
+>
+    <p
+        class="font-mono text-xs text-secondary flex justify-center items-center"
+    >
+        Read More
+    </p>
+</div>

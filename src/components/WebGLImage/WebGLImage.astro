@@ -1,0 +1,24 @@
+---
+interface Props extends astroHTML.JSX.ImgHTMLAttributes {
+    src: string;
+    alt?: string;
+    href?: string;
+}
+
+const { src, alt, class: className, style, href, ...props } = Astro.props;
+---
+
+<a
+    href={href}
+    class={"aspect-video w-full lg:opacity-0 opacity-100 mb-2 block" +
+        className}
+>
+    <img
+        data-webgl-image
+        src={src}
+        alt={alt}
+        aria-hidden="true"
+        class={"object-cover w-full h-full lg:opacity-0 opacity-100"}
+        {...props}
+    />
+</a>
