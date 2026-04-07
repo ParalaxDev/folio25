@@ -42,10 +42,10 @@ const formatDate = (date: Date) => {
         ].map((kv) => {
             return (
                 <div class="flex flex-col">
-                    <p class="text-secondary text-sm capitalize font-mono">
+                    <p class="text-secondary text-sm capitalize font-mono animate-text-in">
                         {kv.key}
                     </p>
-                    <div>
+                    <div class="animate-text-in">
                         {kv.isLink ? (
                             <a
                                 class="hover:text-tertiary text-primary text-xl transition-colors duration-300 flex items-center"
