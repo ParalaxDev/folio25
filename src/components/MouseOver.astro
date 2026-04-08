@@ -1,41 +1,40 @@
 <script>
-    const hoverEl = document.getElementsByClassName(
-        "hover-cursor",
-    )[0] as HTMLDivElement;
+    import barba from "@barba/core";
 
-    let currentX = 0;
-    let currentY = 0;
-    let targetX = 0;
-    let targetY = 0;
-    const lerpFactor = 0.1;
+    const addHoverListeners = () => {
+        const hoverEl = document.querySelector(
+            ".hover-cursor",
+        ) as HTMLDivElement;
 
-    document.addEventListener("mousemove", (e) => {
-        targetX = e.clientX;
-        targetY = e.clientY;
-    });
-
-    function updateCursorPosition() {
-        currentX += (targetX - currentX) * lerpFactor;
-        currentY += (targetY - currentY) * lerpFactor;
-
-        hoverEl.style.transform = `translate(calc(${currentX}px - 50%), calc(${currentY}px - 75%))`;
-        requestAnimationFrame(updateCursorPosition);
-    }
-
-    updateCursorPosition();
-
-    document.addEventListener("DOMContentLoaded", () => {
         const els = document.querySelectorAll(`[data-project] .read-more`);
 
-        console.log(els);
+        if (!hoverEl) return;
 
-        const hoverEl = document.getElementsByClassName(
-            "hover-cursor",
-        )[0] as HTMLDivElement;
+        console.log(hoverEl);
+
+        let currentX = 0;
+        let currentY = 0;
+        let targetX = 0;
+        let targetY = 0;
+        const lerpFactor = 0.1;
+
+        function updateCursorPosition() {
+            currentX += (targetX - currentX) * lerpFactor;
+            currentY += (targetY - currentY) * lerpFactor;
+
+            hoverEl.style.transform = `translate(calc(${currentX}px - 50%), calc(${currentY}px - 75%))`;
+            requestAnimationFrame(updateCursorPosition);
+        }
+
+        document.addEventListener("mousemove", (e) => {
+            targetX = e.clientX;
+            targetY = e.clientY;
+        });
 
         els.forEach((el) => {
             el.addEventListener("mouseenter", () => {
-                hoverEl.style.opacity = "100";
+                if (document.body.dataset.transition == "true") return;
+                hoverEl.style.opacity = "1";
                 document.body.style.cursor = "pointer";
             });
 
@@ -44,6 +43,17 @@
                 document.body.style.cursor = "default";
             });
         });
+
+        updateCursorPosition();
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+        addHoverListeners();
+    });
+
+    barba.hooks.afterEnter(() => {
+        document.body.dataset.transition = "false";
+        addHoverListeners();
     });
 </script>
 

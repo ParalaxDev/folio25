@@ -40,6 +40,8 @@ html,
 body {
     scroll-behavior: smooth;
     font-variant-ligatures: normal;
+    height: 100%;
+    background-color: var(--color-background);
 }
 
 @font-face {

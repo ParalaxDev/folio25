@@ -1,4 +1,9 @@
 <script>
+    import barba from "@barba/core";
+    import gsap from "gsap";
+    import { GSDevTools } from "gsap/GSDevTools";
+    import { SplitText } from "gsap/SplitText";
+
     function fitFontSize(text: string, maxWidth: number, family = "Name Sans") {
         const ctx = document.createElement("canvas").getContext("2d");
         if (!ctx) return 16;
@@ -12,155 +17,198 @@
         return lo;
     }
 
-    const els = document.querySelectorAll(
-        ".hero-header",
-    ) as NodeListOf<HTMLHeadingElement>;
-    els.forEach((el) => {
-        if (!el.parentElement) return;
-        window.addEventListener("resize", () => {
-            if (!el.parentElement) return;
-            el.style.fontSize =
-                Math.round(
+    // Move this OUTSIDE fitText so we can manage it
+    let resizeHandler: (() => void) | null = null;
+
+    const fitText = () => {
+        const els = document.querySelectorAll(
+            ".hero-header",
+        ) as NodeListOf<HTMLHeadingElement>;
+
+        // Clean up old listener before adding new one
+        if (resizeHandler) window.removeEventListener("resize", resizeHandler);
+
+        const runFit = () => {
+            els.forEach((el) => {
+                const parent = el.parentElement;
+                if (!parent || parent.clientWidth === 0) return;
+
+                const newSize = Math.round(
                     fitFontSize(
-                        el.textContent.trim(),
-                        el.parentElement.clientWidth - 96,
+                        el.textContent?.trim() || "",
+                        parent.clientWidth - 96,
                     ),
-                ) + "px";
-        });
-        el.style.fontSize =
-            Math.round(
-                fitFontSize(
-                    el.textContent.trim(),
-                    el.parentElement.clientWidth - 96,
-                ),
-            ) + "px";
-    });
-</script>
-<script>
-    import gsap from "gsap";
-    import { GSDevTools } from "gsap/GSDevTools";
-    import { SplitText } from "gsap/SplitText";
+                );
+                el.style.fontSize = `${newSize}px`;
+            });
+        };
+
+        // Create the new handler and store it
+        resizeHandler = runFit;
+        window.addEventListener("resize", resizeHandler);
+
+        // Run it immediately
+        runFit();
+    };
+
+    fitText();
 
     gsap.registerPlugin(GSDevTools, SplitText);
 
+    let hasIntroRun = false;
+
     // GSDevTools.create();
 
-    const tl = gsap.timeline();
-    const portSplit = new SplitText(".port-split", { type: "chars" });
-    const folioSplit = new SplitText(".folio-split", { type: "chars" });
+    const IntroAnimation = (skip: boolean) => {
+        const portEl = document.querySelector(".port-split");
+        const folioEl = document.querySelector(".folio-split");
 
-    tl.set(".intro-bg", {
-        transformOrigin: "center",
-        top: "50%",
-        left: "50%",
-        translate: "-50% -50%",
-    })
-        .set(".grid-els > *", {
-            y: "-200%",
-        })
-        .to(".intro-bg", {
-            scale: 1,
-            ease: "power2.out",
-            duration: 0.5,
-            borderRadius: "100%",
-        })
-        .to(
-            ".intro-bg",
-            {
-                ease: "power2.out",
-                duration: 0.5,
-                borderRadius: "0",
-            },
-            ">1",
-        )
-        .to(".intro-bg", {
-            ease: "power2.out",
-            duration: 1,
-            width: "100%",
-        })
-        .to(
-            ".intro-bg",
-            {
-                ease: "power2.inOut",
-                duration: 2,
-                height: "100%",
-            },
-            "intro-complete",
-        )
-        .set(".intro-bg", {
-            bottom: 0,
-            top: "auto",
-            translate: "-50% 0",
-        })
-        .set(".actual-title", { opacity: 1 })
-        .to(".intro-bg", {
-            transformOrigin: "bottom",
+        // Safety check: If these don't exist, we aren't on the Home page
+        if (!portEl || !folioEl) return;
+
+        hasIntroRun = true;
+
+        const tl = gsap.timeline();
+
+        fitText();
+
+        const portSplit = new SplitText(".port-split", {
+            type: "chars",
+        });
+        const folioSplit = new SplitText(".folio-split", {
+            type: "chars",
         });
 
-    tl.set(".port-split", { top: 0, left: 0 }, 0);
-    tl.set(".folio-split", { bottom: 0, right: 0 }, 0);
-    tl.set([portSplit.chars, folioSplit.chars], { y: "100%" }, 0);
+        tl.set(".intro-bg", {
+            transformOrigin: "center",
+            top: "50%",
+            left: "50%",
+            translate: "-50% -50%",
+        })
+            .set(".grid-els > *", {
+                y: "-200%",
+            })
+            .to(".intro-bg", {
+                scale: 1,
+                ease: "power2.out",
+                duration: 0.5,
+                borderRadius: "100%",
+            })
+            .to(
+                ".intro-bg",
+                {
+                    ease: "power2.out",
+                    duration: 0.5,
+                    borderRadius: "0",
+                },
+                ">1",
+            )
+            .to(".intro-bg", {
+                ease: "power2.out",
+                duration: 1,
+                width: "100%",
+            })
+            .to(
+                ".intro-bg",
+                {
+                    ease: "power2.inOut",
+                    duration: 2,
+                    height: "100%",
+                },
+                "intro-complete",
+            )
+            .set(".intro-bg", {
+                bottom: 0,
+                top: "auto",
+                translate: "-50% 0",
+            })
+            .set(".actual-title", { opacity: 1 })
+            .to(".intro-bg", {
+                transformOrigin: "bottom",
+            });
 
-    tl.to(
-        [portSplit.chars, folioSplit.chars],
-        {
-            y: "0%",
-            ease: "power2.out",
-            duration: 0.75,
-            stagger: 0.05,
-        },
-        "intro-complete+=1",
-    );
+        tl.set(".port-split", { top: 0, left: 0 }, 0);
+        tl.set(".folio-split", { bottom: 0, right: 0 }, 0);
+        tl.set([portSplit.chars, folioSplit.chars], { y: "100%" }, 0);
 
-    tl.to(".port-split", {
-        top: "100%",
-        transform: "translateY(-100%)",
-        ease: "power2.in",
-        left: 0,
-        duration: 0.75,
-    })
+        tl.to(
+            [portSplit.chars, folioSplit.chars],
+            {
+                y: "0%",
+                ease: "power2.out",
+                duration: 0.75,
+                stagger: 0.05,
+            },
+            "intro-complete+=1",
+        );
 
-        .addLabel("text-animate-complete");
-
-    tl.to(
-        ".intro-bg",
-        {
-            height: 0,
+        tl.to(".port-split", {
+            top: "100%",
+            transform: "translateY(-100%)",
             ease: "power2.in",
+            left: 0,
             duration: 0.75,
-            bottom: 0,
-        },
-        "text-animate-complete-=0.75",
-    )
-        .to(
-            ".title-clip",
+        })
+
+            .addLabel("text-animate-complete");
+
+        tl.to(
+            ".intro-bg",
             {
                 height: 0,
-                bottom: 0,
                 ease: "power2.in",
                 duration: 0.75,
+                bottom: 0,
             },
             "text-animate-complete-=0.75",
         )
-        .to(
-            ".title-clip",
-            {
-                padding: 0,
-            },
-            ">",
-        )
-        .addLabel("bg-swipe-complete");
+            .to(
+                ".title-clip",
+                {
+                    height: 0,
+                    bottom: 0,
+                    ease: "power2.in",
+                    duration: 0.75,
+                },
+                "text-animate-complete-=0.75",
+            )
+            .to(
+                ".title-clip",
+                {
+                    padding: 0,
+                },
+                ">",
+            )
+            .addLabel("bg-swipe-complete");
 
-    tl.to(
-        ".grid-els > *",
-        {
-            y: 0,
-            stagger: 0.2,
-            ease: "power2.out",
-            duration: 1,
-        },
-        "bg-swipe-complete+=0.25",
-    );
+        tl.to(
+            ".grid-els > *",
+            {
+                y: 0,
+                stagger: 0.2,
+                ease: "power2.out",
+                duration: 1,
+            },
+            "bg-swipe-complete+=0.25",
+        );
+
+        if (hasIntroRun && skip) {
+            tl.progress(1, false);
+        }
+    };
+
+    window.addEventListener("DOMContentLoaded", () => {
+        if (document.location.search == "?skip") {
+            IntroAnimation(true);
+        } else {
+            IntroAnimation(false);
+        }
+    });
+
+    barba.hooks.afterEnter(() => {
+        console.log("from other page but skipping");
+        IntroAnimation(true);
+    });
 </script>
 <div
     class="relative h-screen w-full p-8 flex justify-between items-start flex-col text-secondary"
