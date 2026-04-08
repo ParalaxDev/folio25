@@ -6,19 +6,25 @@ interface Props extends astroHTML.JSX.ImgHTMLAttributes {
 }
 
 const { src, alt, class: className, style, href, ...props } = Astro.props;
+const fitClass = className?.includes("object-contain")
+    ? "object-contain"
+    : "object-cover";
+const linkClass = [
+    "aspect-video w-full lg:opacity-0 opacity-100 mb-2 block",
+    className,
+]
+    .filter(Boolean)
+    .join(" ");
+const imgClass = `${fitClass} w-full h-full lg:opacity-0 opacity-100`;
 ---
 
-<a
-    href={href}
-    class={"aspect-video w-full lg:opacity-0 opacity-100 mb-2 block" +
-        className}
->
+<a href={href} class={linkClass}>
     <img
         data-webgl-image
         src={src}
         alt={alt}
         aria-hidden="true"
-        class={"object-cover w-full h-full lg:opacity-0 opacity-100"}
+        class={imgClass}
         {...props}
     />
 </a>

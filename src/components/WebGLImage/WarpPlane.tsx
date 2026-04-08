@@ -47,13 +47,24 @@ export function WarpPlane({ texture, images, id }: WarpPlaneProps) {
       uImageSize: {
         value: getMediaSize(),
       },
+      uUseContain: { value: false },
       uClipBounds: { value: new THREE.Vector4(0, 0, 0, 0) },
       uElementBounds: { value: new THREE.Vector4(0, 0, 0, 0) },
       uUseClipping: { value: 0.0 },
-      uViewportSize: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+      uViewportSize: {
+        value: new THREE.Vector2(window.innerWidth, window.innerHeight),
+      },
     }),
     [texture],
   );
+
+  useEffect(() => {
+    if (!meshRef.current || !el) return;
+
+    const material = meshRef.current.material as THREE.ShaderMaterial;
+    material.uniforms.uUseContain.value =
+      el.classList.contains("object-contain");
+  });
 
   useEffect(() => {
     if (!meshRef.current || !el) return;
@@ -81,8 +92,8 @@ export function WarpPlane({ texture, images, id }: WarpPlaneProps) {
     if (isVideo) {
       const video = el as HTMLVideoElement;
       // Update size once video metadata is loaded
-      video.addEventListener('loadedmetadata', updateSize);
-      return () => video.removeEventListener('loadedmetadata', updateSize);
+      video.addEventListener("loadedmetadata", updateSize);
+      return () => video.removeEventListener("loadedmetadata", updateSize);
     } else {
       updateSize();
     }
@@ -98,7 +109,7 @@ export function WarpPlane({ texture, images, id }: WarpPlaneProps) {
         el.getBoundingClientRect().width,
         el.getBoundingClientRect().height,
       );
-      
+
       material.uniforms.uViewportSize.value = new THREE.Vector2(
         window.innerWidth,
         window.innerHeight,
