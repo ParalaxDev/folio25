@@ -6,12 +6,22 @@ interface Props extends astroHTML.JSX.VideoHTMLAttributes {
 }
 
 const { src, class: className, style, ...props } = Astro.props;
+const normalizedClassName = className
+    ?.replace(/\bobject-(contain|cover)\b/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+const videoClass = [
+    "lg:opacity-0 opacity-100 object-contain",
+    normalizedClassName,
+]
+    .filter(Boolean)
+    .join(" ");
 ---
 
 <video
     data-webgl-video
     src={src}
-    class={"lg:opacity-0 opacity-100 " + (className || "")}
+    class={videoClass}
     style={style}
     autoplay
     loop
