@@ -30,14 +30,20 @@ const img = {
 };
 ---
 
-<MainLayout title={title} tag={tag} desc={desc} img={img}>
+<MainLayout
+    title={title}
+    tag={tag}
+    desc={desc}
+    img={img}
+    namespace={project.data.title}
+>
     <div class="flex">
         <div
             class="md:flex items-center justify-center flex-col sticky h-screen top-0 hidden"
         >
             <a
                 class="text-xs w-full flex justify-center font-mono text-secondary mb-4 text-center absolute top-8"
-                href="/#projects"
+                href="/?skip"
                 ><div class="flex justify-center items-center">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -64,6 +70,25 @@ const img = {
             <p
                 class="text-xs w-full flex justify-between font-mono text-secondary mb-4"
             >
+                <a
+                    class="md:hidden text-xs flex justify-center font-mono text-secondary"
+                    href="/?skip"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 16 16"
+                        fill="currentColor"
+                        class="size-3 mr-1"
+                    >
+                        <path
+                            fill-rule="evenodd"
+                            fill="currentColor"
+                            d="M14 8a.75.75 0 0 1-.75.75H4.56l3.22 3.22a.75.75 0 1 1-1.06 1.06l-4.5-4.5a.75.75 0 0 1 0-1.06l4.5-4.5a.75.75 0 0 1 1.06 1.06L4.56 7.25h8.69A.75.75 0 0 1 14 8Z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+
+                    Projects
+                </a>
                 <span>{project.data.type}</span>{" "}
                 <span>
                     {

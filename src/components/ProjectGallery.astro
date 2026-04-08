@@ -1,6 +1,7 @@
 ---
 import WebGLImage from "./WebGLImage/WebGLImage.astro";
 import WebGLVideo from "./WebGLImage/WebGLVideo.astro";
+import ProjectGalleryControls from "./ProjectGalleryControls.tsx";
 
 interface Props {
     id: string;
@@ -16,128 +17,38 @@ interface Props {
 const { id, ratio, images } = Astro.props;
 ---
 
-<script define:vars={{ id }}>
-    window.addEventListener("DOMContentLoaded", () => {
-        const carousel = document.querySelector(`#${id}-carousel.carousel`);
-        const prev = document.querySelector(`#${id}-prev`);
-        const next = document.querySelector(`#${id}-next`);
-
-        const hide = (el) => {
-            el.classList.add("opacity-0", "pointer-events-none");
-            el.classList.remove("opacity-100", "pointer-events-auto");
-        };
-
-        const show = (el) => {
-            el.classList.remove("opacity-0", "pointer-events-none");
-            el.classList.add("opacity-100", "pointer-events-auto");
-        };
-
-        const updateButtons = () => {
-            const scrollLeft = carousel.scrollLeft;
-            const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
-
-            if (scrollLeft <= 0) {
-                hide(prev);
-            } else {
-                show(prev);
-            }
-
-            if (scrollLeft >= maxScrollLeft - 1) {
-                hide(next);
-            } else {
-                show(next);
-            }
-        };
-
-        prev.addEventListener("click", () => {
-            carousel.scrollBy({
-                left: -carousel.offsetWidth,
-                behavior: "smooth",
-            });
-        });
-
-        next.addEventListener("click", () => {
-            carousel.scrollBy({
-                left: carousel.offsetWidth,
-                behavior: "smooth",
-            });
-        });
-
-        carousel.addEventListener("scroll", updateButtons);
-
-        updateButtons();
-    });
-</script>
-<div
-    style={ratio ? `aspect-ratio: ${ratio}` : null}
-    id={id}
-    class="w-full relative"
->
+<div class="w-full relative">
     <div
-        id={`${id}-carousel`}
         style={ratio ? `aspect-ratio: ${ratio}` : null}
-        class="w-full carousel flex relative overflow-hidden"
+        id={id}
+        class="w-full relative"
     >
-        {
-            images.map((img) => {
-                return (
-                    <div class="carousel-item relative space-mono-regular flex items-center justify-center bg-background snap-center">
-                        {img.type === "img" ? (
-                            <WebGLImage
-                                class={`${img.fit ? "object-contain h-full" : "object-cover w-full h-full"}`}
-                                src={img.src}
-                                alt={img.alt}
-                            />
-                        ) : (
-                            <WebGLVideo
-                                class={`${img.fit ? "object-contain h-full" : "object-cover w-full h-full"}`}
-                                src={img.src}
-                            />
-                        )}
-                        <!-- <div class="absolute h-8 bottom-0 left-0 right-0 bg-background text-xs text-secondary text-center w-full">
-                            <p class="py-2 font-mono ">{img.alt}</p>
-                        </div> -->
-                    </div>
-                );
-            })
-        }
+        <div
+            id={`${id}-carousel`}
+            style={ratio ? `aspect-ratio: ${ratio}` : null}
+            class="w-full carousel flex relative overflow-hidden"
+        >
+            {
+                images.map((img) => {
+                    return (
+                        <div class="carousel-item relative space-mono-regular flex items-center justify-center bg-background snap-center">
+                            {img.type === "img" ? (
+                                <WebGLImage
+                                    class={`${img.fit ? "object-contain h-full" : "object-cover w-full h-full"}`}
+                                    src={img.src}
+                                    alt={img.alt}
+                                />
+                            ) : (
+                                <WebGLVideo
+                                    class={`${img.fit ? "object-contain h-full" : "object-cover w-full h-full"}`}
+                                    src={img.src}
+                                />
+                            )}
+                        </div>
+                    );
+                })
+            }
+        </div>
     </div>
-    <!-- <div
-        class="text-text-secondary w-full flex justify-between absolute bottom-0"
-    >
-        <button
-            id={`${id}-prev`}
-            aria-label="Previous"
-            class="border-r border-t border-border px-4 h-8 hover:bg-text-primary/10 hover:cursor-pointer transition-opacity bg-background touch-manipulation"
-        >
-            <svg
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                class="size-4 inline"
-            >
-                {" "}
-                <path
-                    d="M20 11v2H8v2H6v-2H4v-2h2V9h2v2h12zM10 7H8v2h2V7zm0 0h2V5h-2v2zm0 10H8v-2h2v2zm0 0h2v2h-2v-2z"
-                    fill="currentColor"></path>{" "}
-            </svg>
-        </button>
-        <button
-            id={`${id}-next`}
-            aria-label="Next"
-            class="border-l border-t border-border px-4 hover:bg-text-primary/10 hover:cursor-pointer transition-opacity bg-background touch-manipulation"
-        >
-            <svg
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                class="size-4 inline"
-            >
-                {" "}
-                <path
-                    d="M4 11v2h12v2h2v-2h2v-2h-2V9h-2v2H4zm10-4h2v2h-2V7zm0 0h-2V5h2v2zm0 10h2v-2h-2v2zm0 0h-2v2h2v-2z"
-                    fill="currentColor"></path>{" "}
-            </svg>
-        </button>
-    </div> -->
+    <ProjectGalleryControls client:load galleryId={id} images={images} />
 </div>
