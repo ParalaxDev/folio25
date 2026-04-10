@@ -3,7 +3,7 @@ import AnimatedDot from "./AnimatedDot";
 
 interface Props {
     project: {
-        year: Date;
+        date: Date;
         table: Array<{
             key: string;
             value: string;
@@ -33,7 +33,7 @@ const formatDate = (date: Date) => {
         [
             {
                 key: "Date",
-                value: formatDate(project.year),
+                value: formatDate(project.date),
                 isLink: false,
                 isList: false,
                 className: "",
@@ -42,13 +42,13 @@ const formatDate = (date: Date) => {
         ].map((kv) => {
             return (
                 <div class="flex flex-col">
-                    <p class="text-text-secondary text-xs uppercase font-departure-mono">
+                    <p class="text-secondary text-sm capitalize font-mono animate-text-in">
                         {kv.key}
                     </p>
-                    <div>
+                    <div class="animate-text-in">
                         {kv.isLink ? (
                             <a
-                                class="hover:text-text-secondary text-text-primary transition-colors duration-300 flex items-center"
+                                class="hover:text-tertiary text-primary text-xl transition-colors duration-300 flex items-center"
                                 href={kv.value}
                                 target="_blank"
                                 rel="noopener noreferrer"
@@ -57,21 +57,33 @@ const formatDate = (date: Date) => {
                                     client:load
                                     size="size-2"
                                     activationPercentage={0}
-                                    style={{ marginRight: "8px" }}
+                                    style={{ marginRight: "12px" }}
                                     animationDuration={0}
                                 />
                                 {new URL(kv.value).pathname.split("/").pop() ||
                                     kv.value}{" "}
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                    class="size-6 ml-0.5"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M5.22 14.78a.75.75 0 0 0 1.06 0l7.22-7.22v5.69a.75.75 0 0 0 1.5 0v-7.5a.75.75 0 0 0-.75-.75h-7.5a.75.75 0 0 0 0 1.5h5.69l-7.22 7.22a.75.75 0 0 0 0 1.06Z"
+                                        clip-rule="evenodd"
+                                    />
+                                </svg>
                             </a>
                         ) : kv.isList ? (
-                            <p class="text-text-primary">
+                            <p class="text-primary text-xl">
                                 {kv.value.split("/").map((v: string, i) => {
                                     return (
                                         <>
                                             <span class="capitalize">{v}</span>
                                             {i <
                                             kv.value.split("/").length - 1 ? (
-                                                <span class="text-text-secondary mx-1">
+                                                <span class="text-secondary mx-1">
                                                     /
                                                 </span>
                                             ) : null}
@@ -81,7 +93,7 @@ const formatDate = (date: Date) => {
                             </p>
                         ) : (
                             <p
-                                class={`text-text-primary ${kv.className || ""}`}
+                                class={`text-primary text-xl ${kv.className || ""}`}
                             >
                                 {kv.value}
                             </p>

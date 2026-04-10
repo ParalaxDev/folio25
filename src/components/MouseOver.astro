@@ -1,0 +1,69 @@
+<script>
+    import barba from "@barba/core";
+
+    const addHoverListeners = () => {
+        const hoverEl = document.querySelector(
+            ".hover-cursor",
+        ) as HTMLDivElement;
+
+        const els = document.querySelectorAll(`[data-project] .read-more`);
+
+        if (!hoverEl) return;
+
+        console.log(hoverEl);
+
+        let currentX = 0;
+        let currentY = 0;
+        let targetX = 0;
+        let targetY = 0;
+        const lerpFactor = 0.1;
+
+        function updateCursorPosition() {
+            currentX += (targetX - currentX) * lerpFactor;
+            currentY += (targetY - currentY) * lerpFactor;
+
+            hoverEl.style.transform = `translate(calc(${currentX}px - 50%), calc(${currentY}px - 75%))`;
+            requestAnimationFrame(updateCursorPosition);
+        }
+
+        document.addEventListener("mousemove", (e) => {
+            targetX = e.clientX;
+            targetY = e.clientY;
+        });
+
+        els.forEach((el) => {
+            el.addEventListener("mouseenter", () => {
+                if (document.body.dataset.transition == "true") return;
+                hoverEl.style.opacity = "1";
+                document.body.style.cursor = "pointer";
+            });
+
+            el.addEventListener("mouseleave", () => {
+                hoverEl.style.opacity = "0";
+                document.body.style.cursor = "default";
+            });
+        });
+
+        updateCursorPosition();
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+        addHoverListeners();
+    });
+
+    barba.hooks.afterEnter(() => {
+        document.body.dataset.transition = "false";
+        addHoverListeners();
+    });
+</script>
+
+<div
+    class={`transition-opacity duration-500 fixed bg-background/75 pointer-events-none hover-cursor rounded-full backdrop-blur-xs border-border/50 border px-4 py-2 z-10`}
+    style="opacity: 0;"
+>
+    <p
+        class="font-mono text-xs text-secondary flex justify-center items-center"
+    >
+        Read More
+    </p>
+</div>
