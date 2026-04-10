@@ -62,6 +62,9 @@ importers:
       motion:
         specifier: ^12.23.7
         version: 12.36.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      onedollarstats:
+        specifier: ^0.0.18
+        version: 0.0.18
       postprocessing:
         specifier: ^6.39.0
         version: 6.39.0(three@0.178.0)
@@ -2137,6 +2140,9 @@ packages:
 
   ohash@2.0.11:
     resolution: {integrity: sha512-RdR9FQrFwNBNXAr4GixM8YaRZRJ5PUWbKYbE5eOsrwAjJW0q2REGcf79oYPsLyskQCZG1PLN+S/K1V00joZAoQ==}
+
+  onedollarstats@0.0.18:
+    resolution: {integrity: sha512-piFGVsd7Xvt2BIVMl341xJTn9xgEFpDn8713SXFE00iu8EcQGVTNMPZpRFWhphH2X4/gG4WW/DSh4KVO4iHRXQ==}
 
   oniguruma-parser@0.12.1:
     resolution: {integrity: sha512-8Unqkvk1RYc6yq2WBYRj4hdnsAxVze8i7iPfQr8e4uSP3tRv0rpZcbGUDvxfQQcdwHt/e9PrMvGCsa8OqG9X3w==}
@@ -5091,6 +5097,8 @@ snapshots:
       ufo: 1.6.3
 
   ohash@2.0.11: {}
+
+  onedollarstats@0.0.18: {}
 
   oniguruma-parser@0.12.1: {}
 
