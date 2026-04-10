@@ -1,0 +1,260 @@
+<script>
+    import barba from "@barba/core";
+    import gsap from "gsap";
+    import { GSDevTools } from "gsap/GSDevTools";
+    import { SplitText } from "gsap/SplitText";
+
+    function fitFontSize(text: string, maxWidth: number, family = "Name Sans") {
+        const ctx = document.createElement("canvas").getContext("2d");
+        if (!ctx) return 16;
+        let lo = 1,
+            hi = 1000;
+        while (hi - lo > 0.5) {
+            const mid = (lo + hi) / 2;
+            ctx.font = `${mid}px ${family}`;
+            ctx.measureText(text).width < maxWidth ? (lo = mid) : (hi = mid);
+        }
+        return lo;
+    }
+
+    // Move this OUTSIDE fitText so we can manage it
+    let resizeHandler: (() => void) | null = null;
+
+    const fitText = () => {
+        const els = document.querySelectorAll(
+            ".hero-header",
+        ) as NodeListOf<HTMLHeadingElement>;
+
+        // Clean up old listener before adding new one
+        if (resizeHandler) window.removeEventListener("resize", resizeHandler);
+
+        const runFit = () => {
+            els.forEach((el) => {
+                const parent = el.parentElement;
+                if (!parent || parent.clientWidth === 0) return;
+
+                const newSize = Math.round(
+                    fitFontSize(
+                        el.textContent?.trim() || "",
+                        parent.clientWidth - 96,
+                    ),
+                );
+                el.style.fontSize = `${newSize}px`;
+            });
+        };
+
+        // Create the new handler and store it
+        resizeHandler = runFit;
+        window.addEventListener("resize", resizeHandler);
+
+        // Run it immediately
+        runFit();
+    };
+
+    fitText();
+
+    gsap.registerPlugin(GSDevTools, SplitText);
+
+    let hasIntroRun = false;
+
+    // GSDevTools.create();
+
+    const IntroAnimation = (skip: boolean) => {
+        const portEl = document.querySelector(".port-split");
+        const folioEl = document.querySelector(".folio-split");
+
+        // Safety check: If these don't exist, we aren't on the Home page
+        if (!portEl || !folioEl) return;
+
+        hasIntroRun = true;
+
+        const tl = gsap.timeline();
+
+        fitText();
+
+        const portSplit = new SplitText(".port-split", {
+            type: "chars",
+        });
+        const folioSplit = new SplitText(".folio-split", {
+            type: "chars",
+        });
+
+        tl.set(".intro-bg", {
+            transformOrigin: "center",
+            top: "50%",
+            left: "50%",
+            translate: "-50% -50%",
+        })
+            .set(".grid-els > *", {
+                y: "-200%",
+            })
+            .to(".intro-bg", {
+                scale: 1,
+                ease: "power2.out",
+                duration: 0.5,
+                borderRadius: "100%",
+            })
+            .to(
+                ".intro-bg",
+                {
+                    ease: "power2.out",
+                    duration: 0.5,
+                    borderRadius: "0",
+                },
+                ">1",
+            )
+            .to(".intro-bg", {
+                ease: "power2.out",
+                duration: 1,
+                width: "100%",
+            })
+            .to(
+                ".intro-bg",
+                {
+                    ease: "power2.inOut",
+                    duration: 2,
+                    height: "100%",
+                },
+                "intro-complete",
+            )
+            .set(".intro-bg", {
+                bottom: 0,
+                top: "auto",
+                translate: "-50% 0",
+            })
+            .set(".actual-title", { opacity: 1 })
+            .to(".intro-bg", {
+                transformOrigin: "bottom",
+            });
+
+        tl.set(".port-split", { top: 0, left: 0 }, 0);
+        tl.set(".folio-split", { bottom: 0, right: 0 }, 0);
+        tl.set([portSplit.chars, folioSplit.chars], { y: "100%" }, 0);
+
+        tl.to(
+            [portSplit.chars, folioSplit.chars],
+            {
+                y: "0%",
+                ease: "power2.out",
+                duration: 0.75,
+                stagger: 0.05,
+            },
+            "intro-complete+=1",
+        );
+
+        tl.to(".port-split", {
+            top: "100%",
+            transform: "translateY(-100%)",
+            ease: "power2.in",
+            left: 0,
+            duration: 0.75,
+        })
+
+            .addLabel("text-animate-complete");
+
+        tl.to(
+            ".intro-bg",
+            {
+                height: 0,
+                ease: "power2.in",
+                duration: 0.75,
+                bottom: 0,
+            },
+            "text-animate-complete-=0.75",
+        )
+            .to(
+                ".title-clip",
+                {
+                    height: 0,
+                    bottom: 0,
+                    ease: "power2.in",
+                    duration: 0.75,
+                },
+                "text-animate-complete-=0.75",
+            )
+            .to(
+                ".title-clip",
+                {
+                    padding: 0,
+                },
+                ">",
+            )
+            .addLabel("bg-swipe-complete");
+
+        tl.to(
+            ".grid-els > *",
+            {
+                y: 0,
+                stagger: 0.2,
+                ease: "power2.out",
+                duration: 1,
+            },
+            "bg-swipe-complete+=0.25",
+        );
+
+        if (hasIntroRun && skip) {
+            tl.progress(1, false);
+        }
+    };
+
+    window.addEventListener("DOMContentLoaded", () => {
+        if (document.location.search == "?skip") {
+            IntroAnimation(true);
+        } else {
+            IntroAnimation(false);
+        }
+    });
+
+    barba.hooks.afterEnter(() => {
+        console.log("from other page but skipping");
+        IntroAnimation(true);
+    });
+</script>
+<div
+    class="relative h-screen w-full p-8 flex justify-between items-start flex-col text-secondary"
+>
+    <div class="absolute top-0 left-0 w-full h-full p-8">
+        <div
+            class="absolute bottom-0 left-0 w-full h-full origin-bottom overflow-hidden p-8 title-clip"
+        >
+            <h1
+                class="leading-[0.8] font-extralight text-background hero-header text-center w-full h-full relative"
+            >
+                <span
+                    class="port-split inline-block h-fit w-fit overflow-hidden absolute"
+                    >Port</span
+                ><span
+                    class="folio-split inline-block h-fit w-fit overflow-hidden absolute"
+                    >folio</span
+                >
+            </h1>
+        </div>
+        <div
+            class="size-8 bg-tertiary -z-1 absolute intro-bg origin-center"
+            style="scale: 0;"
+        >
+        </div>
+    </div>
+    <div
+        class="grid text-sm grid-cols-3 md:grid-cols-5 lg:grid-cols-8 leading-snug w-full gap-0 md:gap-4 grid-els"
+    >
+        <p class="col-start-1">
+            Will Baker 2026<br />Design Portfolio
+        </p>
+        <p class="-col-start-2 hidden md:block">
+            Graphic Design Loughborough University
+        </p>
+        <p class="-col-start-1 *:hover:text-tertiary *:transition-colors">
+            <a href="https://willb.cc/">willb.cc</a><br />
+            @willb.graphics<br />
+            <a href="mailto:willmdbaker@gmail.com">willmdbaker@gmail.com</a>
+        </p>
+    </div>
+
+    <h1
+        class="leading-[0.8] font-extralight text-secondary hero-header text-center w-full actual-title -z-2"
+        style="opacity: 0;"
+    >
+        Portfolio
+    </h1>
+</div>

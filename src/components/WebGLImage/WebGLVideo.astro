@@ -1,0 +1,58 @@
+---
+interface Props extends astroHTML.JSX.VideoHTMLAttributes {
+    src: string;
+    href?: string;
+    class?: string;
+    style?: string;
+}
+
+const { src, class: className, style, href, ...props } = Astro.props;
+// const normalizedClassName = className
+//     ?.replace(/\bobject-(contain|cover)\b/g, "")
+//     .replace(/\s+/g, " ")
+//     .trim();
+const videoClass = ["lg:opacity-0 opacity-100 object-contain w-full h-full"]
+    .filter(Boolean)
+    .join(" ");
+
+const linkClass = [
+    "aspect-video w-full lg:opacity-0 opacity-100 mb-2 block",
+    className,
+]
+    .filter(Boolean)
+    .join(" ");
+---
+
+{
+    href ? (
+        <a href={href} class={linkClass}>
+            <video
+                data-webgl-video
+                src={src}
+                class={videoClass}
+                style={style}
+                autoplay
+                loop
+                muted
+                playsinline
+                {...props}
+            >
+                <source src={src} type="video/mp4" />
+            </video>
+        </a>
+    ) : (
+        <video
+            data-webgl-video
+            src={src}
+            class={videoClass}
+            style={style}
+            autoplay
+            loop
+            muted
+            playsinline
+            {...props}
+        >
+            <source src={src} type="video/mp4" />
+        </video>
+    )
+}

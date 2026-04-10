@@ -8,12 +8,14 @@ const projects = defineCollection({
   schema: z.object({
     title: z.string(),
     outline: z.string(),
-    year: z.coerce.date(),
+    date: z.coerce.date(),
     type: z.string(),
+    featured: z.boolean().default(false),
     thumbnail: z
       .object({
         src: z.string(),
         blur: z.string().optional(),
+        type: z.enum(["img", "vid"]).default("img"),
       })
       .optional(),
     slideshows: z
@@ -42,12 +44,17 @@ const projects = defineCollection({
 });
 
 const writings = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "./src/data/writings/" }),
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/data/writings/" }),
   schema: z.object({
     title: z.string(),
     type: z.string(),
     date: z.coerce.date(),
     description: z.string(),
+    thumbnail: z.object({
+      src: z.string(),
+      blur: z.string().optional(),
+      type: z.enum(["img", "vid"]).default("img"),
+    }),
   }),
 });
 

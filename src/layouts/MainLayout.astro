@@ -1,16 +1,21 @@
 ---
 import "../styles/global.css";
-import Header from "../components/layout/Header.astro";
-import Footer from "../components/layout/Footer.astro";
+import "lenis/dist/lenis.css";
+import { WebGLImageProvider } from "../components/WebGLImage/WebGLImageContext";
+import MouseOver from "../components/MouseOver.astro";
 
-const { title, tag, desc, img } = Astro.props;
+const { title, tag, desc, img, namespace } = Astro.props;
 ---
 
+<!-- Made by hand by Will Baker in Astro, React, Three.JS and GSAP ❤️-->
 <html lang="en">
     <head>
         <meta charset="utf-8" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <meta name="viewport" content="width=device-width" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+        />
         <meta name="generator" content={Astro.generator} />
         <title>{title}</title>
         <meta name="description" content={desc} />
@@ -20,6 +25,7 @@ const { title, tag, desc, img } = Astro.props;
         />
 
         <link rel="canonical" href="https://willb.cc/" />
+        <meta name="theme-color" content="#000000" />
 
         <meta property="og:type" content="website" />
         <meta property="og:url" content={Astro.site} />
@@ -39,40 +45,244 @@ const { title, tag, desc, img } = Astro.props;
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/sf-font/stylesheet.min.css"
         />
+        <script>
+            import Lenis from "lenis";
+            import gsap from "gsap";
+            import barba from "@barba/core";
+            import { ScrollTrigger } from "gsap/ScrollTrigger";
+            import { SplitText } from "gsap/SplitText";
+
+            let activeObservers: ResizeObserver[] = [];
+
+            const debounce = (callback: () => void, wait: number) => {
+                let timeoutId: number | null = null;
+                return (...args) => {
+                    window.clearTimeout(timeoutId!);
+                    timeoutId = window.setTimeout(() => {
+                        callback(...args);
+                    }, wait);
+                };
+            };
+
+            const lenis = new Lenis({
+                autoRaf: true,
+            });
+
+            gsap.registerPlugin(ScrollTrigger);
+            gsap.registerPlugin(SplitText);
+
+            const animateTextIn = () => {
+                const container = document.querySelector(
+                    ".animate-text-on-children",
+                ) as HTMLElement;
+
+                if (container) {
+                    const textElements = container.querySelectorAll("p, h5");
+
+                    textElements.forEach((el) => {
+                        el.classList.add("animate-text-in");
+                    });
+                }
+
+                const items = gsap.utils.toArray(
+                    ".animate-text-in",
+                ) as HTMLElement[];
+
+                items.forEach((item) => {
+                    let anim: gsap.core.Tween | null = null;
+                    let splitItem: SplitText | null = null;
+
+                    const createAnimation = () => {
+                        if (splitItem) splitItem.revert();
+                        if (anim) anim.scrollTrigger?.kill();
+
+                        splitItem = SplitText.create(item, { type: "lines" });
+
+                        anim = gsap.from(splitItem.lines, {
+                            opacity: 0,
+                            y: 20,
+                            ease: "power2.out",
+                            duration: 0.5,
+                            stagger: 0.05,
+                            scrollTrigger: {
+                                trigger: item,
+                                start: "top 80%",
+                                toggleActions: "play none none reverse",
+                            },
+                        });
+                    };
+
+                    const debouncedResize = debounce(createAnimation, 250);
+                    const ro = new ResizeObserver(() => debouncedResize());
+                    ro.observe(item);
+
+                    activeObservers.push(ro);
+                });
+            };
+
+            barba.hooks.beforeLeave(() => {
+                // Kill all observers
+                activeObservers.forEach((ro) => ro.disconnect());
+                activeObservers = [];
+
+                // Kill all GSAP ScrollTriggers to prevent memory bloat
+                ScrollTrigger.getAll().forEach((t) => t.kill());
+            });
+
+            animateTextIn();
+
+            gsap.set(".screen-swipe", { x: "-100%" });
+
+            let currentSplit: any = null;
+
+            function pageTransitionIn(
+                container: HTMLElement,
+                name: string,
+                index: string,
+            ) {
+                const tl = gsap.timeline();
+
+                document.body.dataset.transition = "true";
+
+                const hoverEl = document.querySelector(
+                    ".hover-cursor",
+                ) as HTMLDivElement;
+                hoverEl.style.opacity = "0";
+
+                if (currentSplit) currentSplit.revert();
+
+                const projName = document.querySelector(
+                    ".transition-project-name",
+                );
+                const projIndex = document.querySelector(
+                    ".transition-project-index",
+                );
+
+                if (projName && projIndex) {
+                    projName.textContent = name;
+                    projIndex.textContent = index;
+                }
+
+                currentSplit = new SplitText(".transition-text", {
+                    type: "chars",
+                });
+
+                return tl
+                    .set(".tertiary-background", { opacity: 1 })
+                    .to(".screen-swipe", {
+                        x: "0%",
+                        duration: 0.8,
+                        ease: "power3.inOut",
+                    })
+                    .from(currentSplit.chars, {
+                        y: "100%",
+                        stagger: 0.05,
+                        duration: 0.5,
+                        ease: "power2.out",
+                    });
+            }
+
+            function pageTransitionOut(container: HTMLElement) {
+                const tl = gsap.timeline();
+
+                return tl
+                    .to({}, { duration: 0.5 })
+                    .to(".screen-swipe", {
+                        y: "100%",
+                        duration: 0.8,
+                        ease: "power3.inOut",
+                    })
+                    .add(() => {
+                        if (currentSplit) currentSplit.revert();
+                    })
+                    .set(".screen-swipe", {
+                        x: "-100%",
+                        y: "0%",
+                        ease: "power3.out",
+                    })
+                    .set(".tertiary-background", { opacity: 0 });
+            }
+
+            let resizeHandler: (() => void) | null = null;
+
+            barba.init({
+                transitions: [
+                    {
+                        name: "orange-swipe",
+                        async leave(data) {
+                            const pathParts = data.next.url.path
+                                .split("/")
+                                .filter(Boolean);
+                            if (
+                                pathParts.includes("project") ||
+                                pathParts.includes("writing")
+                            ) {
+                                const projectSlug = pathParts.at(-1);
+                                const proj = document.querySelector(
+                                    `[data-project="${projectSlug}"]`,
+                                ) as HTMLElement;
+
+                                if (proj) {
+                                    await pageTransitionIn(
+                                        data.current.container,
+                                        proj.dataset.title || "",
+                                        proj.dataset.index || "",
+                                    );
+                                    return;
+                                }
+                            }
+
+                            await pageTransitionIn(
+                                data.current.container,
+                                "Home",
+                                "0",
+                            );
+                        },
+                        async enter(data) {
+                            lenis.scrollTo(0, { immediate: true });
+                            animateTextIn();
+                            pageTransitionOut(data.next.container);
+                        },
+                    },
+                ],
+            });
+        </script>
     </head>
-    <body
-        class="w-full flex flex-col justify-center items-center bg-background relative"
-    >
+    <body class="w-full h-full bg-background" data-barba="wrapper">
         <div
-            class="absolute inset-0 w-full h-full -z-20 opacity-15"
-            aria-hidden="true"
+            class="fixed transition-overlay top-0 left-0 w-screen h-dvh z-10 screen-swipe flex justify-center items-center cursor-default"
         >
-            <svg class="w-full h-full">
-                <pattern
-                    id="diagonalHatch"
-                    patternUnits="userSpaceOnUse"
-                    width="8"
-                    height="8"
-                    patternTransform="rotate(45)"
+            <div
+                class="w-full h-full z-10 p-8 flex justify-start items-end shrink-0 text-container"
+            >
+                <p
+                    class="transition-text overflow-hidden h-fit text-background text-6xl lg:text-8xl flex flex-col md:flex-row w-full justify-between"
                 >
-                    <line
-                        x1="0"
-                        y1="0"
-                        x2="0"
-                        y2="8"
-                        style="stroke:var(--color-text-secondary); stroke-width:2"
-                    ></line>
-                </pattern>
-                <rect
-                    x="0"
-                    y="0"
-                    width="100%"
-                    height="100%"
-                    fill="url(#diagonalHatch)"></rect>
-            </svg>
+                    <span class="transition-project-name">Resonance</span><span
+                        class="w-72 text-end"
+                        ><span class="opacity-50">00</span><span
+                            class="transition-project-index">1</span
+                        ></span
+                    >
+                </p>
+            </div>
+            <div
+                class="inset-0 bg-tertiary absolute top-0 left-0 opacity-0 tertiary-background"
+            >
+            </div>
         </div>
-        <Header />
-        <slot />
-        <Footer />
+        <MouseOver />
+        <div
+            class="w-full h-full"
+            data-barba="container"
+            data-barba-namespace={namespace}
+        >
+            <WebGLImageProvider client:load>
+                <slot />
+            </WebGLImageProvider>
+            <p class="text-secondary font-mono text-xs mb-8 w-full text-center">
+                Copyright © 2026 Will Baker
+            </p>
+        </div>
     </body>
 </html>
