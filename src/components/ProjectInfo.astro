@@ -3,7 +3,7 @@ import AnimatedDot from "./AnimatedDot";
 
 interface Props {
     project: {
-        year: Date;
+        date: Date;
         table: Array<{
             key: string;
             value: string;
@@ -33,7 +33,7 @@ const formatDate = (date: Date) => {
         [
             {
                 key: "Date",
-                value: formatDate(project.year),
+                value: formatDate(project.date),
                 isLink: false,
                 isList: false,
                 className: "",

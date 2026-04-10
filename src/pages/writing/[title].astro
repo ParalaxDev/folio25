@@ -1,19 +1,22 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
+import Minimap from "../../components/Minimap.tsx";
+import WritingHeading from "../../components/WritingHeading.astro";
 
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 
 // Get the slug from the URL params
 export async function getStaticPaths() {
     const writings = await getCollection("writings");
     return writings.map((writing) => ({
-        params: { title: writing.id.replace(/\.md$/, "") },
+        params: { title: writing.id },
         props: { writing },
     }));
 }
 
 const { writing } = Astro.props;
-const content = writing.rendered?.html;
+
+const { Content } = await render(writing);
 
 import { formatDate } from "../../utils/date";
 
@@ -26,43 +29,80 @@ const img = {
 };
 ---
 
-<MainLayout title={title} tag={tag} desc={desc} img={img}>
-    <main class="w-5/6 md:w-3/4 lg:w-1/2 border-x border-border bg-background">
-        <div class="px-4 py-8">
-            <a
-                href="/"
-                class="text-sm text-text-secondary hover:opacity-75 transition-all font-departure-mono flex items-center gap-1"
-            >
-                <svg
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    class="size-4 inline mr-1"
-                >
-                    <path
-                        d="M20 11v2H8v2H6v-2H4v-2h2V9h2v2h12zM10 7H8v2h2V7zm0 0h2V5h-2v2zm0 10H8v-2h2v2zm0 0h2v2h-2v-2z"
-                        fill="currentColor"></path>
-                </svg>
-                Back to all writings
-            </a>
-        </div>
-        <article
-            class="p-4 px-4 prose prose-sm md:prose-base prose-stone dark:prose-invert max-w-none prose-p:text-text-primary prose-h2:mb-2 prose-h2:font-normal prose-a:text-tertiary prose-a:hover:opacity-50 prose-a:transition-opacity prose-a:duration-300"
+<MainLayout
+    title={title}
+    tag={tag}
+    desc={desc}
+    img={img}
+    namespace={writing.data.title}
+>
+    <div class="flex">
+        <div
+            class="md:flex items-center justify-center flex-col sticky h-screen top-0 hidden"
         >
-            <p
-                class="not-prose w-full text-xs flex justify-between font-departure-mono text-text-secondary"
+            <a
+                class="text-xs w-full flex justify-center font-mono text-secondary mb-4 text-center absolute top-8"
+                href="/?skip"
+                ><div class="flex justify-center items-center">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 16 16"
+                        fill="currentColor"
+                        class="size-3 mr-1"
+                    >
+                        <path
+                            fill-rule="evenodd"
+                            fill="currentColor"
+                            d="M14 8a.75.75 0 0 1-.75.75H4.56l3.22 3.22a.75.75 0 1 1-1.06 1.06l-4.5-4.5a.75.75 0 0 1 0-1.06l4.5-4.5a.75.75 0 0 1 1.06 1.06L4.56 7.25h8.69A.75.75 0 0 1 14 8Z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+
+                    Back
+                </div></a
             >
-                <span class="lowercase">[{writing.data.type}]</span>{" "}
-                <span class="uppercase">
+            <div class="px-8">
+                <Minimap client:load searchFor="h1, .h2-header-text" />
+            </div>
+        </div>
+
+        <article class="lg:w-9/12 p-8 mx-auto w-full">
+            <p
+                class="text-xs w-full flex justify-between font-mono text-secondary mb-4"
+            >
+                <a
+                    class="md:hidden text-xs flex justify-center font-mono text-secondary"
+                    href="/?skip"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 16 16"
+                        fill="currentColor"
+                        class="size-3 mr-1"
+                    >
+                        <path
+                            fill-rule="evenodd"
+                            fill="currentColor"
+                            d="M14 8a.75.75 0 0 1-.75.75H4.56l3.22 3.22a.75.75 0 1 1-1.06 1.06l-4.5-4.5a.75.75 0 0 1 0-1.06l4.5-4.5a.75.75 0 0 1 1.06 1.06L4.56 7.25h8.69A.75.75 0 0 1 14 8Z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+
+                    Back
+                </a>
+                <span class="capitalize">{writing.data.type}</span>{" "}
+                <span>
                     {formatDate(writing.data.date)}
                 </span>
             </p>
-            <h1 class="not-prose text-3xl text-text-primary my-4">
+            <h1 class="text-5xl text-primary flex justify-between w-full mb-8">
                 {writing.data.title}
             </h1>
-            <Fragment set:html={content} />
+            <article
+                class="prose prose-lg prose-stone dark:prose-invert max-w-none prose-p:text-secondary prose-h2:mb-2 prose-h2:font-normal prose-h2:mt-4 prose-a:text-tertiary prose-a:hover:opacity-50 prose-a:transition-opacity prose-a:duration-300"
+            >
+                <Content components={{ h2: WritingHeading }} />
+            </article>
         </article>
-    </main>
+    </div>
 </MainLayout>
 
 <style>
