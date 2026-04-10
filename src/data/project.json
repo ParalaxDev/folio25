@@ -10,7 +10,104 @@
       "src": "/assets/8-hours/thumbnail.mp4",
       "type": "vid"
     },
-    "slideshows": [],
+    "slideshows": [
+      {
+        "title": "Persona Research",
+        "ratio": "16/9",
+        "images": [
+          {
+            "src": "/assets/8-hours/Personas.webp",
+            "fit": true,
+            "alt": "Persona 1 - Elite Athlete"
+          },
+          {
+            "src": "/assets/8-hours/Personas2.webp",
+            "fit": true,
+            "alt": "Persona 2 - Working Student"
+          },
+          {
+            "src": "/assets/8-hours/Personas3.webp",
+            "fit": true,
+            "alt": "Persona 3 - Night Owl/Academic Weapon"
+          }
+        ]
+      },
+      {
+        "title": "Experience User Journey Map",
+        "ratio": "16/9",
+        "images": [
+          {
+            "src": "/assets/8-hours/user-journey-map.webp",
+            "fit": true,
+            "alt": "User Journey Map"
+          }
+        ]
+      },
+      {
+        "title": "Into Animation",
+        "ratio": "16/9",
+        "images": [
+          {
+            "src": "/assets/8-hours/intro-animation.mp4",
+            "type": "vid",
+            "alt": "Full Intro Animation"
+          },
+          {
+            "src": "/assets/8-hours/in-situ.mp4",
+            "type": "vid",
+            "alt": "Partial In Situ Animation"
+          }
+        ]
+      },
+      {
+        "title": "Packaging Mockups",
+        "ratio": "16/9",
+        "images": [
+          {
+            "src": "/assets/8-hours/Power Down.webp",
+            "alt": "Power Down for Sports Students"
+          },
+          {
+            "src": "/assets/8-hours/Lucid Voyage.webp",
+            "alt": "Lucid Voyage for Creatives"
+          },
+          {
+            "src": "/assets/8-hours/Arctic Chill.webp",
+            "alt": "Arctic Chill for Cooling/Anti-anxiety"
+          },
+          {
+            "src": "/assets/8-hours/Solar Sync.webp",
+            "alt": "Solar Sync for Academics/Late Night Workers"
+          }
+        ]
+      },
+      {
+        "title": "App Mockups",
+        "ratio": "16/9",
+        "images": [
+          {
+            "src": "/assets/8-hours/Intro Screen.webp",
+            "fit": true,
+            "alt": "Intro Screen"
+          },
+          {
+            "src": "/assets/8-hours/Join Code.webp",
+            "fit": true,
+            "alt": "Join Code"
+          },
+          {
+            "src": "/assets/8-hours/Quiz Page 1.webp",
+            "fit": true,
+            "alt": "Example Quiz Page"
+          },
+          {
+            "src": "/assets/8-hours/Quiz Page 6.webp",
+            "fit": true,
+            "alt": "Example Quiz Page"
+          }
+        ]
+      }
+    ],
     "table": [
       {
         "key": "Client",

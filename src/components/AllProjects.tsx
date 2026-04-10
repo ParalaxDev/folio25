@@ -152,7 +152,7 @@ export default function AllProjects({ items }: Props) {
 
       <div
         ref={previewRef}
-        className={`fixed top-0 left-0 z-50 pointer-events-none transition-opacity w-1/4 aspect-video duration-200 ${
+        className={`fixed top-0 left-0 z-50 pointer-events-none transition-opacity w-1/3 aspect-video duration-200 ${
           isHovering && activeThumbnail ? "opacity-100" : "opacity-0"
         }`}
         aria-hidden="true"
