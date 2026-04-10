@@ -7,8 +7,15 @@
     navigation: auto;
 }
 
+@font-face {
+    font-family: "Name Sans"; /*a name to be used later*/
+    src:
+        url("/NameSansVariable.woff2") format("woff2"),
+        url("/NameSansVariable.ttf") format("truetype");
+}
+
 @theme {
-    --font-sans: "Name Sans", sans-serif;
+    --font-sans: "Name Sans", "SF Pro Display", sans-serif;
     --color-background: oklch(0.9158 0 0);
     --color-border: oklch(0.6097 0.0015 106.44);
     --color-primary: oklch(0.2678 0.0016 106.46);
@@ -42,12 +49,6 @@ body {
     font-variant-ligatures: normal;
     height: 100%;
     background-color: var(--color-background);
-}
-
-@font-face {
-    font-family:
-        "Name Sans", "SF Pro Display", sans-serif; /*a name to be used later*/
-    src: url("/NameSansVariable.ttf");
 }
 
 .carousel {
