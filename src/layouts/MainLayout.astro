@@ -7,6 +7,7 @@ import MouseOver from "../components/MouseOver.astro";
 const { title, tag, desc, img, namespace } = Astro.props;
 ---
 
+<!-- Made by hand by Will Baker in Astro, React, Three.JS and GSAP ❤️-->
 <html lang="en">
     <head>
         <meta charset="utf-8" />
@@ -279,6 +280,9 @@ const { title, tag, desc, img, namespace } = Astro.props;
             <WebGLImageProvider client:load>
                 <slot />
             </WebGLImageProvider>
+            <p class="text-secondary font-mono text-xs mb-8 w-full text-center">
+                Copyright © 2026 Will Baker
+            </p>
         </div>
     </body>
 </html>
