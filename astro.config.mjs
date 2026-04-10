@@ -9,6 +9,8 @@ import glsl from "vite-plugin-glsl";
 
 import mdx from "@astrojs/mdx";
 
+import vercel from "@astrojs/vercel";
+
 // https://astro.build/config
 export default defineConfig({
   integrations: [react(), mdx()],
@@ -16,4 +18,10 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss(), glsl()],
   },
+
+  adapter: vercel({
+    webAnalytics: { enabled: true },
+  }),
+
+  output: "server",
 });
