@@ -3,7 +3,6 @@ import "../styles/global.css";
 import "lenis/dist/lenis.css";
 import { WebGLImageProvider } from "../components/WebGLImage/WebGLImageContext";
 import MouseOver from "../components/MouseOver.astro";
-import Analytics from "@vercel/analytics/astro";
 
 const { title, tag, desc, img, namespace } = Astro.props;
 ---
@@ -41,7 +40,6 @@ const { title, tag, desc, img, namespace } = Astro.props;
         <meta name="twitter:description" content={desc} />
         <meta name="twitter:image" content={img.url} />
         <meta name="twitter:image:alt" content={img.alt} />
-        <Analytics />
         <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/sf-font/stylesheet.min.css"
@@ -50,7 +48,6 @@ const { title, tag, desc, img, namespace } = Astro.props;
             import { configure } from "onedollarstats";
             configure({
                 hostname: "willb.cc",
-                devmode: true,
             });
         </script>
         <script>
