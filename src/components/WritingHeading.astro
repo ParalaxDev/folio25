@@ -1,0 +1,8 @@
+---
+import AnimatedDot from "./AnimatedDot";
+---
+
+<h2 class="text-3xl text-primary capitalize flex items-center gap-0.5 py-4">
+    <AnimatedDot animateLayout={true} activationPercentage={0.6} client:load />
+    <span class="h2-header-text"><slot /></span>
+</h2>

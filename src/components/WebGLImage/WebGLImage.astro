@@ -18,13 +18,26 @@ const linkClass = [
 const imgClass = `${fitClass} w-full h-full lg:opacity-0 opacity-100`;
 ---
 
-<a href={href} class={linkClass}>
-    <img
-        data-webgl-image
-        src={src}
-        alt={alt}
-        aria-hidden="true"
-        class={imgClass}
-        {...props}
-    />
-</a>
+{
+    href ? (
+        <a href={href} class={linkClass}>
+            <img
+                data-webgl-image
+                src={src}
+                alt={alt}
+                aria-hidden="true"
+                class={imgClass}
+                {...props}
+            />
+        </a>
+    ) : (
+        <img
+            data-webgl-image
+            src={src}
+            alt={alt}
+            aria-hidden="true"
+            class={imgClass}
+            {...props}
+        />
+    )
+}

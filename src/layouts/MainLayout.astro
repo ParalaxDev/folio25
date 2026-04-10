@@ -212,7 +212,10 @@ const { title, tag, desc, img, namespace } = Astro.props;
                             const pathParts = data.next.url.path
                                 .split("/")
                                 .filter(Boolean);
-                            if (pathParts.includes("project")) {
+                            if (
+                                pathParts.includes("project") ||
+                                pathParts.includes("writing")
+                            ) {
                                 const projectSlug = pathParts.at(-1);
                                 const proj = document.querySelector(
                                     `[data-project="${projectSlug}"]`,
@@ -255,6 +258,7 @@ const { title, tag, desc, img, namespace } = Astro.props;
                     class="transition-text overflow-hidden h-fit text-background text-6xl lg:text-8xl flex flex-col md:flex-row w-full justify-between"
                 >
                     <span class="transition-project-name">Resonance</span><span
+                        class="w-72 text-end"
                         ><span class="opacity-50">00</span><span
                             class="transition-project-index">1</span
                         ></span

@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react";
 
-export default () => {
+interface MinimapProps {
+  searchFor?: string;
+}
+
+export default ({ searchFor = "h3" }: MinimapProps) => {
   const [scrollAmount, setScrollAmount] = useState(0);
   const [currentSection, setCurrentSection] = useState("");
 
   useEffect(() => {
-    const sections = document.querySelectorAll("h3");
+    const sections = document.querySelectorAll(searchFor);
+
+    console.log(sections);
 
     const handleScroll = () => {
       const scrollTop = window.scrollY;
@@ -42,9 +48,9 @@ export default () => {
         className="absolute left-0 -translate-y-full"
         style={{ top: `${scrollAmount}%` }}
       >
-        <h1 className="text-xs font-mono text-secondary -mb-1.5 bg-background py-0.5">
+        <p className="text-xs font-mono text-secondary -mb-1.5 bg-background py-0.5">
           {currentSection}
-        </h1>
+        </p>
         <div className="size-3 bg-tertiary rounded-full translate-y-1/2 -translate-x-[150%]" />
         <div className={`w-24 h-px bg-tertiary`} />
       </div>

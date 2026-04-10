@@ -13,6 +13,8 @@ interface AnimatedDotProps {
   style?: React.CSSProperties;
   /** The percentage (0-1) of viewport position at which to activate. 1 = top of viewport, 0 = bottom of viewport (default: 0.5) */
   activationPercentage?: number;
+  /** Force active state on/off (overrides viewport visibility when set) */
+  active?: boolean;
   /** Animation duration in milliseconds (default: 300) */
   animationDuration?: number;
   /** Custom animation easing (default: "ease-in-out") */
@@ -43,6 +45,7 @@ export default function AnimatedDot({
   className = "",
   style = {},
   activationPercentage = 0.8,
+  active,
   animationDuration = 300,
   animationEasing = "ease-in-out",
   animationType = "fade-scale",
@@ -52,9 +55,10 @@ export default function AnimatedDot({
   animateLayout = true,
   reservedSpace = 0,
 }: AnimatedDotProps) {
-  const { isActive, elementRef } = useViewportVisibility({
+  const { isActive: isViewportActive, elementRef } = useViewportVisibility({
     activationPercentage,
   });
+  const isActive = active ?? isViewportActive;
 
   const getContainerStyles = () => {
     const baseTransition = {

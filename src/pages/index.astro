@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import { WebGLImageProvider } from "../components/WebGLImage/WebGLImageContext";
 import WebGLImage from "../components/WebGLImage/WebGLImage.astro";
+import WebGLVideo from "../components/WebGLImage/WebGLVideo.astro";
 import AnimatedDot from "../components/AnimatedDot.tsx";
 import Minimap from "../components/Minimap.tsx";
 import type { CollectionEntry } from "astro:content";
@@ -9,9 +10,32 @@ import { getCollection } from "astro:content";
 import Hero from "../components/Hero.astro";
 import MainLayout from "../layouts/MainLayout.astro";
 import MouseOver from "../components/MouseOver.astro";
+import AllProjects from "../components/AllProjects.tsx";
 
 const projects = await getCollection("projects");
 const writings = await getCollection("writings");
+
+const featuredProjects = projects.filter((project) => project.data.featured);
+
+const allItems = [...projects, ...writings].flat().sort((a, b) => {
+    return b.data.date.getTime() - a.data.date.getTime();
+});
+
+const allItemsSerialized = allItems.map((item) => ({
+    id: item.id,
+    collection: item.collection,
+    data: {
+        title: item.data.title,
+        type: item.data.type,
+        date: item.data.date.toISOString(),
+        thumbnail: item.data.thumbnail
+            ? {
+                  src: item.data.thumbnail.src,
+                  type: item.data.thumbnail.type ?? "img",
+              }
+            : undefined,
+    },
+}));
 
 const title = "Design Portfolio - Will Baker";
 const tag = "Will Baker © 2025";
@@ -51,13 +75,13 @@ const img = {
                         <p
                             class="text-secondary text-3xl/snug mt-4 animate-text-in"
                         >
-                            I'm a designer and developer based near London. I
-                            have a passion for creating engaging digital
-                            experiences that blend creativity and functionality.
-                            With a background in both design and development, I
-                            bring a unique perspective to my work, allowing me
-                            to craft solutions that are not only visually
-                            appealing but also technically sound.
+                            I'm a designer based near London. I have a passion
+                            for creating engaging digital experiences that blend
+                            creativity and functionality. With a background in
+                            both design and development, I bring a unique
+                            perspective to my work, allowing me to craft
+                            solutions that are not only visually appealing but
+                            also technically sound.
                         </p>
                         <p
                             class="text-secondary text-3xl/snug mt-4 animate-text-in"
@@ -79,13 +103,14 @@ const img = {
                     class="text-[0px] text-background opacity-0 select-none"
                     aria-hidden="true"
                 >
-                    Projects
+                    Featured Projects
                 </h3>
+                <h4 class="text-secondary font-mono">Featured Projects</h4>
                 <div
                     class="w-full *:pt-4 *:border-t-[1.5px] *:border-t-border/25"
                 >
                     {
-                        projects.map((project, i) => {
+                        featuredProjects.map((project, i) => {
                             return (
                                 <div
                                     class="flex w-full flex-col-reverse lg:flex-row lg:mb-24"
@@ -97,7 +122,7 @@ const img = {
                                         <p class="text-xs w-full flex justify-between font-mono text-secondary mb-4">
                                             <span>{project.data.type}</span>{" "}
                                             <span>
-                                                {project.data.year.toLocaleDateString(
+                                                {project.data.date.toLocaleDateString(
                                                     "en-GB",
                                                     {
                                                         month: "short",
@@ -135,12 +160,20 @@ const img = {
                                             </p>
                                         </div>
                                     </div>
-                                    <WebGLImage
-                                        src={project.data.thumbnail!.src}
-                                        class="aspect-video object-cover w-full lg:max-w-4/6 read-more mb-2 lg:mb-0"
-                                        alt={project.data.title}
-                                        href={`project/${project.id}`}
-                                    />
+                                    {project.data.thumbnail?.type == "vid" ? (
+                                        <WebGLVideo
+                                            src={project.data.thumbnail!.src}
+                                            class="aspect-video object-cover w-full lg:max-w-4/6 read-more mb-2 lg:mb-0"
+                                            href={`project/${project.id}`}
+                                        />
+                                    ) : (
+                                        <WebGLImage
+                                            src={project.data.thumbnail!.src}
+                                            class="aspect-video object-cover w-full lg:max-w-4/6 read-more mb-2 lg:mb-0"
+                                            alt={project.data.title}
+                                            href={`project/${project.id}`}
+                                        />
+                                    )}
                                 </div>
                             );
                         })
@@ -148,61 +181,7 @@ const img = {
                 </div>
                 <!-- <ImageTest client:load client:only /> -->
             </div>
-            <!-- <div
-                    class="w-full min-h-screen p-8 *:mb-8 *:pt-4 *:border-t-[1.5px] *:border-t-border"
-                    id="writing"
-                >
-                    <h3
-                        class="text-[0px] text-background opacity-0 select-none"
-                        aria-hidden="true"
-                    >
-                        Writing
-                    </h3>
-                    {
-                        writings.map((writing) => {
-                            return (
-                                <div
-                                    class="flex w-full flex-col"
-                                    data-project={writing.data.title}
-                                >
-                                    <p class="text-xs w-full flex capitalize justify-between font-mono text-secondary mb-4">
-                                        <span>{writing.data.type}</span>{" "}
-                                        <span>
-                                            {writing.data.date.toLocaleDateString(
-                                                "en-GB",
-                                                {
-                                                    month: "short",
-                                                    year: "numeric",
-                                                },
-                                            )}
-                                        </span>
-                                    </p>
-                                    <div class="flex flex-col justify-between h-full pb-8">
-                                        <h2 class="text-4xl font-sans text-primary font-medium read-more">
-                                            <a
-                                                href={`writing/${writing.id}`}
-                                                class="flex items-center gap-0.5"
-                                            >
-                                                <AnimatedDot
-                                                    client:load
-                                                    size="size-4"
-                                                    animateLayout={true}
-                                                    activationPercentage={0.55}
-                                                />{" "}
-                                                {writing.data.title}
-                                            </a>
-                                        </h2>
-                                        <p class="text-lg/relaxed text-secondary read-more">
-                                            <a href={`writing/${writing.id}`}>
-                                                {writing.data.description}
-                                            </a>
-                                        </p>
-                                    </div>
-                                </div>
-                            );
-                        })
-                    }
-                </div> -->
+            <AllProjects client:load items={allItemsSerialized} />
             <div class="w-full min-h-screen px-8 mb-32">
                 <hr class="border-t-[1.5px] border-t-border/25 mb-2" />
                 <h3

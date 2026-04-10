@@ -1,84 +1,44 @@
 [
   {
-    "slug": "resonance",
-    "title": "Resonance",
-    "type": "UI/UX & Product Design",
-    "outline": "This project explores how design can make biodiversity loss feel more immediate and personal. It centres on a meditation-style app that uses woodland sounds and local species information to encourage mindfulness and reflection. By slowing down and noticing nature, users are introduced to biodiversity data in a way that feels calm and accessible. The app also connects people to volunteering opportunities, turning awareness into action and helping them see how their wellbeing links to the health of the environment.",
-    "year": "2025-11-21",
+    "slug": "8-hours",
+    "title": "8 Hours",
+    "featured": true,
+    "type": "Experience",
+    "outline": "8 Hours is a fictional sleep wellness brand I created as the foundation for an immersive university experience tackling the UK's sleep deprivation crisis. With over 75% of adults getting less than the recommended 8 hours, the project targets the 18–24 demographic.\n\nThe experience takes place in a large sports hall during Freshers Week, where students lie on a soft mattress floor and watch an introductory animation on a ceiling-mounted LED screen. They then take a group quiz via a companion app, answering questions that range from playful to serious about their sleeping habits. At the end, they're matched to one of four personalised herbal patch variants, Power Down, Lucid Voyage, Arctic Chill, or Solar Sync.\n\nThe project spans a full brand identity, product packaging, a Figma-designed quiz app, a social media campaign using TikTok POV-style ads, and a 3D-rendered user journey map built in Blender. The visual language uses grainy gradients, bold typography, and a purple and blue palette to evoke the transition from overstimulation into calm.",
+    "date": "2026-04-13",
     "thumbnail": {
-      "src": "/assets/resonance/thumb.webp",
-      "blur": "W64zB7az4Woe%xazV]j[azaytPj[4Wj[??WCICkBx@ayfQkBMfaf"
+      "src": "/assets/8-hours/thumbnail.mp4",
+      "type": "vid"
     },
-    "slideshows": [
-      {
-        "title": "Mockups and Screenshots",
-        "ratio": "16/9",
-        "images": [
-          {
-            "src": "/assets/resonance/preview.mp4",
-            "type": "vid",
-            "alt": "A walk-through of my app"
-          },
-          {
-            "src": "/assets/resonance/mockup1.webp",
-            "alt": "A mockup of the community page"
-          },
-          {
-            "src": "/assets/resonance/mockup2.webp",
-            "alt": "A mockup of the meditation page"
-          },
-          {
-            "src": "/assets/resonance/thumb.webp",
-            "alt": "A mockup of the home screen"
-          }
-        ]
-      },
-      {
-        "title": "Project Rationale",
-        "ratio": "94/70",
-        "images": [
-          {
-            "src": "/assets/resonance/25ACB140_Project Design_Page_1.webp",
-            "alt": "Slide 1"
-          },
-          {
-            "src": "/assets/resonance/25ACB140_Project Design_Page_2.webp",
-            "alt": "Slide 2"
-          },
-          {
-            "src": "/assets/resonance/25ACB140_Project Design_Page_3.webp",
-            "alt": "Slide 3"
-          },
-          {
-            "src": "/assets/resonance/25ACB140_Project Design_Page_4.webp",
-            "alt": "Slide 4"
-          }
-        ]
-      }
-    ],
+    "slideshows": [],
     "table": [
       {
         "key": "Client",
-        "value": "Woodland Trust"
+        "value": "Mock Brief"
       },
       {
-        "key": "Project Rationale",
-        "value": "https://willb.cc/f/25ACB140_Project_Design.pdf",
+        "key": "Pitch Document",
+        "value": "https://willb.cc/f/26ACB144_Design_Showcase.pdf",
         "isLink": true
       },
       {
         "key": "Visual Evidence",
-        "value": "https://willb.cc/f/25ACB140_Visual_Evidence.pdf",
+        "value": "https://willb.cc/f/26ACB144_Visual_Evidence.pdf",
         "isLink": true
       },
       {
         "key": "touchpoints",
-        "value": "App / Mockups / Animations",
+        "value": "Immersive Experience / Product Packaging / App Design / Social Media Campaign / Motion Graphics",
         "isList": true
       },
       {
         "key": "disciplines",
-        "value": "Visual Identity / UI / UX / Research / Product Design",
+        "value": "Experience Design / Brand Identity / Packaging / UX & App Design / 3D Visualisation / Motion Design",
+        "isList": true
+      },
+      {
+        "key": "Tools",
+        "value": "Blender / After Effects / Figma / Illustrator / Photoshop",
         "isList": true
       }
     ]
@@ -86,9 +46,10 @@
   {
     "slug": "the-fountain",
     "title": "The Fountain",
+    "featured": true,
     "type": "Visual Identity",
     "outline": "This project reimagines Leicester’s Town Hall Fountain as a calm, welcoming space in the middle of the city. I visited the site to take photos, sketch, and talk to people about how they use the area. I also researched its history and looked at how other cities approach place branding.\nUsing that insight, I developed two visual identity concepts. One focused on the unique gargoyle shapes around the fountain. The other used a custom monogram and local imagery. I created animations, signs, merchandise, and social media content to bring the brand to life and connect with both locals and visitors.",
-    "year": "2025-06-21",
+    "date": "2025-06-21",
     "thumbnail": {
       "src": "/assets/the-fountain/pitch document_05.webp",
       "blur": "W64zB7az4Woe%xazV]j[azaytPj[4Wj[??WCICkBx@ayfQkBMfaf"
@@ -179,37 +140,59 @@
     ]
   },
   {
-    "slug": "8-hours",
-    "title": "8 Hours",
-    "type": "Experience",
-    "outline": "8 Hours is a fictional sleep wellness brand I created as the foundation for an immersive university experience tackling the UK's sleep deprivation crisis. With over 75% of adults getting less than the recommended 8 hours, the project targets the 18–24 demographic.\n\nThe experience takes place in a large sports hall during Freshers Week, where students lie on a soft mattress floor and watch an introductory animation on a ceiling-mounted LED screen. They then take a group quiz via a companion app, answering questions that range from playful to serious about their sleeping habits. At the end, they're matched to one of four personalised herbal patch variants, Power Down, Lucid Voyage, Arctic Chill, or Solar Sync.\n\nThe project spans a full brand identity, product packaging, a Figma-designed quiz app, a social media campaign using TikTok POV-style ads, and a 3D-rendered user journey map built in Blender. The visual language uses grainy gradients, bold typography, and a purple and blue palette to evoke the transition from overstimulation into calm.",
-    "year": "2026-04-13",
+    "slug": "resonance",
+    "title": "Resonance",
+    "featured": true,
+    "type": "UI/UX & Product Design",
+    "outline": "This project explores how design can make biodiversity loss feel more immediate and personal. It centres on a meditation-style app that uses woodland sounds and local species information to encourage mindfulness and reflection. By slowing down and noticing nature, users are introduced to biodiversity data in a way that feels calm and accessible. The app also connects people to volunteering opportunities, turning awareness into action and helping them see how their wellbeing links to the health of the environment.",
+    "date": "2025-11-21",
     "thumbnail": {
-      "src": "/assets/visualisation/thumb.webp",
-      "blur": "WLM}5.}lE%15}Y=aNN0,EkShWU-AD$OAoHR*s9nji{$+nijEn$R*"
+      "src": "/assets/resonance/preview-new.mp4",
+      "type": "vid"
     },
     "slideshows": [
       {
-        "title": "Outcomes",
-        "ratio": "4/3",
+        "title": "Mockups and Screenshots",
+        "ratio": "16/9",
         "images": [
           {
-            "src": "/assets/ampliear/Final.webp",
-            "fit": true,
-            "alt": "Poster 1"
+            "src": "/assets/resonance/preview.mp4",
+            "type": "vid",
+            "alt": "A walk-through of my app"
           },
           {
-            "src": "/assets/ampliear/Final Billboard.webp",
-            "alt": "Poster 1 Mockup"
+            "src": "/assets/resonance/mockup1.webp",
+            "alt": "A mockup of the community page"
           },
           {
-            "src": "/assets/ampliear/Final Alternative.webp",
-            "fit": true,
-            "alt": "Poster 2"
+            "src": "/assets/resonance/mockup2.webp",
+            "alt": "A mockup of the meditation page"
           },
           {
-            "src": "/assets/ampliear/Final Alternative Billboard.webp",
-            "alt": "Poster 1 Mockup"
+            "src": "/assets/resonance/thumb.webp",
+            "alt": "A mockup of the home screen"
+          }
+        ]
+      },
+      {
+        "title": "Project Rationale",
+        "ratio": "94/70",
+        "images": [
+          {
+            "src": "/assets/resonance/25ACB140_Project Design_Page_1.webp",
+            "alt": "Slide 1"
+          },
+          {
+            "src": "/assets/resonance/25ACB140_Project Design_Page_2.webp",
+            "alt": "Slide 2"
+          },
+          {
+            "src": "/assets/resonance/25ACB140_Project Design_Page_3.webp",
+            "alt": "Slide 3"
+          },
+          {
+            "src": "/assets/resonance/25ACB140_Project Design_Page_4.webp",
+            "alt": "Slide 4"
           }
         ]
       }
@@ -217,31 +200,26 @@
     "table": [
       {
         "key": "Client",
-        "value": "Mock Brief"
+        "value": "Woodland Trust"
       },
       {
-        "key": "Pitch Document",
-        "value": "https://willb.cc/f/26ACB144_Design_Showcase.pdf",
+        "key": "Project Rationale",
+        "value": "https://willb.cc/f/25ACB140_Project_Design.pdf",
         "isLink": true
       },
       {
         "key": "Visual Evidence",
-        "value": "https://willb.cc/f/26ACB144_Visual_Evidence.pdf",
+        "value": "https://willb.cc/f/25ACB140_Visual_Evidence.pdf",
         "isLink": true
       },
       {
         "key": "touchpoints",
-        "value": "Immersive Experience / Product Packaging / App Design / Social Media Campaign / Motion Graphics",
+        "value": "App / Mockups / Animations",
         "isList": true
       },
       {
         "key": "disciplines",
-        "value": "Experience Design / Brand Identity / Packaging / UX & App Design / 3D Visualisation / Motion Design",
-        "isList": true
-      },
-      {
-        "key": "Tools",
-        "value": "Blender / After Effects / Figma / Illustrator / Photoshop",
+        "value": "Visual Identity / UI / UX / Research / Product Design",
         "isList": true
       }
     ]
@@ -251,9 +229,10 @@
     "title": "Data Visualisation",
     "type": "Motion Design",
     "outline": "This project explores personal music listening behaviour through the lens of skipped songs, using my own Apple Music data from 2025. I wrote a custom program to analyse over 34,000 listening events, extracting statistics on when, why, and how I skip tracks.\n\nThe final animation is structured across three scenes: a year-long heatmap of daily skips annotated with personal events, a timeline visualising how far through each track I listened before skipping and why, and a closing section of curated statistics and standout songs. The visual style is deliberately minimalist, drawing on Edward Tufte's data-ink principles and the clarity of the NYC subway map, using circular dot grids, a restrained green palette, and AT Name Sans to keep the data front and centre.",
-    "year": "2026-02-13",
+    "date": "2026-02-13",
     "thumbnail": {
-      "src": "/assets/visualisation/thumb.webp",
+      "src": "/assets/visualisation/thumb.mp4",
+      "type": "vid",
       "blur": "WLM}5.}lE%15}Y=aNN0,EkShWU-AD$OAoHR*s9nji{$+nijEn$R*"
     },
     "slideshows": [
@@ -331,7 +310,7 @@
     "title": "Ampliear",
     "type": "Marketing",
     "outline": "This project was about reimagining how hearing aids are advertised, with a focus on older users. I started by researching the market and exploring emotional themes like loneliness and connection. From there, I developed the concept of sound transforming from unclear to clear, using the Ampliear device as the turning point.\nI created a retro-inspired visual style with duotone effects and stylised 3D renders to evoke nostalgia. The final design became a mini campaign, with warped text or sound waves becoming sharp and clear as they pass through the device. It’s simple, bold, and directly connects with the audience’s needs.",
-    "year": "2025-04-12",
+    "date": "2025-04-12",
     "thumbnail": {
       "src": "/assets/ampliear/Final.webp",
       "blur": "WLM}5.}lE%15}Y=aNN0,EkShWU-AD$OAoHR*s9nji{$+nijEn$R*"
@@ -387,9 +366,10 @@
   {
     "slug": "ardua",
     "title": "Ardua",
+    "featured": true,
     "type": "Typeface",
     "outline": "For this brief, I created a custom modular typeface called Ardua for the Birmingham Design Festival. I drew inspiration from the festival’s theme of “Play” and its ambition to be both bold and international. I explored modular design, bitmap styles, and minimalist influences like Braun and Helvetica to build a tall, geometric font with a unique twist — a variable crossbar that adds flexibility and visual interest.\nI developed the typeface in Glyphs, built an animated showcase using Cavalry, and applied it in posters, mockups, and motion graphics tailored for the festival. The final font is striking, adaptable, and designed to stand out in display settings while nodding to both industrial heritage and playful experimentation.",
-    "year": "2025-02-03",
+    "date": "2025-02-03",
     "thumbnail": {
       "src": "/assets/ardua/Billboard_in_the_Trees_Mockup_1.webp",
       "blur": "WCD,7FWB00s;W9R*%Lobaxt7ouWC00of_4Rj%2xs9GjdxuIooff8"
@@ -455,9 +435,10 @@
   {
     "slug": "accessibility-in-design",
     "title": "Inclusive Design",
+    "featured": true,
     "type": "Research",
     "outline": "Over a year and a half, I looked at how design can be more inclusive for people with visual impairments. Based on my own experiences with colour blindness and poor depth perception, I wanted to explore how everyday visuals like signs and artwork affect those with sight loss.\nI began by focusing on visual impairments, especially color blindness, and how many people don’t even realise they have it. I explored how these conditions are diagnosed and how we can raise awareness to encourage regular eye tests through the creation of posters in a variety of different styles to target specific demographics.\nThe second part looks at real world examples of design, analysing what makes them effective/their short comings. I looked at road signs, creating a short pamphlet breaking down its successes, as well as the London Underground and its issues with accessibility.\nThe final outcomes include posters, infographics, and merchandise graphics that raise awareness and promote accessibility.\nA link to my final website where I conduct research in the form of surveys and fully breakdown design choices can be found at the bottom.",
-    "year": "2023-05-19",
+    "date": "2023-05-19",
     "thumbnail": {
       "src": "/assets/inclusive-design/10.webp",
       "blur": "WONA-P9bNGNHWYWB~UbHIpRkRkWB9uD+WFRkM{oL?Ffkofjsayof"
@@ -522,7 +503,7 @@
         ]
       },
       {
-        "title": "Part 2: Tube Map",
+        "title": "Part 3: Tube Map",
         "ratio": "22/14",
         "images": [
           {
@@ -574,7 +555,7 @@
     "title": "Fruitful",
     "type": "Visual Identity",
     "outline": "This project explores the concept of flavourings through the creation of a fictional fruit tea brand, Fruitful Tea Co. The brand was designed to feel both playful and professional, with a focus on bold, eye-catching visuals and a modern identity.\nThe project includes packaging design, promotional materials, and a website for the subscription-based delivery service. Branding was kept consistent through the development of clear guidelines, applied across posters, web design, and product mockups. The aim was to create a recognisable and engaging presence that could stand out in a crowded market.",
-    "year": "2024-05-31",
+    "date": "2024-05-31",
     "thumbnail": {
       "src": "/assets/fruitful/final-1.webp",
       "blur": "WCKdMe||NX,,Bp[C3m]%THrcS~KHvfOr-7Kbp1F{Ga]%S~Jj,,rX"
@@ -677,6 +658,201 @@
       {
         "key": "disciplines",
         "value": "Visual Identity / UI/UX / Print Design",
+        "isList": true
+      }
+    ]
+  },
+  {
+    "slug": "dr-barkers",
+    "title": "Dr Barkers",
+    "type": "Visual Identity & Packaging",
+    "outline": "For this GCSE brief I created a complete brand system for Dr Barker’s — from concept and artist research to packaging, 3D mockups and a short product animation. I developed a simple, recognisable logo, designed infographics and a subscription box sleeve, produced reusable packaging (biscuit tub and bag), and modelled realistic mockups using Blender and photogrammetry for the kibble bag.\nMy process combined primary photography, flat illustrative artwork inspired by George Tonks, and iterative testing in Affinity Designer to balance legibility, sustainability, and playful shelf appeal. The final suite demonstrates strengths in brand thinking, packaging design, 3D visualization, and translating static identity into motion for social media. ",
+    "date": "2022-05-12",
+    "thumbnail": {
+      "src": "/assets/dr-barkers/final-high-res.webp"
+    },
+    "slideshows": [
+      {
+        "title": "Mascot",
+        "ratio": "4/3",
+        "images": [
+          {
+            "src": "/assets/dr-barkers/final.webp",
+            "alt": "Final Mascot Illustration",
+            "fit": true
+          }
+        ]
+      },
+      {
+        "title": "Packaging Renders",
+        "ratio": "16/9",
+        "images": [
+          {
+            "src": "/assets/dr-barkers/final-box.webp",
+            "alt": "Final Box Mockup"
+          },
+          {
+            "src": "/assets/dr-barkers/final-1.webp",
+            "alt": "Kibble Bag Mockup"
+          },
+          {
+            "src": "/assets/dr-barkers/final-2.webp",
+            "alt": "Wet Pouch Pouch"
+          },
+          {
+            "src": "/assets/dr-barkers/final-high-res.webp",
+            "alt": "All Mockups Together"
+          }
+        ]
+      }
+    ],
+    "table": [
+      {
+        "key": "Client",
+        "value": "GCSE Exam Brief"
+      },
+      {
+        "key": "Visual Development",
+        "value": "https://gcse.willb.cc/projects/drbarkers",
+        "isLink": true
+      },
+      {
+        "key": "touchpoints",
+        "value": "Branding / Packaging / Product Photography / Merch",
+        "isList": true
+      },
+      {
+        "key": "disciplines",
+        "value": "Visual Identity / Print Design / Packaging / Illustration",
+        "isList": true
+      }
+    ]
+  },
+  {
+    "slug": "kew-gardens",
+    "title": "Kew Gardens",
+    "type": "Promotional Merch",
+    "outline": "For one of my GCSE units, I developed a cohesive visual identity celebrating 260 Years at Kew, combining photographic research, mixed‑media studies, and digital design to produce a poster, event branding (bag), and a full van wrap. I led concept development, created textured collage elements and vector illustrations in Affinity Designer, refined layouts and typography in GIMP, and tested colour and composition through multiple iterations to improve legibility and visual impact.\nThe final outcomes demonstrates my strengths in visual research, iterative problem solving, and applying artist influences (Abbiss‑Smith, Matisse, Thompson) to create bright, tactile branding that reads well across print and 3D mockups.",
+    "date": "2022-01-17",
+    "thumbnail": {
+      "src": "/assets/kew/image197.webp"
+    },
+    "slideshows": [
+      {
+        "title": "Informational Poster",
+        "ratio": "16/9",
+        "images": [
+          {
+            "src": "/assets/kew/image162.webp",
+            "alt": "Informational Poster for Kew Gardens"
+          }
+        ]
+      },
+      {
+        "title": "Promotional Merch",
+        "ratio": "16/12",
+        "images": [
+          {
+            "src": "/assets/kew/image197.webp",
+            "alt": "Promotional Tote Bag for Kew Gardens"
+          }
+        ]
+      },
+      {
+        "title": "Van Wrap",
+        "ratio": "16/9",
+        "images": [
+          {
+            "src": "/assets/kew/image235.webp",
+            "alt": "Render of my Van Wrap"
+          },
+          {
+            "src": "/assets/kew/image237.webp",
+            "alt": "Render of my Van Wrap"
+          }
+        ]
+      }
+    ],
+    "table": [
+      {
+        "key": "Client",
+        "value": "GCSE Brief"
+      },
+      {
+        "key": "Visual Evidence",
+        "value": "https://alevel.willb.cc/projects/kew",
+        "isLink": true
+      },
+      {
+        "key": "touchpoints",
+        "value": "Merch / Van Wrap / Signage",
+        "isList": true
+      },
+      {
+        "key": "disciplines",
+        "value": "Illustration / Print Design / 3D Design",
+        "isList": true
+      }
+    ]
+  },
+  {
+    "slug": "nasta-intro",
+    "title": "NaSTA Awards Intro",
+    "type": "Laser Projection",
+    "outline": "In 2026, Loughborough University hosted the National Student Television Awards (NaSTA), a prestigious event celebrating student media across the UK.\nFor the opening sequence, I developed a program to create laser sequences based off of SVG Sequences, allowing me to sync the laser up to a custom visual on the screen. After some discussion with event organisers, I created a laser burn effect, making it look like the laser was burning through the screen, cutting out the NaSTA logo. In addition I created immersive sound effects that moved with the laser, further developing the immersiveness.\nOverall the sequence was celebrated multiple times by the hosts, and various judges, including Chris Cook, the Creative Director of BBC News.",
+    "date": "2026-03-30",
+    "thumbnail": {
+      "src": "/assets/nastas/stream-str.mp4",
+      "type": "vid"
+    },
+    "slideshows": [
+      {
+        "title": "Final Sequence",
+        "ratio": "16/9",
+        "images": [
+          {
+            "src": "/assets/nastas/stream-str.mp4",
+            "type": "vid",
+            "alt": "The Final Laser Projection Sequence"
+          }
+        ]
+      },
+      {
+        "title": "During Development",
+        "ratio": "16/9",
+        "images": [
+          {
+            "src": "/assets/nastas/alternate.mp4",
+            "type": "vid",
+            "alt": "A Different Angle from the Development"
+          }
+        ]
+      },
+      {
+        "title": "Final Sequence",
+        "ratio": "16/9",
+        "images": [
+          {
+            "src": "/assets/nastas/just-video.mp4",
+            "type": "vid",
+            "alt": "The Final Animation"
+          }
+        ]
+      }
+    ],
+    "table": [
+      {
+        "key": "Client",
+        "value": "NaSTA (National Student Television Awards)"
+      },
+      {
+        "key": "touchpoints",
+        "value": "Laser Projection / Animation",
+        "isList": true
+      },
+      {
+        "key": "disciplines",
+        "value": "Laser Projection / Motion Design / Sound Design",
         "isList": true
       }
     ]
