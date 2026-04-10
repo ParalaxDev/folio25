@@ -3,6 +3,7 @@ import "../styles/global.css";
 import "lenis/dist/lenis.css";
 import { WebGLImageProvider } from "../components/WebGLImage/WebGLImageContext";
 import MouseOver from "../components/MouseOver.astro";
+import Analytics from "@vercel/analytics/astro";
 
 const { title, tag, desc, img, namespace } = Astro.props;
 ---
@@ -26,7 +27,6 @@ const { title, tag, desc, img, namespace } = Astro.props;
 
         <link rel="canonical" href="https://willb.cc/" />
         <meta name="theme-color" content="#000000" />
-
         <meta property="og:type" content="website" />
         <meta property="og:url" content={Astro.site} />
         <meta property="og:title" content={tag} />
@@ -41,6 +41,7 @@ const { title, tag, desc, img, namespace } = Astro.props;
         <meta name="twitter:description" content={desc} />
         <meta name="twitter:image" content={img.url} />
         <meta name="twitter:image:alt" content={img.alt} />
+        <Analytics />
         <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/sf-font/stylesheet.min.css"
