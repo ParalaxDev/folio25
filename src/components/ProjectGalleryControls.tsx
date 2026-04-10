@@ -13,9 +13,9 @@ export default function ProjectGalleryControls({ galleryId, images }: Props) {
   const [altText, setAltText] = useState(images[0]?.alt || "");
 
   useEffect(() => {
-    const carousel = document.querySelector(`#${galleryId}-carousel`);
-    const prev = document.querySelector(`#${galleryId}-prev`);
-    const next = document.querySelector(`#${galleryId}-next`);
+    const carousel = document.getElementById(`${galleryId}-carousel`);
+    const prev = document.getElementById(`${galleryId}-prev`);
+    const next = document.getElementById(`${galleryId}-next`);
 
     if (!carousel || !prev || !next) return;
 
