@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { event } from "onedollarstats";
 
 interface Image {
   alt: string;
@@ -8,6 +9,19 @@ interface Props {
   galleryId: string;
   images: Image[];
 }
+
+const debounce = <T extends unknown[]>(
+  callback: (...args: T) => void,
+  wait: number,
+) => {
+  let timeoutId: number | null = null;
+  return (...args: T) => {
+    window.clearTimeout(timeoutId!);
+    timeoutId = window.setTimeout(() => {
+      callback(...args);
+    }, wait);
+  };
+};
 
 export default function ProjectGalleryControls({ galleryId, images }: Props) {
   const [altText, setAltText] = useState(images[0]?.alt || "");
@@ -28,6 +42,10 @@ export default function ProjectGalleryControls({ galleryId, images }: Props) {
       el.classList.remove("opacity-0", "pointer-events-none");
       el.classList.add("opacity-100", "pointer-events-auto");
     };
+
+    const debouncedScrollEvent = debounce((args: Record<string, string>) => {
+      event("Gallery Changed", args);
+    }, 200);
 
     const updateState = () => {
       const scrollLeft = carousel.scrollLeft;
@@ -65,14 +83,28 @@ export default function ProjectGalleryControls({ galleryId, images }: Props) {
       });
     };
 
-    carousel.addEventListener("scroll", updateState);
+    carousel.addEventListener("scroll", () => {
+      updateState();
+      debouncedScrollEvent({
+        galleryId,
+        changedTo:
+          images[Math.round(carousel.scrollLeft / carousel.clientWidth)]?.alt,
+      });
+    });
     prev.addEventListener("click", handlePrevClick);
     next.addEventListener("click", handleNextClick);
 
     updateState();
 
     return () => {
-      carousel.removeEventListener("scroll", updateState);
+      carousel.removeEventListener("scroll", () => {
+        updateState();
+        debouncedScrollEvent({
+          galleryId,
+          changedTo:
+            images[Math.round(carousel.scrollLeft / carousel.clientWidth)]?.alt,
+        });
+      });
       prev.removeEventListener("click", handlePrevClick);
       next.removeEventListener("click", handleNextClick);
     };

@@ -47,6 +47,13 @@ const { title, tag, desc, img, namespace } = Astro.props;
             href="https://cdn.jsdelivr.net/npm/sf-font/stylesheet.min.css"
         />
         <script>
+            import { configure } from "onedollarstats";
+            configure({
+                hostname: "willb.cc",
+                devmode: true,
+            });
+        </script>
+        <script>
             import Lenis from "lenis";
             import gsap from "gsap";
             import barba from "@barba/core";
