@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/event",
+      "destination": "https://collector.onedollarstats.com/events"
+    }
+  ]
+}
