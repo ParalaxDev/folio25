@@ -106,6 +106,31 @@
             "alt": "Example Quiz Page"
           }
         ]
+      },
+      {
+        "title": "Social Media Mockups",
+        "ratio": "16/9",
+        "images": [
+          {
+            "src": "/assets/8-hours/PowerDown.webp",
+            "alt": "Power Down Social Media Mockup"
+          },
+          {
+            "src": "/assets/8-hours/SolarSync.webp",
+            "fit": true,
+            "alt": "Solar Sync Social Media Mockup"
+          },
+          {
+            "src": "/assets/8-hours/ArcticChill.webp",
+            "fit": true,
+            "alt": "Artic Chill Social Media Mockup"
+          },
+          {
+            "src": "/assets/8-hours/LucidVoyage.webp",
+            "fit": true,
+            "alt": "Lucid Voyage Social Media Mockup"
+          }
+        ]
       }
     ],
     "table": [
