@@ -347,6 +347,94 @@
     ]
   },
   {
+    "slug": "su-club",
+    "title": "Club Lighting & Visuals",
+    "type": "Lighting & Visual Design",
+    "outline": "This project was to create a cohesive environment by bridging the gap between lighting and motion graphics. By routing SACN lighting data and Dante audio feeds into TouchDesigner, I created a system where the visuals and stage lights would share common themes such as colour, intensity, strobe, and movement. Using FFT analysis, I mapped specific audio frequencies to visual parameters, ensuring that every kick drum and lighting cue translated into a singular, synchronised event across the entire venue.\nThe visual identity was a blend of high-fidelity After Effects assets and real-time generative layers processed through Resolume Arena. To solve for varying staff levels, I built the system with a hybrid architecture, allowing it to run as a fully automated, audio-reactive installation or be operated manually by a dedicated operator. This versatility ensured a personalised, high-energy experience during peak hours while maintaining a consistent big-stage feel when running autonomously.\nThe final experience was anchored by a massive 2K LED stage wall with a 3.9mm pitch. Running at 120Hz in a 16:9 configuration, the display provided ultra-smooth, crisp motion, and the result was a scalable ecosystem that translated signal data into a high-impact, physical experience.",
+    "date": "2026-04-30",
+    "thumbnail": {
+      "src": "/assets/club/thumb.mp4",
+      "type": "vid",
+      "blur": "WLM}5.}lE%15}Y=aNN0,EkShWU-AD$OAoHR*s9nji{$+nijEn$R*"
+    },
+    "slideshows": [
+      {
+        "title": "Examples of my Work",
+        "ratio": "16/9",
+        "images": [
+          {
+            "src": "/assets/club/IMG_4366.mp4",
+            "type": "vid",
+            "fit": true,
+            "alt": "Lighting & Production Design with Rudimental"
+          }
+        ]
+      },
+      {
+        "title": "Examples of my Work",
+        "ratio": "16/9",
+        "images": [
+          {
+            "src": "/assets/club/IMG_4367.mp4",
+            "type": "vid",
+            "fit": true,
+            "alt": "Lighting & Production Design with Rudimental"
+          }
+        ]
+      },
+      {
+        "title": "Examples of my Work",
+        "ratio": "16/9",
+        "images": [
+          {
+            "src": "/assets/club/IMG_4368.mp4",
+            "type": "vid",
+            "fit": true,
+            "alt": "Lighting & Production Design with Rudimental"
+          }
+        ]
+      },
+      {
+        "title": "Examples of my Work",
+        "ratio": "16/9",
+        "images": [
+          {
+            "src": "/assets/club/IMG_4389.mp4",
+            "type": "vid",
+            "fit": true,
+            "alt": "Lighting & Production Design for a standard Club Night"
+          }
+        ]
+      }
+    ],
+    "table": [
+      {
+        "key": "Client",
+        "value": "Loughborough SU"
+      },
+      {
+        "key": "Artists",
+        "value": "Rudimental / Sigala / Dick & Dom / Tion Wayne / Big Narstie / Becky Hill / Swarmz / Skepsis",
+        "isList": true
+      },
+      {
+        "key": "Tools",
+        "value": "After Effects / Avolites / Resolume / Touch Designer / Pangolin Quickshow / Allen & Heath",
+        "isList": true
+      },
+      {
+        "key": "touchpoints",
+        "value": "Lights / Sound / LED Visuals",
+        "isList": true
+      },
+      {
+        "key": "disciplines",
+        "value": "Lighting Design / Production Design / Stage Design / Visual Design",
+        "isList": true
+      }
+    ]
+  },
+  {
     "slug": "visualisation",
     "title": "Data Visualisation",
     "type": "Motion Design",
