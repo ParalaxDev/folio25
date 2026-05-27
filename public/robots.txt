@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://willb.cc/sitemap-index.xml
