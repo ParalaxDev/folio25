@@ -262,6 +262,129 @@
     ]
   },
   {
+    "slug": "soundcloud-pulse",
+    "title": "SoundCloud Pulse",
+    "featured": true,
+    "type": "Insight & Branding",
+    "outline": "SoundCloud is the best place for underground music, but it has almost zero real-world visibility, meaning most students default to other apps for their daily streaming. I wanted to fix that by bringing the platform into the physical world.\nThe solution is Pulse, a series of nights hosted by up-and-coming SoundCloud DJs, dedicated towards niche music genres, where the whole night is interactive through the SoundCloud app. While in the venue, people can use the app to vote on the next track in the queue and send live comments or photos straight onto the big screens. Once the night ends, the final mix is saved straight to their SoundCloud library as a digital keepsake.\nTo get word out on campus, I avoided passive methods such as billboards. Instead, the campaign relies on student ambassadors in alternative uni societies, interactive QR stickers that unlock unreleased tracks, and custom street-art murals that reveal secret event lineups. It takes the energy of a live gig and ties it right back into the app, turning casual listeners into a proper community",
+    "date": "2026-05-18",
+    "thumbnail": {
+      "src": "/assets/soundcloud-pulse/thumb.mp4",
+      "type": "vid"
+    },
+    "slideshows": [
+      {
+        "title": "Insights",
+        "ratio": "16/9",
+        "images": [
+          {
+            "src": "/assets/soundcloud-pulse/pitch/pitch-9.webp",
+            "alt": "Generated Insights"
+          },
+          {
+            "src": "/assets/soundcloud-pulse/pitch/pitch-10.webp",
+            "alt": "Generated Insights"
+          },
+          {
+            "src": "/assets/soundcloud-pulse/pitch/pitch-11.webp",
+            "alt": "So What?"
+          },
+          {
+            "src": "/assets/soundcloud-pulse/pitch/pitch-12.webp",
+            "alt": "So What?"
+          },
+          {
+            "src": "/assets/soundcloud-pulse/pitch/pitch-13.webp",
+            "alt": "Generated Insights"
+          },
+          {
+            "src": "/assets/soundcloud-pulse/pitch/pitch-14.webp",
+            "alt": "Generated Insights"
+          },
+          {
+            "src": "/assets/soundcloud-pulse/pitch/pitch-15.webp",
+            "alt": "Generated Insights"
+          },
+          {
+            "src": "/assets/soundcloud-pulse/pitch/pitch-16.webp",
+            "alt": "Generated Insights"
+          }
+        ]
+      },
+      {
+        "title": "The Solution",
+        "ratio": "16/9",
+        "images": [
+          {
+            "src": "/assets/soundcloud-pulse/thumb.mp4",
+            "type": "vid",
+            "alt": "Introducing SoundCloud: Pulse"
+          }
+        ]
+      },
+      {
+        "title": "The Event",
+        "ratio": "16/9",
+        "images": [
+          {
+            "src": "/assets/soundcloud-pulse/event.mp4",
+            "type": "vid",
+            "alt": "Mockup of a SoundCloud: Pulse event"
+          }
+        ]
+      },
+      {
+        "title": "The App",
+        "ratio": "16/9",
+        "images": [
+          {
+            "src": "/assets/soundcloud-pulse/pitch/pitch-24.webp",
+            "alt": "App Mockup"
+          },
+          {
+            "src": "/assets/soundcloud-pulse/pitch/pitch-25.webp",
+            "alt": "App Mockup"
+          }
+        ]
+      },
+      {
+        "title": "Marketing",
+        "ratio": "16/9",
+        "images": [
+          {
+            "src": "/assets/soundcloud-pulse/wall_mockup.webp",
+            "alt": "Mural Wall Art Advertising Mockup"
+          },
+          {
+            "src": "/assets/soundcloud-pulse/sticker.webp",
+            "alt": "In situ Sticker Mockup"
+          }
+        ]
+      }
+    ],
+    "table": [
+      {
+        "key": "Client",
+        "value": "Raptor x SoundCloud"
+      },
+      {
+        "key": "Pitch Document",
+        "value": "https://willb.cc/f/Raptor_x_SoundCloud_Pitch_Document.pdf",
+        "isLink": true
+      },
+      {
+        "key": "touchpoints",
+        "value": "Logos / App / Motion Graphics / Event Mockups / Stickers",
+        "isList": true
+      },
+      {
+        "key": "disciplines",
+        "value": "Visual Identity / Branding / Strategy / Motion Graphics / UI / UX",
+        "isList": true
+      }
+    ]
+  },
+  {
     "slug": "resonance",
     "title": "Resonance",
     "featured": true,
@@ -576,7 +699,6 @@
   {
     "slug": "ardua",
     "title": "Ardua",
-    "featured": true,
     "type": "Typeface",
     "outline": "For this brief, I created a custom modular typeface called Ardua for the Birmingham Design Festival. I drew inspiration from the festival’s theme of “Play” and its ambition to be both bold and international. I explored modular design, bitmap styles, and minimalist influences like Braun and Helvetica to build a tall, geometric font with a unique twist — a variable crossbar that adds flexibility and visual interest.\nI developed the typeface in Glyphs, built an animated showcase using Cavalry, and applied it in posters, mockups, and motion graphics tailored for the festival. The final font is striking, adaptable, and designed to stand out in display settings while nodding to both industrial heritage and playful experimentation.",
     "date": "2025-02-03",
@@ -645,7 +767,6 @@
   {
     "slug": "accessibility-in-design",
     "title": "Inclusive Design",
-    "featured": true,
     "type": "Research",
     "outline": "Over a year and a half, I looked at how design can be more inclusive for people with visual impairments. Based on my own experiences with colour blindness and poor depth perception, I wanted to explore how everyday visuals like signs and artwork affect those with sight loss.\nI began by focusing on visual impairments, especially color blindness, and how many people don’t even realise they have it. I explored how these conditions are diagnosed and how we can raise awareness to encourage regular eye tests through the creation of posters in a variety of different styles to target specific demographics.\nThe second part looks at real-world examples of design, analysing what makes them effective/their shortcomings. I looked at road signs, creating a short pamphlet breaking down its successes, as well as the London Underground and its issues with accessibility.\nThe final outcomes include posters, infographics, and merchandise graphics that raise awareness and promote accessibility.\nA link to my final website where I conduct research in the form of surveys and fully break down design choices can be found at the bottom.",
     "date": "2023-05-19",
