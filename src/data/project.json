@@ -262,6 +262,129 @@
     ]
   },
   {
+    "slug": "soundcloud-pulse",
+    "title": "SoundCloud Pulse",
+    "featured": true,
+    "type": "Insight & Branding",
+    "outline": "SoundCloud is the best place for underground music, but it has almost zero real-world visibility, meaning most students default to other apps for their daily streaming. I wanted to fix that by bringing the platform into the physical world.\nThe solution is Pulse, a series of nights hosted by up-and-coming SoundCloud DJs, dedicated towards niche music genres, where the whole night is interactive through the SoundCloud app. While in the venue, people can use the app to vote on the next track in the queue and send live comments or photos straight onto the big screens. Once the night ends, the final mix is saved straight to their SoundCloud library as a digital keepsake.\nTo get word out on campus, I avoided passive methods such as billboards. Instead, the campaign relies on student ambassadors in alternative uni societies, interactive QR stickers that unlock unreleased tracks, and custom street-art murals that reveal secret event lineups. It takes the energy of a live gig and ties it right back into the app, turning casual listeners into a proper community",
+    "date": "2026-05-18",
+    "thumbnail": {
+      "src": "/assets/soundcloud-pulse/thumb.mp4",
+      "type": "vid"
+    },
+    "slideshows": [
+      {
+        "title": "Insights",
+        "ratio": "16/9",
+        "images": [
+          {
+            "src": "/assets/soundcloud-pulse/pitch/pitch-9.webp",
+            "alt": "Generated Insights"
+          },
+          {
+            "src": "/assets/soundcloud-pulse/pitch/pitch-10.webp",
+            "alt": "Generated Insights"
+          },
+          {
+            "src": "/assets/soundcloud-pulse/pitch/pitch-11.webp",
+            "alt": "So What?"
+          },
+          {
+            "src": "/assets/soundcloud-pulse/pitch/pitch-12.webp",
+            "alt": "So What?"
+          },
+          {
+            "src": "/assets/soundcloud-pulse/pitch/pitch-13.webp",
+            "alt": "Generated Insights"
+          },
+          {
+            "src": "/assets/soundcloud-pulse/pitch/pitch-14.webp",
+            "alt": "Generated Insights"
+          },
+          {
+            "src": "/assets/soundcloud-pulse/pitch/pitch-15.webp",
+            "alt": "Generated Insights"
+          },
+          {
+            "src": "/assets/soundcloud-pulse/pitch/pitch-16.webp",
+            "alt": "Generated Insights"
+          }
+        ]
+      },
+      {
+        "title": "The Solution",
+        "ratio": "16/9",
+        "images": [
+          {
+            "src": "/assets/soundcloud-pulse/thumb.mp4",
+            "type": "vid",
+            "alt": "Introducing SoundCloud: Pulse"
+          }
+        ]
+      },
+      {
+        "title": "The Event",
+        "ratio": "16/9",
+        "images": [
+          {
+            "src": "/assets/soundcloud-pulse/event.mp4",
+            "type": "vid",
+            "alt": "Mockup of a SoundCloud: Pulse event"
+          }
+        ]
+      },
+      {
+        "title": "The App",
+        "ratio": "16/9",
+        "images": [
+          {
+            "src": "/assets/soundcloud-pulse/pitch/pitch-24.webp",
+            "alt": "App Mockup"
+          },
+          {
+            "src": "/assets/soundcloud-pulse/pitch/pitch-25.webp",
+            "alt": "App Mockup"
+          }
+        ]
+      },
+      {
+        "title": "Marketing",
+        "ratio": "16/9",
+        "images": [
+          {
+            "src": "/assets/soundcloud-pulse/wall_mockup.webp",
+            "alt": "Mural Wall Art Advertising Mockup"
+          },
+          {
+            "src": "/assets/soundcloud-pulse/sticker.webp",
+            "alt": "In situ Sticker Mockup"
+          }
+        ]
+      }
+    ],
+    "table": [
+      {
+        "key": "Client",
+        "value": "Raptor x SoundCloud"
+      },
+      {
+        "key": "Pitch Document",
+        "value": "https://willb.cc/f/Raptor_x_SoundCloud_Pitch_Document.pdf",
+        "isLink": true
+      },
+      {
+        "key": "touchpoints",
+        "value": "Logos / App / Motion Graphics / Event Mockups / Stickers",
+        "isList": true
+      },
+      {
+        "key": "disciplines",
+        "value": "Visual Identity / Branding / Strategy / Motion Graphics / UI / UX",
+        "isList": true
+      }
+    ]
+  },
+  {
     "slug": "resonance",
     "title": "Resonance",
     "featured": true,
