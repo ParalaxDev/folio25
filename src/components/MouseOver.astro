@@ -10,8 +10,6 @@
 
         if (!hoverEl) return;
 
-        console.log(hoverEl);
-
         let currentX = 0;
         let currentY = 0;
         let targetX = 0;
@@ -34,13 +32,15 @@
         els.forEach((el: HTMLElement) => {
             el.addEventListener("mouseenter", () => {
                 if (document.body.dataset.transition == "true") return;
-                hoverEl.children[0].textContent = el.dataset.hoverText!;
+                hoverEl.children[0].textContent =
+                    el.dataset.hoverText ?? "Read More";
                 hoverEl.style.opacity = "1";
                 document.body.style.cursor = "pointer";
             });
 
             el.addEventListener("mouseleave", () => {
-                hoverEl.children[0].textContent = el.dataset.hoverText!;
+                hoverEl.children[0].textContent =
+                    el.dataset.hoverText ?? "Read More";
                 hoverEl.style.opacity = "0";
                 document.body.style.cursor = "default";
             });
