@@ -134,7 +134,10 @@ const img = {
                                             </span>
                                         </p>
                                         <div class="flex flex-col justify-between h-full pb-8">
-                                            <h2 class="text-4xl font-sans text-primary font-medium read-more animate-title-in">
+                                            <h2
+                                                class="text-4xl font-sans text-primary font-medium hover-tooltip animate-title-in"
+                                                data-hover-text="Read More"
+                                            >
                                                 <a
                                                     href={`project/${project.id}`}
                                                     class="flex items-center gap-0.5"
@@ -150,7 +153,10 @@ const img = {
                                                     {project.data.title}
                                                 </a>
                                             </h2>
-                                            <p class="text-lg/relaxed text-secondary read-more animate-text-in mt-4 lg:mt-0">
+                                            <p
+                                                class="text-lg/relaxed text-secondary hover-tooltip animate-text-in mt-4 lg:mt-0"
+                                                data-hover-text="Read More"
+                                            >
                                                 <a
                                                     href={`project/${project.id}`}
                                                 >
@@ -165,13 +171,15 @@ const img = {
                                     {project.data.thumbnail?.type == "vid" ? (
                                         <WebGLVideo
                                             src={project.data.thumbnail!.src}
-                                            class="aspect-video object-cover w-full lg:max-w-4/6 read-more mb-2 lg:mb-0"
+                                            class="aspect-video object-cover w-full lg:max-w-4/6 hover-tooltip mb-2 lg:mb-0"
                                             href={`project/${project.id}`}
+                                            data-hover-text="Read More"
                                         />
                                     ) : (
                                         <WebGLImage
                                             src={project.data.thumbnail!.src}
-                                            class="aspect-video object-cover w-full lg:max-w-4/6 read-more mb-2 lg:mb-0"
+                                            class="aspect-video object-cover w-full lg:max-w-4/6 hover-tooltip mb-2 lg:mb-0"
+                                            data-hover-text="Read More"
                                             alt={project.data.title}
                                             href={`project/${project.id}`}
                                         />
