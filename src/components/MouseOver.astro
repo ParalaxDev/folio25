@@ -6,7 +6,7 @@
             ".hover-cursor",
         ) as HTMLDivElement;
 
-        const els = document.querySelectorAll(`[data-project] .read-more`);
+        const els = document.querySelectorAll<HTMLElement>(`.hover-tooltip`);
 
         if (!hoverEl) return;
 
@@ -31,14 +31,16 @@
             targetY = e.clientY;
         });
 
-        els.forEach((el) => {
+        els.forEach((el: HTMLElement) => {
             el.addEventListener("mouseenter", () => {
                 if (document.body.dataset.transition == "true") return;
+                hoverEl.children[0].textContent = el.dataset.hoverText!;
                 hoverEl.style.opacity = "1";
                 document.body.style.cursor = "pointer";
             });
 
             el.addEventListener("mouseleave", () => {
+                hoverEl.children[0].textContent = el.dataset.hoverText!;
                 hoverEl.style.opacity = "0";
                 document.body.style.cursor = "default";
             });
@@ -64,6 +66,5 @@
     <p
         class="font-mono text-xs text-secondary flex justify-center items-center"
     >
-        Read More
     </p>
 </div>
