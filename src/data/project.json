@@ -7,7 +7,7 @@
     "outline": "8 Hours is a fictional sleep wellness brand I created as the foundation for an immersive university experience tackling the UK's sleep deprivation crisis. With over 75% of adults getting less than the recommended 8 hours, the project targets the 18–24 demographic.\n\nThe experience takes place in a large sports hall during Freshers Week, where students lie on a soft mattress floor and watch an introductory animation on a ceiling-mounted LED screen. They then take a group quiz via a companion app, answering questions that range from playful to serious about their sleeping habits. At the end, they're matched to one of four personalised herbal patch variants, Power Down, Lucid Voyage, Arctic Chill, or Solar Sync.\n\nThe project spans a full brand identity, product packaging, a Figma-designed quiz app, a social media campaign using TikTok POV-style ads, and a 3D-rendered user journey map built in Blender. The visual language uses grainy gradients, bold typography, and a purple and blue palette to evoke the transition from overstimulation into calm.",
     "date": "2026-04-13",
     "thumbnail": {
-      "src": "/assets/8-hours/thumbnail.mp4",
+      "src": "/assets/8-hours/thumb.mp4",
       "type": "vid"
     },
     "slideshows": [
@@ -392,7 +392,7 @@
     "outline": "This project explores how design can make biodiversity loss feel more immediate and personal. It centres on a meditation-style app that uses woodland sounds and local species information to encourage mindfulness and reflection. By slowing down and noticing nature, users are introduced to biodiversity data in a way that feels calm and accessible. The app also connects people to volunteering opportunities, turning awareness into action and helping them see how their wellbeing links to the health of the environment.",
     "date": "2025-11-21",
     "thumbnail": {
-      "src": "/assets/resonance/preview-new.mp4",
+      "src": "/assets/resonance/thumb.mp4",
       "type": "vid"
     },
     "slideshows": [
@@ -1133,7 +1133,7 @@
     "outline": "In 2026, Loughborough University hosted the National Student Television Awards (NaSTA), a prestigious event celebrating student media across the UK.\nFor the opening sequence, I developed a program to create laser sequences based on SVG Sequences, allowing me to sync the laser with a custom visual on the screen. After some discussion with event organisers, I created a laser burn effect, making it look like the laser was burning through the screen, cutting out the NaSTA logo. In addition, I created immersive sound effects that moved with the laser, further developing the immersion.\nOverall, the sequence was celebrated multiple times by the hosts, and various judges, including Chris Cook, the Creative Director of BBC News.",
     "date": "2026-03-30",
     "thumbnail": {
-      "src": "/assets/nastas/stream-str.mp4",
+      "src": "/assets/nastas/thumb.mp4",
       "type": "vid"
     },
     "slideshows": [
