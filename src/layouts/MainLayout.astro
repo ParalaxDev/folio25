@@ -253,6 +253,18 @@ const { title, tag, desc, img, namespace } = Astro.props;
                             animateTextIn();
                             pageTransitionOut(data.next.container);
                         },
+                        afterEnter(data) {
+                            const videos =
+                                data.next.container.querySelectorAll("video");
+                            videos.forEach((video: HTMLVideoElement) => {
+                                video.play().catch((error) => {
+                                    console.log(
+                                        "Autoplay was prevented:",
+                                        error,
+                                    );
+                                });
+                            });
+                        },
                     },
                 ],
             });
